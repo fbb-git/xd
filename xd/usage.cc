@@ -5,8 +5,8 @@
 #include "xd.h"
 
 
-#define VERSION "2.13"
-#define YEAR    "1994-2001"
+#define VERSION "2.14"
+#define YEAR    "1994-2004"
 
 void usage(Args const &args)
 {
