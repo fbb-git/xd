@@ -1,3 +1,5 @@
+2.12    No changes just the update from a.out to elf
+
 2.11	Oops, embedded links weren't recognized in 2.10. Now the algorithm is
 	modified so as to compare the inode/device information. What comes
 	first is taken first: it may be the directory link. Apart from that:

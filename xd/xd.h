@@ -18,8 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <icce/Args.h>
-#include <icce/ICError.h> 
+#include <icce/args.h>
+#include <icce/icerror.h> 
 
 #include "Command/Command.h"
 #include "Match/Match.h"

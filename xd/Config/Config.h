@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include <unistd.h> 
-#include <icce/ConfigFile.h>
+#include <icce/configfile.h>
 
 #include "../configure.h" 
 

@@ -4,7 +4,7 @@
 #include <glob.h>
 #include <sys/stat.h>
 #include <unistd.h> 
-#include <icce/ICString.h>
+#include <icce/icstring.h>
 
 #include "../Config/Config.h"
 

@@ -3,7 +3,7 @@
 
 #include <malloc.h>
 
-#include <icce/Args.h>
+#include <icce/args.h>
 #include "../Config/Config.h" 
 
 class Command
