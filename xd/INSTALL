@@ -1,0 +1,66 @@
+This are the installation instructions for xd.
+
+Quick Installation instruction:
+===============================
+
+1. Do as root in the directory where xd unpacked to:
+
+	    install xd /usr/local/bin
+	    
+to install the provided version of xd in /usr/local/bin
+
+2. Add the following alias to your csh.cshrc (or whatever file you use as
+your system-wide alias file):
+   
+	    alias   xd	'cd `/usr/local/bin/xd \!*`'
+
+
+Extensive Installation Instruction:
+===================================
+
+Preliminaries:
+--------------
+
+You need icmake to compile xd yourself. Icmake may be obtained from
+ftp.icce.rug.nl, or from sunsite.unc.edu or from tsx-11.mit.edu.
+
+If you don't have icmake, you have to compile and link all sources by hand.
+No support for this case is provided here.
+
+--------------
+
+Xd depends on some classes defined in the libicce-library. The library (and its
+sources) can be obtained from ftp.icce.rug.nl, in the directory pub/unix. 
+
+Installation Instructions:
+--------------------------
+
+1. All instructions should be done from the directory where
+   the xd.X.YY.tgz archive unpacked to (i.e., xd/).
+2. Make sure you have the libicce.a library (e.g., in /usr/local/lib)
+   and the associated header files (e.g., in /usr/local/include/icce)
+   installed.
+3. If preferred, edit the name of the configurationfile to be used.
+   to do this, edit in configure.h, the #define XD_CONFIG_PATH.
+   It is always relative to $HOME, and in the distribution it is set
+   to "/.conf/xd/xd.conf".
+4. Do (not necessarily as root)
+	./build
+    This creates in the current directory libxd.a and xd.
+    During the compilation, two warnings are generated.
+    They can safely be ignored.
+5. Do (as root)
+	install xd /usr/local/bin
+6. Add the following alias to your csh.cshrc (or whatever file you use as
+   your system-wide alias file):
+   
+    alias	xd		'cd `/usr/local/bin/xd \!*`'
+
+Cleanup-instructions.
+---------------------
+
+Some simple cleanup may be required. The compilation left libxd.a and xd.
+All other intermediate compilation products were removed by build.
+
+If required, libxd.a and xd can be removed.
+
