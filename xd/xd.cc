@@ -9,43 +9,45 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	Args
-		args(argc, argv);		// preprocess the arguments
+    Args
+        args(argc, argv);       // preprocess the arguments
 #ifdef DEBUG
-	fprintf(stderr, "main():\t args defined\n");
+    fprintf(stderr, "main():\t args defined\n");
 #   endif
 
-	Config
-		config;				// read the configuration
+    Config
+        config;             // read the configuration
 #ifdef DEBUG
-	fprintf(stderr, "main():\t config defined\n");
+    fprintf(stderr, "main():\t config defined\n");
 #   endif
 
-	Command
-		command(args, config);		// build a command from args
+    Command
+        command(args, config);      // build a command from args
 #ifdef DEBUG
-	fprintf(stderr, "main():\t command defined\n");
+    fprintf(stderr, "main():\t command defined\n");
 #   endif
-						// and config
+                        // and config
 
-	if (args.get_count() == 1)		// only one argument ?
-	{
-                usage(args);			// usage/copyright on no args
-		return (command.write("."));
-	}
+    if (args.get_count() == 1)      // only one argument ?
+    {
+                usage(args);            // usage/copyright on no args
+        return (command.write("."));
+    }
 
-	Match
-		match(command.get_pattern(),	// make the matches
-			config);
+    Match
+        match(command.get_pattern(),    // make the matches
+            config);
 #ifdef DEBUG
-	fprintf(stderr, "main():\t match defined\n");
-#   endif
-
-	Arbiter
-		arbiter(match);			// Make the decision
-#ifdef DEBUG
-	fprintf(stderr, "main():\t arbiter defined\n");
+    fprintf(stderr, "main():\t match defined\n");
 #   endif
 
-	return(command.write(arbiter.get_choice()));// Write the cmd to file
+    Arbiter
+        arbiter(match);         // Make the decision
+#ifdef DEBUG
+    fprintf(stderr, "main():\t arbiter defined\n");
+#   endif
+
+    return(command.write(arbiter.get_choice()));// Write the cmd to file
 }
+
+

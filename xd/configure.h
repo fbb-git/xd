@@ -4,6 +4,6 @@
 //  edit XD_CONF_PATH to suit your taste. It contains the name where your
 //  xd.conf file is stored. Start the path by a /
 
-#define XD_CONF_PATH "/.conf/xd/xd.conf"
+#define XD_CONF_PATH "/etc/xd.rc"
 
 #endif

@@ -98,7 +98,7 @@ void c_compile(list cfiles)
                                                 // compile all files separately
                 for (i = 0; nextfile = element(i, cfiles); i++)
                         exec("g++",
-                                "-c -m486 -Wall -funsigned-char " +
+                                "-c -Wall -funsigned-char " +
                                 copt + " " + nextfile);
                 relink = 1;
                 printf("\n");
