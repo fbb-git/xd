@@ -18,14 +18,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <icce/args.h>
-#include <icce/icerror.h> 
+#include "args/args.h"
+#include "icerror/icerror.h"
 
 #include "Command/Command.h"
 #include "Match/Match.h"
 #include "Config/Config.h"
 #include "Arbiter/Arbiter.h" 
 
-void usage(Args const &args);			// give usage info
+void usage(Args const &args);                   // give usage info
 
 #endif

@@ -1,4 +1,4 @@
-#!/usr/local/bin/icmake -qi
+#!/usr/bin/icmake -qt/tmp/xd
 /*                              build
 
 */
@@ -205,7 +205,7 @@ void cpp_make(string mainfile, string library, string exe, list classes)
 
 void main()
 {
-    libs    = "-licce";                 // the libname (no lib, .a)
+//    libs    = "-licce";                 // the libname (no lib, .a)
 
 //      -g for gdb compilation, Then don't use lopt = "-s"
 //      Use -DDEBUG for debug-printfs:
@@ -220,9 +220,16 @@ void main()
         "xd.cc",             // program source
         "xd",                // program library
         "xd",                // exe program
-        (list)"Command" +       // classes
-        (list)"Match"   +
-        (list)"Config"  +
-        (list)"Arbiter"
+        (list)"Command"     +   // classes
+        (list)"Match"       +
+        (list)"Config"      +
+        (list)"Arbiter"     +
+        (list)"args"        +
+        (list)"icerror"     +
+        (list)"icstring"    +
+        (list)"configfile"  +
+        (list)"noncanon"    
+
     );
 }
+

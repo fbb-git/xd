@@ -3,23 +3,23 @@
 
 #include <stdio.h> 
 #include <stdlib.h>
-#include <icce/noncanon.h>
+#include "../noncanon/noncanon.h"
 
 #include "../Match/Match.h"
 
 class Arbiter
 {
     public:
-    	Arbiter(Match const &match);
-	char const *get_choice(void);
+        Arbiter(Match const &match);
+        char const *get_choice(void);
     private:
-    	void select(void);
-	
-	unsigned
-		count,
-		number;
-	Match const
-		*match;
-	
+        void select(void);
+        
+        unsigned
+                count,
+                number;
+        Match const
+                *match;
+        
 };
 #endif

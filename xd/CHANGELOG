@@ -1,37 +1,40 @@
-2.12    No changes just the update from a.out to elf
+2.13    Made XD selfsupporting. libicce isn't required anymore.
+    Adapted `build': now uses the -t argument
+        
+2.12    Internally used
 
-2.11	Oops, embedded links weren't recognized in 2.10. Now the algorithm is
-	modified so as to compare the inode/device information. What comes
-	first is taken first: it may be the directory link. Apart from that:
-	the same operational functionality as in 2.10.
-	The line 'directories pure' should now be 'directories unique',
-	but it's also the default, so it can safely be omitted.
+2.11    Oops, embedded links weren't recognized in 2.10. Now the algorithm is
+    modified so as to compare the inode/device information. What comes
+    first is taken first: it may be the directory link. Apart from that:
+    the same operational functionality as in 2.10.
+    The line 'directories pure' should now be 'directories unique',
+    but it's also the default, so it can safely be omitted.
 
-2.10	Solutions reducing to the same file (e.g., via links)
-	are prevented by default. In order to get all solutions
-	the line 'directories all' must be included in the xd.conf file.
+2.10    Solutions reducing to the same file (e.g., via links)
+    are prevented by default. In order to get all solutions
+    the line 'directories all' must be included in the xd.conf file.
 
-2.09	libicce.a is now containing the NonCanon etc. classes. The formerly
-	used library libcclib.a. This library and the ICString.h, ICError.h,
-	ARG.h, NonCanon.h and ConfigFile.h files (normally in
-	/usr/local/include) can be removed. The functionality of xd has
-	not been changed.
+2.09    libicce.a is now containing the NonCanon etc. classes. The formerly
+    used library libcclib.a. This library and the ICString.h, ICError.h,
+    ARG.h, NonCanon.h and ConfigFile.h files (normally in
+    /usr/local/include) can be removed. The functionality of xd has
+    not been changed.
 
 2.08
-	from the $HOME directory fails.
+    from the $HOME directory fails.
 
-	In xd.conf this may be suppressed by entering a line containing
-	    extra no
+    In xd.conf this may be suppressed by entering a line containing
+        extra no
 
-	Alternatively, the extra evaluation may be forced in addition to the
-	standard evaluation (from the $HOME directory) if the line
-	    extra always
-	is used in xd.conf
-	
-	In the distribution, the xd.conf file is now expected in
-	$HOME/.conf/xd/xd.conf
-	
-	Prior to the compilation, this path may be set by altering
-	XD_CONF_PATH in the file configure.h
-	
-2.07	First Linux version. Previous versions were for MS-DOS
+    Alternatively, the extra evaluation may be forced in addition to the
+    standard evaluation (from the $HOME directory) if the line
+        extra always
+    is used in xd.conf
+    
+    In the distribution, the xd.conf file is now expected in
+    $HOME/.conf/xd/xd.conf
+    
+    Prior to the compilation, this path may be set by altering
+    XD_CONF_PATH in the file configure.h
+    
+2.07    First Linux version. Previous versions were for MS-DOS

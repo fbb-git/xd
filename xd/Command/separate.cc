@@ -2,16 +2,16 @@
 
 void Command::separated_pattern(char *next)
 {
-	char
-		*token;
+    char
+        *token;
 
-	token = strtok(next, "/-");		// grab the first token
+    token = strtok(next, "/-");     // grab the first token
 
-	do
-	{
-		strcat(pattern, token);		// append it
-		strcat(pattern, "*/");		// append '*/'
-	}
-	while (token = strtok(0, "/-"));
+    do
+    {
+        strcat(pattern, token);     // append it
+        strcat(pattern, "*/");      // append '*/'
+    }
+    while ((token = strtok(0, "/-")));
 }
 
