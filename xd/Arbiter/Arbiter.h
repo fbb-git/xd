@@ -3,7 +3,7 @@
 
 #include <stdio.h> 
 #include <stdlib.h>
-#include <icce/NonCanon.h>
+#include <icce/noncanon.h>
 
 #include "../Match/Match.h"
 

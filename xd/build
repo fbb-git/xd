@@ -4,16 +4,16 @@
 */
 
 string                                      // contain options for
-    libxxxa,				    // expanded lib-name
-    libs,	                            // extra libs, e.g., "-lrss -licce"
-    libpath;			   	    // extra lib-paths, eg, "-L../rss"
+    libxxxa,                                // expanded lib-name
+    libs,                                   // extra libs, e.g., "-lrss -licce"
+    libpath;                                // extra lib-paths, eg, "-L../rss"
 
 int
     relink;                                 // internally used: != 0 to relink
 
 string
-    copt,				// extra C-options
-    lopt,				// extra link-options
+    copt,                               // extra C-options
+    lopt,                               // extra link-options
     wild,                               // wildcard of extension
     current;                            // contains name of current dir.
 
@@ -80,36 +80,36 @@ void link(string library, string exe)
     )
     {
         printf("\n");
-        exec("gcc", "-o", exe, "-l" + library, libs, "-L.", libpath, lopt);
+        exec("g++", "-o", exe, "-l" + library, libs, "-L.", libpath, lopt);
         printf("ok: ", exe, "\n");
     }
 }
 
 void c_compile(list cfiles)
 {
-	string
-		nextfile;
-	int
-		i;
+        string
+                nextfile;
+        int
+                i;
 
-	if (sizeof(cfiles))			// files to compile ?
-	{
-	        printf("\ncompiling: ", current, "\n\n");
-						// compile all files separately
-		for (i = 0; nextfile = element(i, cfiles); i++)
-			exec("gcc",
-				"-c -m486 -Wall -funsigned-char " +
-				copt + " " + nextfile);
-        	relink = 1;
-		printf("\n");
-	}
-	printf("ok: ", current, "\n");
+        if (sizeof(cfiles))                     // files to compile ?
+        {
+                printf("\ncompiling: ", current, "\n\n");
+                                                // compile all files separately
+                for (i = 0; nextfile = element(i, cfiles); i++)
+                        exec("g++",
+                                "-c -m486 -Wall -funsigned-char " +
+                                copt + " " + nextfile);
+                relink = 1;
+                printf("\n");
+        }
+        printf("ok: ", current, "\n");
 }
 
 void updatelib(string library)
 {
     list
-	arlist,
+        arlist,
         objlist;
     string
         to,
@@ -142,16 +142,16 @@ void std_cpp(string library)
 void prefix_class(string class_id)
 {
     list
-	o_files;
+        o_files;
     string
-	o_file;
+        o_file;
     int
-	i;
+        i;
 
     o_files = makelist("*.o");
 
     for (i = 0; o_file = element(i, o_files); i++)
-	exec("mv", o_file, class_id + o_file);
+        exec("mv", o_file, class_id + o_file);
 }
 
 void cpp_make(string mainfile, string library, string exe, list classes)
@@ -161,7 +161,7 @@ void cpp_make(string mainfile, string library, string exe, list classes)
 
     wild = "*.cc";
 
-					    // make library name
+                                            // make library name
     libxxxa = chdir(".") + "lib" + library + ".a";
 
                                             // first process all classes
@@ -183,46 +183,46 @@ void cpp_make(string mainfile, string library, string exe, list classes)
     {
         current = element(index, classes);  // determine class name
         chdir( current);                  // chdir to a class directory.
-	prefix_class((string)index);	  // prefix class-number for .o files
+        prefix_class((string)index);      // prefix class-number for .o files
         updatelib(libxxxa);
         chdir( "..");                     // go back to parent dir
     }
 
     current = "";                           // no class anymore
 
-    updatelib(libxxxa);			    // update lib in current dir
+    updatelib(libxxxa);                     // update lib in current dir
 
     if (mainfile != "")                     // mainfile -> do link
     {
         link(library, exe);
         printf
-	(
-	    "\nProgram construction completed.\n"
-	    "\n"
-	);
+        (
+            "\nProgram construction completed.\n"
+            "\n"
+        );
     }
 }
 
 void main()
 {
-    libs    = "-licce";			// the libname (no lib, .a)
+    libs    = "-licce";                 // the libname (no lib, .a)
 
-//	-g for gdb compilation, Then don't use lopt = "-s"
-//	Use -DDEBUG for debug-printfs:
-	copt = "-O2";
-	lopt = "-s";
-	
+//      -g for gdb compilation, Then don't use lopt = "-s"
+//      Use -DDEBUG for debug-printfs:
+        copt = "-O2";
+        lopt = "-s";
+        
 //  remove the echo() statement if you want to see the execed commands
-//    echo(OFF);			// do not show commands
+//    echo(OFF);                        // do not show commands
 
     cpp_make
     (
         "xd.cc",             // program source
         "xd",                // program library
         "xd",                // exe program
-	(list)"Command" +	// classes
-	(list)"Match" 	+
-	(list)"Config" 	+
-	(list)"Arbiter"
+        (list)"Command" +       // classes
+        (list)"Match"   +
+        (list)"Config"  +
+        (list)"Arbiter"
     );
 }
