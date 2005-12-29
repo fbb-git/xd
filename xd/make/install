@@ -12,7 +12,7 @@ req mkdir -p $1$BIN
 req cp tmp/bin/* $1$BIN
 
     # install the manual page ${PROJECT}.1
-req mkdir -p $1$MAN/man1
+req mkdir -p $1$MAN
 #   reqeval "gzip < tmp/man/${PROJECT}.1 > $1$MAN/${PROJECT}.1.gz"
 
     # install the manual page ${PROJECT}man.html
