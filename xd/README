@@ -1,10 +1,9 @@
-		    ===============================
-			    XD Version L-2.11
-
-				    by
-			     Frank B. Brokken
-			(email frank@icce.rug.nl)
-		    ===============================
+                       ===============================
+                                      XD
+                                      by
+                               Frank B. Brokken
+                             <f.b.brokken@rug.nl>
+                       ===============================
 
 Thank you for retrieving XD!
 ----------------------------
@@ -52,7 +51,7 @@ directory; if it's # (# in [0-9]) expansion starts at parent #
 When the specification results in multiple solutions, a final
 selection is requested from a displayed list of alternatives.
 
-If $HOME/.conf/xd/xd.conf contains  `home no'  normal expansions will
+If $HOME/..xdrc contains  `home no'  normal expansions will
 start at the / directory, rather than at $HOME/.
 
 By default an extra expansion is tried starting from the / directory
@@ -66,13 +65,13 @@ may be needed for the phrase `subsequently nested subdirectories'. Well, here
 it is:
 
     Assume you have two directories:
-	/home/you/tmp
+    /home/you/tmp
     and
-	/home/you/tex
+    /home/you/tex
 
 and you want to switch to tex. So, you enter the command
 
-	xd t
+    xd t
 
 xd now is a bit confused: do you mean ~/tmp or ~/tex ? So, it asks you for
 help, by giving you the following alternatives:
@@ -87,78 +86,78 @@ xd in advance. By starting your command with - the remainder is interpreted as
 the initial characters of one subdirectory, up to the end of the command or
 the next - or / character. So, the command
 
-	xd -te
+    xd -te
 
 will take you right to the /home/you/tex directory.
 
 There are more shortcuts like this implemented in xd. Let's assume your target
 directory is
 
-	/home/you/the/target/directory
+    /home/you/the/target/directory
 
 then you have the following possibilities to get there using xd:
 
 ----------------------------------------------------------------------------
-			Using subspecifications:
+                            Using subspecifications:
 ----------------------------------------------------------------------------
-Your are at:on          No		yes		Note:
+Your are at:    on          No      yes             Note:
 ----------------------------------------------------------------------------
-/foo/bar		xd ttd		xd t/ta/d	- and / are separators
-					xd t-t-di
-/home/you/the		xd .td		xd ./t-di	. starts where you are
-$HOME			xd ttd		xd t-t-d
-(using the default			xd -th-ta-di
-	'home yes')
-$HOME			xd hyttd	xd -h-y/t/t/d	no special facilities,
-(using 'home no')					all evaluations start
-							at /
-/home/you/the/other/sub xd 2td		xd 2/t/d	numbers 0-9 indicate
-			xd 3ttd		xd 3/t/ta/di	that many
-			xd 4yttd	xd 4/yo/t/t/d	parent-directories
-							back 
+/foo/bar        xd ttd              xd t/ta/d       - and / are separators
+                                    xd t-t-di
+/home/you/the   xd .td              xd ./t-di       . starts where you are
+$HOME           xd ttd              xd t-t-d
+(using the default                  xd -th-ta-di
+    'home yes')
+$HOME                   xd hyttd xd -h-y/t/t/d  no special facilities,
+(using 'home no')                               all evaluations start
+                                                at /
+/home/you/the/other/sub xd 2td      xd 2/t/d        numbers 0-9 indicate
+                        xd 3ttd     xd 3/t/ta/di    that many
+                        xd 4yttd    xd 4/yo/t/t/d   parent-directories
+                                                    back 
 ------------------------------------------------------------------------------
 
 Nou, you may *want* to start from the root. Here is the 
 
 ----------------------------------------------------------------------------
-			Using subspecifications:
+            Using subspecifications:
 ----------------------------------------------------------------------------
-You want to start at:  No		yes		Note:
+You want to start at:  No       yes     Note:
 ----------------------------------------------------------------------------
-/			/hyttd          /h/y/t/t/d	the first / is always
-							the root
-					//h/y/t/d	Two initial /'s force
-							subdirectory
-							separation by - or /
+/           /hyttd          /h/y/t/t/d  the first / is always
+                            the root
+                    //h/y/t/d   Two initial /'s force
+                            subdirectory
+                            separation by - or /
 ------------------------------------------------------------------------------
 
 
-$HOME/.conf/xd:
+$HOME/.xdrc:
 ---------------
 
-The directory $HOME/.conf/xd is looked for. If it is not found, xd performs its
+The directory $HOME/.xdrc is looked for. If it is not found, xd performs its
 default behavior which is normally to start expanding from your $HOME
 directory (unless overruled by the special characters)
 
-If the directory exists, and contains a file xd.conf, and this file contains a
+If the directory exists, and contains a file .xdrc, and this file contains a
 line
 
-	    home no
+        home no
 
 then the normal expansions will always start at / (the root directory). The
-file xd.conf may also contain empty lines and lines starting with the #
+file .xdrc may also contain empty lines and lines starting with the #
 character.
 
 By default, the expansion starts from $HOME. If in this case an expansion
 fails, another expansion is tried, starting from the / directory . This allows
 you, as normal user, to do an 'xd ulb', which will bring you to
-/usr/local/bin.  If $HOME/.conf/xd/xd.conf contains
+/usr/local/bin.  If $HOME/.xdrc contains
 
-	    extra no
+        extra no
 
 this extra search is suppressed. 
 
-	    extra always
+        extra always
 
 will also expand from the root, apart from the expansions from you $HOME
 directory. The extra-expansions have no particular effect if 'home no' is
@@ -167,14 +166,14 @@ specified.
 Furthermore, by default xd will not show solutions which were already
 discovered, like when directory links are involved. This corresponds to a line
 
-	    directories unique
+        directories unique
 
-in the xd.conf file. If you want to get ALL alternatives, including symbolic
+in the .xdrc file. If you want to get ALL alternatives, including symbolic
 links, the line
 
-	    directories all
+        directories all
 
-should be entered in the xd.conf file.
+should be entered in the .xdrc.
 
 Installing xd:
 --------------
@@ -187,7 +186,7 @@ An extra alias:
 In order to actually change directories, you have to tell the shell.
 Using tcsh, I use the following alias in my /etc/csh.cshrc:
 
-    alias   xd	    'cd `/usr/local/bin/xd \!*`'
+    alias   xd      'cd `/usr/local/bin/xd \!*`'
 
 
 Stefan T. Schingeler (sts@wits.ruhr.de) suggested the following alias

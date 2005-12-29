@@ -5,14 +5,14 @@ Quick Installation instruction:
 
 1. Do as root in the directory where xd unpacked to:
 
-	    install xd /usr/local/bin
-	    
+        install xd /usr/local/bin
+        
 to install the provided version of xd in /usr/local/bin
 
 2. Add the following alias to your csh.cshrc (or whatever file you use as
 your system-wide alias file):
    
-	    alias   xd	'cd `/usr/local/bin/xd \!*`'
+        alias   xd  'cd `/usr/local/bin/xd \!*`'
 
 
 Extensive Installation Instruction:
@@ -45,16 +45,16 @@ Installation Instructions:
    It is always relative to $HOME, and in the distribution it is set
    to "/.conf/xd/xd.conf".
 4. Do (not necessarily as root)
-	./build
+    ./build
     This creates in the current directory libxd.a and xd.
     During the compilation, two warnings are generated.
     They can safely be ignored.
 5. Do (as root)
-	install xd /usr/local/bin
+    install xd /usr/local/bin
 6. Add the following alias to your csh.cshrc (or whatever file you use as
    your system-wide alias file):
    
-    alias	xd		'cd `/usr/local/bin/xd \!*`'
+    alias   xd      'cd `/usr/local/bin/xd \!*`'
 
 Cleanup-instructions.
 ---------------------

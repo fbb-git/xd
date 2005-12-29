@@ -1,0 +1,14 @@
+Source: xd
+Section: utilities
+Priority: optional
+Maintainer: Frank B. Brokken <f.b.brokken@rug.nl>
+Build-Depends: debhelper (>= 4.0.0), g++ (>= 4.0.2-2)
+Standards-Version: 3.6.1
+
+Package: xd
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: smart directory change utility
+ xd is a smart directory changer. It allows you to change to a directory
+ specifying only its initial characters or a subset of the initial characters
+

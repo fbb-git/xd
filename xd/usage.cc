@@ -3,10 +3,7 @@
 */
 
 #include "xd.h"
-
-
-#define VERSION "2.14"
-#define YEAR    "1994-2004"
+#include "VERSION"
 
 void usage(Args const &args)
 {
@@ -18,7 +15,7 @@ void usage(Args const &args)
     ICError
         icerror(prog);
     
-    icerror.copyright("eXchange Directory ++", VERSION, YEAR, 1);
+    icerror.copyright("eXchange Directory ++", VERSION, YEARS, 1);
 
     fprintf(stderr,
     "%s by Frank B. Brokken\n"
