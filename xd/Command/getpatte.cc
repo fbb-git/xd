@@ -37,7 +37,7 @@ char const *Command::get_pattern()
 	----------------------------------------------------------
 
 	command[0] determines the initial cell:
-		.	indicates from the current directory onward
+=		.	indicates from the current directory onward
 		/	indicates from the root
 		-	indicates subspecifications from $HOME
 		#	(#: [0-9]) indicates specifications from parent #
@@ -66,7 +66,7 @@ char const *Command::get_pattern()
 		break;
 		
 		case '0':			// degenerate cells 41, 42
-		case '.':			// cells 11, 12
+		case '=':			// cells 11, 12
 			strcpy(pattern, "./");	// start at current
 			next++;			// . processed
 		break;
