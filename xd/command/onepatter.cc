@@ -1,4 +1,4 @@
-#include "Command.h"
+#include "command.ih"
 
 void Command::one_pattern(char *cp)
 {

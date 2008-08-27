@@ -1,4 +1,4 @@
-#include "Command.h"
+#include "command.ih"
 #include <stdio.h>
 
 char const *Command::get_pattern()

@@ -29,13 +29,11 @@ try
     Arg &arg = Arg::initialize("cdhvV",
                     longOptions, longEnd, argc, argv);
 
-
     arg.versionHelp(usage, Icmbuild::version, 1);
 
     Msg::setInfoBuf(cerr.rdbuf(), arg.option('d'));
 
-    Config
-        config;             // read the configuration
+    Config config;              // read the configuration
 
     Command
         command(config);      // build a command from args

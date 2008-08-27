@@ -10,11 +10,13 @@
 #include <bobcat/arg>
 #include <bobcat/msg>
 
-#include "arbiter/arbiter.h" 
+#include "config/config.h"
 
-#include "Command/Command.h"
+
+#include "arbiter/arbiter.h" 
+#include "command/command.h"
+
 #include "Match/Match.h"
-#include "Config/Config.h"
 
 namespace Icmbuild
 {
