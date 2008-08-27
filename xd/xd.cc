@@ -4,50 +4,58 @@
 
 */
 
-#include "xd.h"               // program header file
+#include "xd.ih"               // program header file
 
 
-int main(int argc, char **argv, char **envp)
+namespace   // the anonymous namespace can be used here
 {
-    Args
-        args(argc, argv);       // preprocess the arguments
-#ifdef DEBUG
-    fprintf(stderr, "main():\t args defined\n");
-#   endif
+    Arg::LongOption longOptions[] =
+    {
+        Arg::LongOption("config-file", 'c'),
+        Arg::LongOption("debug", 'd'),
+        Arg::LongOption("help", 'h'),
+        Arg::LongOption("version", 'v'),
+        Arg::LongOption("verbose", 'V'),
+    };
+
+    Arg::LongOption const *const longEnd =
+                    longOptions +
+                    sizeof(longOptions) / sizeof(Arg::LongOption);
+}
+
+int main(int argc, char **argv)
+try
+{
+    Arg &arg = Arg::initialize("cdhvV",
+                    longOptions, longEnd, argc, argv);
+
+
+    arg.versionHelp(usage, Icmbuild::version, 1);
+
+    Msg::setInfoBuf(cerr.rdbuf(), arg.option('d'));
 
     Config
         config;             // read the configuration
-#ifdef DEBUG
-    fprintf(stderr, "main():\t config defined\n");
-#   endif
 
     Command
-        command(args, config);      // build a command from args
-#ifdef DEBUG
-    fprintf(stderr, "main():\t command defined\n");
-#   endif
-                        // and config
-
-    if (args.get_count() == 1)      // only one argument ?
-    {
-                usage(args);            // usage/copyright on no args
-        return (command.write("."));
-    }
+        command(config);      // build a command from args
 
     Match
         match(command.get_pattern(),    // make the matches
             config);
-#ifdef DEBUG
-    fprintf(stderr, "main():\t match defined\n");
-#   endif
 
     Arbiter
         arbiter(match);         // Make the decision
-#ifdef DEBUG
-    fprintf(stderr, "main():\t arbiter defined\n");
-#   endif
 
-    return(command.write(arbiter.get_choice()));// Write the cmd to file
+    return command.write(arbiter.choice()) ? 0 : 1; // Write the cmd to file
 }
-
+catch(Errno const &err)     // handle exceptions
+{
+    cerr << err.what() << endl;
+    return err.which();
+}
+catch(int x)
+{
+    return x;
+}
 

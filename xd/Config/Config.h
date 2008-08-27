@@ -3,9 +3,8 @@
 
 #include <stdlib.h>
 #include <unistd.h> 
-#include "../configfile/configfile.h"
 
-#include "../configure.h" 
+#include <string.h>
 
 class Config
 {

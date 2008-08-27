@@ -3,17 +3,8 @@
 
 void Match::add_globbed(const glob_t &glob_struct)
 {
-#ifdef DEBUG
-    fprintf(stderr, "Match::add_globbed() called\n");
-#endif
-
     if (!glob_struct.gl_pathc)      // any elements globbed ?
-    {
-#ifdef DEBUG
-    fprintf(stderr, "Match::add_globbed(): no joy\n");
-#endif
-    return;             // no, inform the caller
-    }
+        return;             // no, inform the caller
 
     register char
     *cp;
@@ -43,13 +34,7 @@ void Match::add_globbed(const glob_t &glob_struct)
         id[n - 1].inode = buf.st_ino;       // and store
         id[n - 1].device = buf.st_dev;
 
-        add(cp);                // add the name
-#ifdef DEBUG
-        fprintf(stderr,
-            "Match::add_globbed():\t %s\n"
-            , cp
-            );
-#endif
+        push_back(cp);                // add the name
     }
     }
 }   

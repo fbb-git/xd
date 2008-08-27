@@ -1,10 +1,10 @@
-#include "Command.h"
+#include "command.ih"
 
-int Command::write(char const *path)
+bool Command::write(string const &path) const
 {
-	printf("%s\n", path);			// write the selected path
-	return (!strcmp(path, "."));		// ret. 0 for real paths
+    cout << path << endl;               // write the selected path
+    return path != ".";                 // ret. true for real paths
 }
 
-	
-	
+    
+    

@@ -1,52 +1,45 @@
-/*
-                                U S A G E . C P P
-*/
+//                     usage.cc
 
-#include "xd.h"
-#include "VERSION"
+#include "xd.ih"
 
-void usage(Args const &args)
+void usage(std::string  const  &progname)
 {
-    char const
-        *prog;
-
-    prog = args.get_progname();
-
-    ICError
-        icerror(prog);
-    
-    icerror.copyright("eXchange Directory ++", VERSION, YEARS, 1);
-
-    fprintf(stderr,
-    "%s by Frank B. Brokken\n"
+    cerr << "\n" <<
+    progname << " by " << Icmbuild::author << "\n" <<
+    progname << " V" << Icmbuild::version << " " << Icmbuild::year << "\n"
     "\n"
-        "Usage: %s args\n"
-        "Where:\n"
-        "   args:  arguments, possibly containing directory separators [/-].\n"
-        "\n"
-        
-    "%s++ eXchanges Directories by interpreting the characters of its\n"
+    "Usage: " << progname << " [options] args\n"
+    "Where:\n"
+    "   [options] - optional arguments (short options between parentheses):\n"
+    "  --config-file (-c) <file> - path to the config file to use\n"
+    "                   ($HOME/.xdrc)\n"
+    "  --debug (-d)     - provide additional info to stderr\n"
+    "  --help (-h)      - provide this help\n"
+    "  --version (-v)   - show version information and terminate\n"
+    "  args:  arguments, possibly containing directory separators [/-].\n"
+        "\n" <<
+    progname << 
+    " eXchanges Directories by interpreting the characters of its\n"
     "argument(s) as the initial characters of nested subdirectories.\n"
     "Multiple arguments or arguments separated by / or - define the\n"
     "initial characters of subsequently nested subdirectories.\n"
     "\n"
     "If the first argument starts with = expansion starts at the current\n"
-    "directory; if it's - expansion starts in the user's home directory\n"
-    "if it's / expansion starts at the root\n"
-    "if it's # (# in [0-9]) expansion starts at parent #\n"
+    "directory; if it's a - expansion starts in the user's home directory\n"
+    "if it's a / expansion starts at the root\n"
+    "if it's a number (0 .. 9) expansion starts at parent <number>\n"
     "\n"
-        "When the specification results in multiple solutions, a final\n"
-        "selection is requested from a displayed list of alternatives.\n"
+    "When the specification results in multiple solutions, a final\n"
+    "selection is requested from a displayed list of alternatives.\n"
     "\n"
-    "If $HOME" XD_CONF_PATH " contains  `home no'  normal expansions will\n"
-    "start at the / directory, rather than at $HOME/.\n"
-    "\n"
-    "By default an extra expansion is tried starting from the / directory\n"
-    "if the expansion from  $HOME/ fails. Use `extra no' to prevent this.\n"
-    "Use `extra always' to get it always\n"
-    "\n"
-        , prog
-        , prog
-            , prog
-        );
+    "$HOME/.xdrc may contain:\n"
+    "   home off    to start the normal expansions at the root (/) "
+                                                                "directory\n"
+    "               rather than at $HOME. If no solutions are found\n"
+    "               an additional expansion is attempted starting from the\n"
+    "               root (/) directory\n"
+    "   root off    to prevent the additional expansion from the root\n"
+    "   root on     the additional expansion from the root is always "
+                                                            "performed\n"
+    "\n";
 }

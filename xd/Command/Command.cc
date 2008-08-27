@@ -1,6 +1,6 @@
-#include "Command.h"
+#include "command.ih"
 
-Command::Command(Args const &args, Config const &cf)
+Command::Command(Config const &cf)
 {
     char const
          *cp;
@@ -14,10 +14,12 @@ Command::Command(Args const &args, Config const &cf)
     *command = 0;
     len = 1;                // strlen(command)
 
+    Arg &arg = Arg::instance();
+
     for                 // walk all arguments
     (
-        register int index = 1;     // as long as there are any
-             (cp = args.get_string(index));
+        register int index = 0;     // as long as there are any
+             (cp = arg[index]);
                 index++
     )
     {

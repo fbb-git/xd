@@ -1,14 +1,16 @@
-#ifndef _Match_H_
-#   define _Match_H_
+#ifndef _INCLUDED_MATCH_H_
+#define _INCLUDED_MATCH_H_
+
+#include <vector>
+#include <string>
 
 #include <glob.h>
 #include <sys/stat.h>
 #include <unistd.h> 
-#include "../icstring/icstring.h"
 
 #include "../Config/Config.h"
 
-class Match: public ICString
+class Match: public std::vector<std::string>  //: public ICString
 {
     public:
         Match(const char *pattern,      // Constructor
@@ -38,4 +40,4 @@ class Match: public ICString
             *id;
 };
 
-#   endif
+#endif
