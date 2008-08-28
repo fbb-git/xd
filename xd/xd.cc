@@ -35,11 +35,12 @@ try
     Alternatives alternatives;
     alternatives.viable();              // select viable alternatives
 
-//    Arbiter arbiter(alternatives);
-//    arbiter.select();                   // make the selection
-//
-//    return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter
-//                                        // did do its work 
+    Arbiter arbiter(alternatives);
+
+    arbiter.select();                   // make the selection
+
+    return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter
+                                        // did do its work 
 }
 catch(Errno const &err)     // handle exceptions
 {

@@ -11,7 +11,7 @@
 #include <bobcat/msg>
 
 #include "alternatives/alternatives.h"
-// #include "arbiter/arbiter.h" 
+#include "arbiter/arbiter.h" 
 
 namespace Icmbuild
 {

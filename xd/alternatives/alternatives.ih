@@ -10,6 +10,7 @@
 #include <bobcat/arg>
 #include <bobcat/string>
 #include <bobcat/fnwrap1c>
+#include <bobcat/fnwrap2>
 #include <bobcat/msg>
 #include <bobcat/glob>
 #include <bobcat/stat>

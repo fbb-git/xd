@@ -2,17 +2,26 @@
 
 void Arbiter::select()
 {
-    OneKey oneKey; // nckbd;
-    register size_t c;
+    if (d_alternatives.size() == 0)
+    {
+        cerr << "No Solutions\n";
+        throw 0;                
+    }
 
-    c = oneKey.get();           // get the replay
+    if (d_alternatives.size() == 1)
+    {
+        d_index = 0;            // forced selection: one option
+        return;
+    }
 
-    d_number = 
-        '0' <= c && c <= '9' ?
-        c  - '0'            // numbers < 10
-        :
-        c - ('a' - 10);         // numbers above 10
+    showAlternatives();
 
-    if (d_number > d_count)         // none selected
-        d_number = 0;
+    setIndex();
+
+    cout << d_alternatives[d_index] << endl;
 }
+
+
+
+
+

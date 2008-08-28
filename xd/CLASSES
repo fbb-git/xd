@@ -1,4 +1,4 @@
 config
 command
 alternatives
-# arbiter
+arbiter

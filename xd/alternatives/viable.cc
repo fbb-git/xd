@@ -20,4 +20,6 @@ void Alternatives::viable()
     }
 
     globFrom(determineInitialDirectory());
+
+    sort(begin(), end());
 }
