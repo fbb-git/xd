@@ -12,7 +12,7 @@ Command::Command()
     bool subSpecs = determineAction(arguments);
 
     String::split(this, arguments, "/-");
-    if (not subSpecs and Arg::instance().nArgs() == 1)
+    if (!subSpecs && size() && Arg::instance().nArgs() == 1)
     {
         for_each(front().begin() + 1, front().end(), 
             FnWrap1c<char, vector<string> &>(add, *this));
@@ -27,6 +27,10 @@ Command::Command()
         copy(begin(), end(), ostream_iterator<string>(cerr, " "));
         cerr << endl;
     }
-
 }
+
+
+
+
+
 

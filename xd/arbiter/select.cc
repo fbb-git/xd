@@ -9,14 +9,12 @@ void Arbiter::select()
     }
 
     if (d_alternatives.size() == 1)
-    {
         d_index = 0;            // forced selection: one option
-        return;
+    else
+    {
+        showAlternatives();
+        setIndex();
     }
-
-    showAlternatives();
-
-    setIndex();
 
     cout << d_alternatives[d_index] << endl;
 }
