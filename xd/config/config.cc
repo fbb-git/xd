@@ -22,52 +22,20 @@ Config::Config()
         // home set with ending /
     
     
-        string configName;
-    
-        if (arg.option(&configName, 'c'))
-            open(configName);
+        if (arg.option(&d_configName, 'c'))
+            open(d_configName);
         else 
         {
-            configName = d_home + s_defaultConfig;
-            Stat confStat(configName);
+            d_configName = d_home + s_defaultConfig;
+            Stat confStat(d_configName);
             if (confStat)
             {
                 if (not confStat.mode() & Stat::UR)
-                    msg() << "Can't read " << configName << warning;
+                    msg() << "Can't read " << d_configName << warning;
                 else
-                    open(configName);
+                    open(d_configName);
             }
         }
-    
-        
-    //    homeparam =
-    //        iter != cf.end() && iter->find("true") ?
-    //            from_the_root           // use from the root
-    //        :
-    //            from_HOME;              // otherwise from HOME.
-    
-    //    if (homeparam == from_HOME)         // search from HOME
-    //    {
-    //        extraparam = double_search;     // assume by default double search
-    
-    //      if ((token = cf.get_param("EXTRA")))  // 'extra' parameter found ?
-    //      {
-    //          if (!strcasecmp(token, "no"))    // If the user requests 'no'
-    //          extraparam = single_search;  // use single search
-    //          else if (!strcasecmp(token, "always"))   // it's 'always' ?
-    //          extraparam = full_search;        // use allways full search
-    //      }
-    //    }
-    //    else
-    //        extraparam = single_search;     // single search if not from HOME
-    
-    //    dirs = unique;
-    //    (token = cf.get_param("DIRECTORIES")) // directories parameter found ?
-    //    &&
-    //    !strcasecmp(token, "all") ?     // and it's all
-    //        all                 // then use 'all'
-    //    :
-    //        unique;             // otherwise use unique
     }
     catch (Errno const &err)
     {

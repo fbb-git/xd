@@ -2,10 +2,13 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 
 #include <bobcat/arg>
 #include <bobcat/stat>
 #include <bobcat/msg>
+#include <bobcat/pattern>
+#include <bobcat/fnwrap1c>
 
 using namespace std;
 using namespace FBB;

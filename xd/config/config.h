@@ -5,17 +5,30 @@
 
 class Config: public FBB::ConfigFile
 {
+    std::string d_configName;
+
     std::string d_home;         // /-terminated name of the homedir
     bool d_ok;                  // config file available (true) or not
+    std::string d_searchResult;
 
     static char s_defaultConfig[];
 
     public:
         Config();
 
+        std::string const &search(char const *key);
+        
         inline std::string const &homeDir() const;
         inline operator bool() const;
     private:
+        struct SearchContext
+        {
+            std::string re;
+            std::string *result;
+        };
+        static bool searchPattern(std::string const &line, 
+                                            SearchContext &context);
+
 };
 
 

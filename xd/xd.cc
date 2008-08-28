@@ -33,11 +33,7 @@ try
     Msg::setInfoBuf(cerr.rdbuf(), arg.option('d'));
 
     Alternatives alternatives;
-//    alternatives.viable();              // select viable alternatives
-
-//    Match
-//        match(command.get_pattern(),    // make the matches
-//            config);
+    alternatives.viable();              // select viable alternatives
 
 //    Arbiter arbiter(alternatives);
 //    arbiter.select();                   // make the selection
@@ -48,10 +44,12 @@ try
 catch(Errno const &err)     // handle exceptions
 {
     cerr << err.what() << endl;
+    cout << ".\n";          // to prevent a diretory change
     return err.which();
 }
 catch(int x)
 {
+    cout << ".\n";
     return x;
 }
 
