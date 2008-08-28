@@ -5,8 +5,8 @@ void Alternatives::viable()
     if (!d_ok)
         throw 1;                    // terminate the program 
 
-    d_home = set("home");
-    d_dirs = set("directories");
+    d_home = set("home", "true");
+    d_dirs = set("directories", "all");
 
     d_addRoot = static_cast<TriState>
                     (set("addRoot", s_triState, s_triStateEnd, IF_EMPTY));

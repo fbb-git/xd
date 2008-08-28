@@ -39,7 +39,7 @@ class Alternatives: public std::vector<std::string>
         void viable();
 
     private:
-        bool set(char const *key);
+        bool set(char const *key, char const *trueText);
         size_t set(char const *key, char const **begin, char const **end, 
                                     size_t notFound);
 
@@ -47,6 +47,8 @@ class Alternatives: public std::vector<std::string>
 
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);
+        void glob(std::string initial, 
+                    std::set<std::pair<size_t, size_t> > &stored);
 
         inline static void addPath(std::string const &element, 
                                                         std::string &path);
@@ -54,7 +56,7 @@ class Alternatives: public std::vector<std::string>
         struct GlobContext
         {
             std::set<std::pair<size_t, size_t> > &stored;
-            std::vector<std::string> &dest;
+            Alternatives &alternatives;
         };
         static void globFilter(char const *entry, GlobContext &context);
 };

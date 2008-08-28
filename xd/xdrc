@@ -71,3 +71,5 @@
 #   home            true
 #   directories     all
 #   addRoot         true
+# directories unique
+# home false

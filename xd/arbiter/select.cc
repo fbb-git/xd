@@ -3,10 +3,7 @@
 void Arbiter::select()
 {
     if (d_alternatives.size() == 0)
-    {
-        cerr << "No Solutions\n";
         throw 0;                
-    }
 
     if (d_alternatives.size() == 1)
         d_index = 0;            // forced selection: one option

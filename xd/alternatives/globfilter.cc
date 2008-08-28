@@ -7,6 +7,11 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     if (!stat.isType(Stat::DIRECTORY))
         return;
 
+        // check if the entry name (globbed) is equal to the true path name
+        // if not, the globbed name is a link to the true path
+    if (!context.alternatives.d_dirs && stat.path() != entry)
+        return;
+
     if 
     (
         context.stored.insert(
@@ -15,5 +20,5 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     )
         return;
 
-    context.dest.push_back(entry);
+    context.alternatives.push_back(entry);
 }

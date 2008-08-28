@@ -50,6 +50,8 @@ catch(Errno const &err)     // handle exceptions
 }
 catch(int x)
 {
+    if (x == 0)
+        cerr << "No Solutions\n";
     cout << ".\n";
     return x;
 }

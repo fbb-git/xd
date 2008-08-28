@@ -10,12 +10,12 @@
 //    ----------------------------------------------------------
 //    intention               no              yes
 //    ----------------------------------------------------------
-//    from CWD              ,abc (11)       ,/a/bc (12)
-//                                          ,/abc
+//    from CWD              .abc (11)       ./a/bc (12)
+//                                          ./abc
 //                          0abc            0/abc
 //
-//    from $HOME            .abc (21)       ./a/bc  (22)
-//                                          ..  (all .* dirs at $HOME)
+//    from $HOME            =abc (21)       =/a/bc  (22)
+//                                          =.  (all .* dirs at $HOME)
 //         
 //    from /                /abc (31)       /a/bc  (32)
 //                          /               //abc
@@ -31,7 +31,7 @@
 //    command[0] determines the initial cell:
 //        .   indicates from the current directory onward
 //        /   indicates from the root
-//        ,   indicates subspecifications from $HOME
+//        =   indicates subspecifications from $HOME
 //        #   (#: [0-9]) indicates specifications from parent #
 //        other   indicates from $HOME
 //
@@ -44,11 +44,11 @@ bool Command::determineAction(string &args)
     switch (int ch = *args.begin()) // Interpret the first character
     {
         case '0':           // from parent 0 or cwd (cells 41, 42)
-        case ',':           // cells 11, 12
+        case '.':           // cells 11, 12
             d_action = FROM_CWD;
         break;
 
-        case '.':           // from HOME (21, 22)
+        case '=':           // from HOME (21, 22)
             d_action = FROM_HOME;
         break;
 
