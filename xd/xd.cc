@@ -26,26 +26,24 @@ namespace   // the anonymous namespace can be used here
 int main(int argc, char **argv)
 try
 {
-    Arg &arg = Arg::initialize("cdhvV",
+    Arg &arg = Arg::initialize("c:dhvV",
                     longOptions, longEnd, argc, argv);
 
     arg.versionHelp(usage, Icmbuild::version, 1);
-
     Msg::setInfoBuf(cerr.rdbuf(), arg.option('d'));
 
-    Config config;              // read the configuration
+    Alternatives alternatives;
+//    alternatives.viable();              // select viable alternatives
 
-    Command
-        command(config);      // build a command from args
+//    Match
+//        match(command.get_pattern(),    // make the matches
+//            config);
 
-    Match
-        match(command.get_pattern(),    // make the matches
-            config);
-
-    Arbiter
-        arbiter(match);         // Make the decision
-
-    return command.write(arbiter.choice()) ? 0 : 1; // Write the cmd to file
+//    Arbiter arbiter(alternatives);
+//    arbiter.select();                   // make the selection
+//
+//    return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter
+//                                        // did do its work 
 }
 catch(Errno const &err)     // handle exceptions
 {
@@ -56,4 +54,5 @@ catch(int x)
 {
     return x;
 }
+
 

@@ -1,32 +1,22 @@
 #include "command.ih"
 
-Command::Command(Config const &cf)
+Command::Command()
+:
+    d_action(FROM_HOME),
+    d_parent(0)
 {
-    char const
-         *cp;
-    register unsigned
-        len;
-    
-    config = &cf;               // only a reference. no copy
-    pattern = 0;                // initialize pattern to 0
+    string arguments;
 
-    command = new char;         // initialize to empty str.
-    *command = 0;
-    len = 1;                // strlen(command)
+    concatArgs(&arguments);
 
-    Arg &arg = Arg::instance();
+    bool subSpecs = determineAction(arguments);
 
-    for                 // walk all arguments
-    (
-        register int index = 0;     // as long as there are any
-             (cp = arg[index]);
-                index++
-    )
+    String::split(this, arguments, "/-");
+    if (not subSpecs and Arg::instance().nArgs() == 1)
     {
-        len += strlen(cp) + 1;      // new length of command
-        command = (char *)realloc(command, len);
-        strcat(command, cp);        // append the arg, and
-        strcat(command, "/");       // append a '/' separator
+        for_each(front().begin() + 1, front().end(), 
+            FnWrap1c<char, vector<string> &>(add, *this));
+        front().resize(1);
     }
-}                       // all args catenated
+}
 

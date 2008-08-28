@@ -1,35 +1,60 @@
 #ifndef _INCLUDED_CONFIG_H_
 #define _INCLUDED_CONFIG_H_
 
+#include <bobcat/configfile>
 
-#include <stdlib.h>
-#include <unistd.h> 
-
-
-class Config
+class Config: public FBB::ConfigFile
 {
+    std::string d_home;         // /-terminated name of the homedir
+    bool d_ok;                  // config file available (true) or not
+
+    static char s_defaultConfig[];
+
     public:
-        enum Origin //Home
-        {
-            root,
-            HOME
-        };
-        enum Search // Extra
-        {
-            single,
-            double,
-            full
-        };
-        enum Dirs
-        {
-            unique,
-            all,
-        };
+        Config();
 
-
+        inline std::string const &homeDir() const;
+        inline operator bool() const;
     private:
-        std::string d_home;
-        Origin d_origin;
+};
+
+
+std::string const &Config::homeDir() const  
+{
+    return d_home; // get_homeparam
+}
+
+Config::operator bool() const
+{
+    return d_ok;
+}
+
+//Config::Origin Config::origin() const
+//{
+//    return d_origin;
+//}
+
+
+//        enum Origin //Home
+//        {
+//            ROOT,
+//            HOME
+//        };
+//        enum Search // Extra
+//        {
+//            ORIGIN,
+//            MAYBE_ROOT,
+//            ALWAYS_ROOT
+//        };
+//        enum Dirs
+//        {
+//            UNIQUE,
+//            ALL
+//        };
+
+
+//        std::string d_start;    // home, root, current?
+//        Origin d_origin;
 
 
 //        Dirs dirs;
@@ -38,28 +63,12 @@ class Config
 
 //    char const             *cdfile;
 
-    public:
-        Config();
-        ~Config();
 
-        inline st::string const &home() const;
-        inline Origin origin() const;
+//        inline std::string const &homeDir() const;  // with final '/'
+//        inline Origin origin() const;
 
 //        Search get_extraparam() const;    returns Search value
 //        Dirs        get_dirsparam() const; returns Dirs value
 
-    private:
-};
-
-std::string const &Config::home() const
-{
-    return d_home; // get_homeparam
-}
-
-Config::Origin Config::origin() const
-{
-    return d_origin;
-}
-
-
 #endif
+

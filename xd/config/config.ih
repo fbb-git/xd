@@ -1,6 +1,11 @@
-#include "Config.h"
+#include "config.h"
 
-#include <bobcat/configfile>
+#include <iostream>
+#include <cstdlib>
+
+#include <bobcat/arg>
+#include <bobcat/stat>
+#include <bobcat/msg>
 
 using namespace std;
 using namespace FBB;
