@@ -17,7 +17,4 @@ void Alternatives::globFrom(string initial)
 
     for_each(glob.begin(), glob.end(), 
              FnWrap1c<char const *, GlobContext &>(globFilter, context));
-
-    copy(begin(), end(), ostream_iterator<string>(cerr, "\n"));
-
 }
