@@ -73,7 +73,7 @@ void initialize()
     echo(ECHO_REQUEST);
     g_sources = "*.cc";
 
-    g_binary = "tmp/bin/bisonc++" EXTENSION;
+    g_binary = "tmp/bin/xd" EXTENSION;
 
     g_cwd = chdir(".");
 
@@ -99,6 +99,7 @@ list inspect(int prefix, list srcList, string library)
     for (idx = sizeof(srcList); idx--; )
     {
         file  = element(idx, srcList);   
+
         ofile   = oprefix + change_ext(file, "o");    // make o-filename
 
         // A file s must be recompiled if it's newer than its object
@@ -164,7 +165,8 @@ void cpp_make(string mainfile, string library, int lib_only)
     for (idx = g_nClasses; idx--; )
         std_cpp(idx, element(idx, g_classes), "../" + fullLibname);
 
-    if (!lib_only)                          // compile all files in current dir
+    if (!lib_only)                          // compile all files in current
+                                            // dir
         std_cpp(g_nClasses, ".", fullLibname);  
 
     static_library(fullLibname);            // make the library
@@ -200,8 +202,8 @@ void library(int lib_only)
 
     cpp_make
     (
-        "bisonc++.cc",      // program source
-        "bisonc++",         // static program library base name
+        "xd.cc",      // program source
+        "xd",         // static program library base name
         lib_only            // don't compile maindir for lib construction
     );
 

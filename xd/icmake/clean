@@ -36,7 +36,7 @@ void clean(int dist)
     if (dist)
     {
         chdir("..");
-        run("rm -rf tmp documentation/usage/usage");
+        run("rm -rf tmp");
     }
 
     exit(0);

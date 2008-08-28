@@ -1,5 +1,5 @@
-#define MANPAGE "../../tmp/man/bisonc++.1"
-#define MANHTML "../../tmp/manhtml/bisonc++man.html"
+#define MANPAGE "../../tmp/man/xd.1"
+#define MANHTML "../../tmp/manhtml/xdman.html"
 
 void manpage()
 {
@@ -9,10 +9,10 @@ void manpage()
 
     chdir("documentation/man");
 
-    if ("bisonc++.yo" younger MANPAGE || "release.yo" younger MANPAGE)
+    if ("xd.yo" younger MANPAGE || "release.yo" younger MANPAGE)
     {
-        run("yodl2man  -o " MANPAGE " bisonc++");
-        run("yodl2html  -o " MANHTML " bisonc++");
+        run("yodl2man  -o " MANPAGE " xd");
+        run("yodl2html  -o " MANHTML " xd");
     }
     exit(0);
 }

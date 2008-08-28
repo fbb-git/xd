@@ -4,20 +4,16 @@ void install(string where, int all)
     md(where + BIN);
     run("cp tmp/bin/* " + where + BIN);
 
-    printf("  installing the skeleton files\n");
-    md(where + SKEL);
-    run("cp share/* " + where + SKEL);
-
     if (all)
     {
-        printf("  installing the manual page bisonc++.1\n");
+        printf("  installing the manual page xd.1\n");
         md(where + MAN);
-        run("gzip -9 < tmp/man/bisonc++.1 > " + 
-                                        where + MAN + "/bisonc++.1.gz");
+        run("gzip -9 < tmp/man/xd.1 > " + 
+                                        where + MAN + "/xd.1.gz");
 
-        printf("  installing the manual page bisonc++man.html\n");
+        printf("  installing the manual page xdman.html\n");
         md(where + DOC + "/man");
-        run("cp tmp/manhtml/bisonc++man.html " + where + DOC + "/man");
+        run("cp tmp/manhtml/xdman.html " + where + DOC + "/man");
     
         printf("  installing the information directly in and under $DOC\n");
         run("gzip -9 < changelog > " + where + DOC + "/changelog.gz");
