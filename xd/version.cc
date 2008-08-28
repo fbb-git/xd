@@ -2,10 +2,12 @@
 
 #include "xd.ih"
 
+#include "VERSION"
+
 namespace Icmbuild
 {
-    char version[]  = "3.00";
-    char year[]     = "1994-2008";
+    char version[]  = VERSION;
+    char year[]     = YEARS;
     
     char author[] = "Frank B. Brokken (f.b.brokken@rug.nl)";
 }
