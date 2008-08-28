@@ -10,7 +10,10 @@
 class Command: public std::vector<std::string> 
                        // stores the elements of the pattern
 {
+    static char const *s_action[];
+
     public:
+        // modify commanddata.cc if Action is modified
         enum Action                     // starting point as determined 
         {                               // by the first arg-character
             FROM_CONFIG,                // default: determined by config
@@ -23,8 +26,11 @@ class Command: public std::vector<std::string>
     private:
         Action d_action;
         size_t d_parent;                
+
     public:
         Command();      
+        inline size_t parent() const;
+        inline Action action() const;
 
     private:
         void concatArgs(std::string *args);
@@ -33,14 +39,17 @@ class Command: public std::vector<std::string>
         bool determineAction(std::string &args);
         
         inline static void add(char ch, std::vector<std::string> &cmd);
-//        void buildPattern(std::string &arguments);
-//        Action actionType(std::string &arguments);
-//
-//        void separated_pattern(char *); // set up separated pattern
-//                                        // e.g., from xd ho fr t
-//        void one_pattern(char *);       // set up single pattern
-//                                        // e.g. from xd hft
 };
+
+size_t Command::parent() const
+{
+    return d_parent;
+}
+
+Command::Action Command::action() const
+{
+    return d_action;
+}
 
 void Command::catArg(char const *arg, std::string &dest)
 {
