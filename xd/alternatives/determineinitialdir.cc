@@ -1,21 +1,16 @@
 #include "alternatives.ih"
 
-/*
-    If d_home is false, d_addRoot can be set to false
-
-    The Command object can return 
-        
-*/
-
 string Alternatives::determineInitialDirectory()
 {
     string cwd;
     auto_ptr<char> buffer;
+    bool rescan = false;
 
     switch (d_command.action())
     {
         case Command::FROM_CONFIG:
             cwd = d_home ? d_config.homeDir() : "/";
+            rescan = true;
         break;
 
         case Command::FROM_HOME:
@@ -41,18 +36,19 @@ string Alternatives::determineInitialDirectory()
             if (pos > 0)
                 cwd.resize(pos);
             else
-            {
                 cwd = '/';
-                d_addRoot = FALSE;
-            }
         break;
     }
 
-    if (not d_home)
-        d_addRoot = FALSE;
+    if (d_addRoot != FALSE && (!d_home || !rescan))
+    {
+        msg() << "Search does not start at the home dir: "
+                "no additional search from the root" << info;
 
-    if (Arg::instance().option('d'))
-        cerr << "Resolved Cwd as: " << cwd << endl;
+        d_addRoot = FALSE;
+    }
+
+    msg() << "Resolved Cwd as: " << cwd << info;
 
     if (*cwd.rbegin() != '/')         // all dirs end in /
         cwd += '/';

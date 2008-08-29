@@ -8,8 +8,7 @@ try
 
     dir.resize(dir.length() - 1);   // remove trailing /
 
-    if (Arg::instance().option('d'))
-        cerr << "Passing `" << dir << "' to glob\n";
+    msg() << "Passing `" << dir << "' to glob" << info;
 
     Glob glob(dir, Glob::NOSORT, Glob::DEFAULT);
 

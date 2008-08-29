@@ -16,7 +16,6 @@ class Alternatives: public std::vector<std::string>
     FBB::Arg &d_arg;
     Config d_config;
     bool d_ok;
-    bool d_debug;
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
 

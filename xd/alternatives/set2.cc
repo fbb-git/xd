@@ -11,18 +11,17 @@ size_t Alternatives::set(char const *key,
 
     if (conf.length() == 0)
     {
-        if (d_debug)
-            cerr << "Option or config: No key " << key << endl;
+        msg() << "Option or config: No key " << key << info;
         return notFound;
     }
 
-    char const **ret = 
-        find_if(begin, end, bind2nd(equal_to<string>(), conf));
+    char const **ret = find_if(begin, end, bind2nd(equal_to<string>(), conf));
 
     if (ret != end)
     {
-        if (d_debug)
-            cerr << "Option or config `" << key << " " << conf << "' found\n";
+        msg() << "Option or config `" << key << " " << conf << "' found" <<
+                info;
+
         return ret - begin;
     }
 

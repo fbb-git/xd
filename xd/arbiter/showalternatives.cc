@@ -2,6 +2,8 @@
 
 void Arbiter::showAlternatives() const
 {
+    msg() << info;
+
     size_t begin = show(0, '1', '9');
 
     begin = show(begin, '0', '0');

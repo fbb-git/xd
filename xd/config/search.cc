@@ -12,9 +12,8 @@ std::string const &Config::search(char const *key)
     find_if(begin, end, FnWrap1c<string const &, SearchContext &, bool>
                                    (searchPattern, context));
 
-    if (d_debug)
-        cerr << "Matching " << context.re << " in " << d_configName << 
-                " finds `" << d_searchResult << "'\n";
+    msg() << "Matching " << context.re << " in " << d_configName << 
+                " finds `" << d_searchResult << '\'' << info;
 
     return d_searchResult;
 }

@@ -1,8 +1,7 @@
 #include "command.ih"
 
-//    Possibilities:
-//        either with or without using 'home no'. When a special case
-//        arises, it is indicated.
+//    The following table is not maintained, currently. See the manpage for
+//  more up-to-date info.
 //
 //    ----------------------------------------------------------
 //                            using sub-specifications 
@@ -71,11 +70,11 @@ bool Command::determineAction(string &args)
         // other characters: 1st letter of directory (cell 51)
         default:
         {
-            bool firstIsMinus = (ch == '-');
-            if (firstIsMinus)
+            bool firstIsSeparator = (ch == '_');
+            if (firstIsSeparator)
                 args.erase(0, 1);      // remove the 1st char
             d_action = FROM_CONFIG;
-            return firstIsMinus;
+            return firstIsSeparator;
         }
     }
 

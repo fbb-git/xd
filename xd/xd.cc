@@ -11,14 +11,14 @@ namespace   // the anonymous namespace can be used here
 {
     Arg::LongOption longOptions[] =
     {
-        Arg::LongOption("add-root", Arg::Required),
-        Arg::LongOption("config-file", 'c'),
-        Arg::LongOption("debug"),
-        Arg::LongOption("directories", Arg::Required),
-        Arg::LongOption("help", 'h'),
-        Arg::LongOption("start-at", Arg::Required),
-        Arg::LongOption("version", 'v'),
-        Arg::LongOption("verbose", 'V'),
+        Arg::LongOption("add-root",     Arg::Required),
+        Arg::LongOption("directories",  Arg::Required),
+        Arg::LongOption("start-at",     Arg::Required),
+
+        Arg::LongOption("config-file",  'c'),
+        Arg::LongOption("help",         'h'),
+        Arg::LongOption("version",      'v'),
+        Arg::LongOption("verbose",      'V'),
     };
 
     Arg::LongOption const *const longEnd =
