@@ -36,7 +36,101 @@ manpagesynopsis()
 
 manpagedescription()
 
-    The program bf(xd)
+    The program bf(xd) is used to perform fast directory changes. Usually to
+change a directory the user is required to enter a command like, e.g.,
+tt(chdir /usr/local/bin), possibly with the aid of shell completion. In many
+cases this is a tedious task: shell completion shows all entries, including
+files, when we're only interested in directories and the full specification of
+our intented directory may eventually require many keyboard actions. 
+
+    bf(Xd) was designed a long time ago (in the early 90s) to reduce the
+effort of changing a directory. Often we're well aware to which directory we
+want to change, and it's easy to produce the initial directory characters of
+that directory. E.g., if the intent is to tt(chdir) to tt(/usr/local/bin),
+it's rather easy to produce the letters tt(ulb). 
+
+    bf(Xd) capitalizes on this capability. By providing the initial directory
+characters of directories bf(xd) will determine the proper expansion allowing
+you to change directories fast. So, entering the command tt(xd ulb) will
+result in the expansion tt(/usr/local/bin).
+
+    Often life is not that easy. Often there are multiple expansions from a
+given set of initial characters. E.g., when entering tt(xd ulb) bf(xd) may
+find several alternatives. E.g.,
+        verb(
+ 0: /usr/lib/base-config
+ 1: /usr/lib/bonobo
+ 2: /usr/lib/bonobo-activation
+ 3: /usr/local/bin
+        )
+    If these are the alternatives, this is exactly what bf(xd) will show
+you. Then, by simply pressing the tt(3) key (em(no) tt(Enter) key required)
+bf(xd) will produce the required tt(/usr/local/bin). 
+
+    Commands to bf(xd) can be specified so as to fine-tune bf(xd)'s behavior:
+    itemization(
+    it() By default (as specified by the configuration file, see below)
+expansions may start at the user's home directory or at the system's root
+directory.
+    it() Initial character bf(/): If the first character of the command is
+tt(/) all expansions will be performed from the system's root directory. E.g.,
+tt(xd /t) will result in tt(/tmp) but not in tt(/home/user/tmp).
+    it() Initial character bf(.): If the first character of the command is
+tt(.) all expansions will be performed from the user's home directory. E.g.,
+tt(xd .t) will result in tt(/home/user/tmp) but not in tt(/tmp)
+    it() Initial character bf(0): If the first character of the command is
+tt(0), all expansions will start at the current working directory. In fact,
+this is a specialization of the following, more general form:
+    it() Initial character bf(1..9): If the first character of the command is
+a digit between tt(1) and tt(9) all expansions will start at that parent
+directory level of the current working directory (up to the system's root
+directory). E.g., if the current working directory is tt(/usr/share/doc) then
+tt(xd 2lb) will offer the alterative tt(/usr/local/bin): two steps up, then
+look for directories starting with tt(l) and therein directories starting with
+tt(b).
+    it() Separators (space (tt(' '))), tt(/) and tt(-): sometimes it is clear
+that there are many alternatives and the intention is to reduce that
+number. By using a separator subsequently nested directories must start with
+the characters between the separators. E.g., tt(xd u l bi) will not produce
+the alternative tt(/usr/lib/base-config) anymore, since tt(base-config) does
+not start with tt(bi). In this case only tt(/usr/local/bin) is
+produced. Separators may be mixed (tt(xd u/l bi) is identical to tt(xd u l
+bi)). Since the tt(/) can also be used as a root-directory specification, a
+conflict is implied by a command like tt(xd /u l bi). This conflict is solved
+by given the initial character a higher precedence than the separator. Using
+the tt(-) separator in this case is another way to solve the conflict (which
+in practice hardly ever occurs). 
+    )
+
+    If there's only one solution, bf(Xd) will write that directory to its
+standard output stream. If there are multiple solutions, a list of at most 62
+alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the
+letters A..Z) will be written to the standard error stream from which the user
+may select an alternative by simply pressing the key associated with the
+selection of choice. If no selection is requested any other key may be pressed
+(e.g., the space bar or the tt(Enter) key). If there is no solutioon bf(xd)
+will write the text tt(No Solutions) to the standard error stream.
+
+    When tt(xd) is given at least one argument, all its output is sent to the
+standard error stream, but for the selected directory name which is written to
+the standard output stream. If no selection is made or if the selection
+process is aborted a single dot is written to the standard output
+stream. Usually tt(xd) will be called by a shell alias, providing the
+tt(chdir) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
+section) executing tt(chdir `xd $*`). The default dot produced by bf(xd) will
+then prevent a unintended change of directory.
+
+    If bf(xd) is called without arguments then em(usage) information is
+written to the standard error stream.
+
+    bf(Xd) may be further configured using options and a configuration file,
+discussed in the nxt two sections.
+
+manpagesection(RETURN VALUE)
+
+    bf(Xd) returns 0 to the operating system unless an error occurs (e.g.,
+when a non-existing configuration file is specified), or bf(xd)'s version or
+usage info is shown or requested.
 
 manpageoptions()
     If available, single letter options are listed between parentheses
@@ -64,6 +158,7 @@ arguments if their associated long options require arguments as well.
     it() loption(version) (soption(v))nl()
             Display bf(xd)'s version number and terminate.
     )
+    
 
 manpagesection(CONFGURATION FILE)
 
@@ -78,6 +173,8 @@ specification file.
             bf(--baseclass-header) or bf(-b) command-line options.
     )
                     
+manpagesection(SHELL SCRIPTS)
+
 manpagesection(EXAMPLE)
 
     Using a fairly worn-out example, we'll construct a simple calculator

@@ -7,8 +7,10 @@ void Arbiter::setIndex()
 
     c = oneKey.get();           // get the replay
 
-    if (isdigit(c))
-        d_index = c - '0';
+    if (c == '0')
+        d_index = 9;
+    else if (isdigit(c))
+        d_index = c - '1';
     else if (islower(c))
         d_index = '9' - '0' + 1 +  c - 'a';
     else if (isupper(c))

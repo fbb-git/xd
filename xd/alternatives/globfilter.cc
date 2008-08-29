@@ -7,10 +7,20 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     if (!stat.isType(Stat::DIRECTORY))
         return;
 
+    string spec = entry;
+
+    if  // ignore the . nd .. directories
+    (
+        spec.rfind("/.") == spec.length() - 2 ||
+        spec.rfind("/..") == spec.length() - 3
+    )
+        return;
+
         // check if the entry name (globbed) is equal to the true path name
         // if not, the globbed name is a link to the true path
-    if (!context.alternatives.d_dirs && stat.path() != entry)
+    if (!context.alternatives.d_dirs && stat.path() != spec)
         return;
+
 
     if 
     (
