@@ -59,10 +59,10 @@ result in the expansion tt(/usr/local/bin).
 given set of initial characters. E.g., when entering tt(xd ulb) bf(xd) may
 find several alternatives. E.g.,
         verb(
- 0: /usr/lib/base-config
- 1: /usr/lib/bonobo
- 2: /usr/lib/bonobo-activation
- 3: /usr/local/bin
+ 1: /usr/lib/base-config
+ 2: /usr/lib/bonobo
+ 3: /usr/lib/bonobo-activation
+ 4: /usr/local/bin
         )
     If these are the alternatives, this is exactly what bf(xd) will show
 you. Then, by simply pressing the tt(3) key (em(no) tt(Enter) key required)
@@ -125,7 +125,7 @@ then prevent a unintended change of directory.
 written to the standard error stream.
 
     bf(Xd) may be further configured using options and a configuration file,
-discussed in the nxt two sections.
+discussed in the bf(OPTIONS) and bf(CONFIGURATION FILE) sections below.
 
 manpagesection(RETURN VALUE)
 
@@ -139,7 +139,7 @@ manpageoptions()
 following their associated long-option variants. Single letter options require
 arguments if their associated long options require arguments as well.
     itemization(
-    it() loption(add-root)(condition)nl()
+    it() loption(add-root) tt(condition)nl()
             If the search starts at the user's home directory an additional
 search starting at the system's root directory may be performed as well,
 depending on the value specified for the tt(add-root) option. Alternatives are
@@ -151,7 +151,7 @@ configuration file directive tt(add-root) (see below).
            The name of an bf(xd) configuration file. By default bf(xd) will
             look for the file tt(.xdrc) in the user's home directory. The
             existence of the default file is optional.
-    it() loption(directories)(inclusion)nl()
+    it() loption(directories) tt(inclusion)nl()
         Directories may be also be reached via symbolic links. The
 inclusion type tt(all) will add these symbolic links to the list of
 alternatives. The inclusion type tt(unique) will prevent the symbolic links
@@ -159,7 +159,7 @@ from being added to the list of alternatives. There is also a
 configuration file directive tt(directives) (see below).
     it() loption(help) (soption(h))nl()
            Basic usage information is written to the standard error stream.
-    it() loption(start-at)(origin)nl()
+    it() loption(start-at) tt(origin)nl()
         Defines the default start location of directory searches. Origin
 tt(home) results in all default searches to start at the user's home
 directory. Origin tt(root) results in searches to begin at the disk's root
@@ -213,7 +213,7 @@ specification tt(all) will add these symbolic links to the list of
 alternatives. The specification tt(unique) will prevent the symbolic links
 from being added to the list of alternatives.nl()
     This directive is overruled by the tt(---directories) command line option.
-    it() bf(start-at) tt(value) nl()
+    it() bf(start-at) tt(value) (home) nl()
            Defines the default start location of directory searches. Values
 are tt(home) and tt(root). When tt(home) is specified all searches start at
 the user's home directory. When tt(root) is specified searches start at the
