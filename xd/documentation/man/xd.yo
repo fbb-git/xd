@@ -1,0 +1,115 @@
+NOUSERMACRO(xd)
+
+includefile(../../release.yo)
+
+htmlbodyopt(text)(#27408B)
+htmlbodyopt(bgcolor)(#FFFAF0)
+whenhtml(mailto(Frank B. Brokken: f.b.brokken@rug.nl))
+
+DEFINEMACRO(lsoption)(3)(\
+    bf(--ARG1)=tt(ARG3) (bf(-ARG2))\
+)
+DEFINEMACRO(laoption)(2)(\
+    bf(--ARG1)=tt(ARG2)\
+)
+DEFINEMACRO(loption)(1)(\
+    bf(--ARG1)\
+)
+DEFINEMACRO(soption)(1)(\
+    bf(-ARG1)\
+)
+
+
+DELETEMACRO(tt)
+DEFINEMACRO(tt)(1)(em(ARG1))
+
+COMMENT( man-request, section, date, distribution file, general name)
+manpage(xd)(1)(_CurYrs_)(xd._CurVers_.tar.gz)
+        (xd - fast directory changes)
+
+COMMENT( man-request, larger title )
+manpagename(xd)(eXtra fast Directory changer)
+
+COMMENT( all other: add after () )
+manpagesynopsis()
+       bf(xd) [OPTIONS] tt(arguments)
+
+manpagedescription()
+
+    The program bf(xd)
+
+manpageoptions()
+    If available, single letter options are listed between parentheses
+following their associated long-option variants. Single letter options require
+arguments if their associated long options require arguments as well.
+    itemization(
+    it() loption(debug)nl() 
+            showing the actual parsing process on the standard output
+            stream. When included, the debugging output is active by default,
+
+    it() lsoption(filenames)(f)(filename)nl()
+            Specific options overriding particular filenames are also
+            available (which then, in turn, overide the name specified by this
+            option).
+    it() loption(help) (soption(h))nl()
+            Write basic usage information to the standard output stream and
+            terminate. 
+    it() loption(verbose) (soption(V))nl() 
+           Write a file containing verbose descriptions of
+            the xxxxr states and what is done for each type of look-ahead
+            token in that state.  This file also describes all conflicts
+            detected in the grammar, both those resolved by operator
+            precedence and those that remain unresolved.  By default it will
+            not be created, but if requested it will receive the filename
+    it() loption(version) (soption(v))nl()
+            Display bf(xd)'s version number and terminate.
+    )
+
+manpagesection(CONFGURATION FILE)
+
+    The following directives can be used in the initial section of the
+grammar specification file. When command-line options for directives exist,
+they overrule the corresponding directives given in the grammar
+specification file.
+    itemization(
+    it() bf(%baseclass-header) tt(header) nl()
+           Defines the pathname of the file containing the xxxxr's base
+            class. This directive is overridden by the
+            bf(--baseclass-header) or bf(-b) command-line options.
+    )
+                    
+manpagesection(EXAMPLE)
+
+    Using a fairly worn-out example, we'll construct a simple calculator
+below. The basic operators as well as parentheses can be used to specify
+expressions, and each expression should be terminated by a newline. The
+program terminates when a tt(q) is entered. Empty lines result in a mere
+prompt. 
+
+        
+manpagefiles()
+    itemization(
+    it() bf($HOME/.xdrc): Default location of the configuration file
+    it() tt(https://oosix.icce.rug.nl/svnroot/xd): Svn repository
+    )
+
+manpagebugs()
+
+    None reported
+
+manpagesection(ABOUT xd)
+
+    The program bf(xd) was initially (before 1994) written for the MS-DOS
+platform. In 1994 it was designed to work under Unix (Linux, AIX) and it was
+converted to bf(C++). The original bf(C++) code is still available
+(tt(https://oosix.icce.rug.nl/svnroot/xd/tags/start/xd/)) and is funny to look
+at as it is a remarkable illustration of bf(C++) code written by bf(C)
+programmers who had just learned about bf(C++). Versions tt(2.x) have been
+used until 2008, and in late August 2008 I rewrote bf(xd) completely,
+reflecting my current views about bf(C++), resulting in versions tt(3.x.y) and
+beyond. The tt(3.x.y) and later versions extensively use the facilities
+offered by the bf(bobcat)(7) library.
+    
+manpageauthor()
+
+Frank B. Brokken (f.b.brokken@rug.nl).
