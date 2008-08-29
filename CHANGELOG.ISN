@@ -1,5 +1,0 @@
-= rather than . starts in the current directory
-This allows .-directories to be recognized.
-Change not yet registered in dch
-
--- all done --
