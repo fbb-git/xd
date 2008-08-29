@@ -38,7 +38,7 @@ manpagedescription()
 
     The program bf(xd) is used to perform fast directory changes. Usually to
 change a directory the user is required to enter a command like, e.g.,
-tt(chdir /usr/local/bin), possibly with the aid of shell completion. In many
+tt(cd /usr/local/bin), possibly with the aid of shell completion. In many
 cases this is a tedious task: shell completion shows all entries, including
 files, when we're only interested in directories and the full specification of
 our intented directory may eventually require many keyboard actions. 
@@ -46,7 +46,7 @@ our intented directory may eventually require many keyboard actions.
     bf(Xd) was designed a long time ago (in the early 90s) to reduce the
 effort of changing a directory. Often we're well aware to which directory we
 want to change, and it's easy to produce the initial directory characters of
-that directory. E.g., if the intent is to tt(chdir) to tt(/usr/local/bin),
+that directory. E.g., if the intent is to tt(cd) to tt(/usr/local/bin),
 it's rather easy to produce the letters tt(ulb). 
 
     bf(Xd) capitalizes on this capability. By providing the initial directory
@@ -116,8 +116,8 @@ standard error stream, but for the selected directory name which is written to
 the standard output stream. If no selection is made or if the selection
 process is aborted a single dot is written to the standard output
 stream. Usually tt(xd) will be called by a shell alias, providing the
-tt(chdir) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
-section) executing tt(chdir `xd $*`). The default dot produced by bf(xd) will
+tt(cd) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
+section) executing tt(cd `xd $*`). The default dot produced by bf(xd) will
 then prevent a unintended change of directory.
 
     If bf(xd) is called without arguments then em(usage) information is
@@ -162,6 +162,8 @@ arguments if their associated long options require arguments as well.
 
 manpagesection(CONFGURATION FILE)
 
+    Coming
+COMMENT(
     The following directives can be used in the initial section of the
 grammar specification file. When command-line options for directives exist,
 they overrule the corresponding directives given in the grammar
@@ -172,17 +174,43 @@ specification file.
             class. This directive is overridden by the
             bf(--baseclass-header) or bf(-b) command-line options.
     )
+)
                     
 manpagesection(SHELL SCRIPTS)
 
+    Assuming bf(xd) is installed in tt(/usr/bin) scripts can be defined around
+bf(xd) for various shell programs. This allows the shell to change directories
+under control of bf(xd).
+
+    To use bf(xd) with the bf(bash)(1)-shell, the following script
+can be used (to be added to, e.g., tt(.profile)):
+        verb(
+  xd()                    # function to do `cd` using `xd`
+  {
+      cd `/usr/bin/xd $*`
+  }
+        )
+    
+    To use bf(xd) with the bf(tcsh)(1)-shell, the following alias 
+can be added to, e.g., the tt(~/.alias) file:
+        verb(
+  alias  xd  'cd `\xd \!*`'
+  }
+        )
+    Having defined the tt(xd) alias or script tt(xd ...) commands will result
+in the automatic or selected change of the current working directory
+
+
 manpagesection(EXAMPLE)
 
+    Coming
+COMMENT(
     Using a fairly worn-out example, we'll construct a simple calculator
 below. The basic operators as well as parentheses can be used to specify
 expressions, and each expression should be terminated by a newline. The
 program terminates when a tt(q) is entered. Empty lines result in a mere
 prompt. 
-
+    )
         
 manpagefiles()
     itemization(
