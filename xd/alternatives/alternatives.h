@@ -6,13 +6,17 @@
 #include <string>
 #include <memory>
 
+#include <bobcat/arg>
+
 #include "../config/config.h"
 #include "../command/command.h"
 
 class Alternatives: public std::vector<std::string>
 {
+    FBB::Arg &d_arg;
     Config d_config;
     bool d_ok;
+    bool d_debug;
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
 
@@ -32,6 +36,12 @@ class Alternatives: public std::vector<std::string>
     static char const *s_triState[];
     static char const **s_triStateEnd;
 
+    static char const *s_startAt[];
+    static char const **s_startAtEnd;
+
+    static char const *s_dirs[];
+    static char const **s_dirsEnd;
+
     public:
         Alternatives();
         inline operator bool() const;
@@ -39,7 +49,6 @@ class Alternatives: public std::vector<std::string>
         void viable();
 
     private:
-        bool set(char const *key, char const *trueText);
         size_t set(char const *key, char const **begin, char const **end, 
                                     size_t notFound);
 

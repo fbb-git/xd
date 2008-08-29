@@ -36,12 +36,13 @@ manpagesynopsis()
 
 manpagedescription()
 
-    The program bf(xd) is used to perform fast directory changes. Usually to
-change a directory the user is required to enter a command like, e.g.,
-tt(cd /usr/local/bin), possibly with the aid of shell completion. In many
-cases this is a tedious task: shell completion shows all entries, including
-files, when we're only interested in directories and the full specification of
-our intented directory may eventually require many keyboard actions. 
+    The program bf(xd) is used to perform e+bf(X)tra fast bf(D)irectory
+changes. Usually to change a directory the user is required to enter a command
+like, e.g., tt(cd /usr/local/bin), possibly with the aid of shell
+completion. In many cases this is a tedious task: shell completion shows all
+entries, including files, when we're only interested in directories and the
+full specification of our intented directory may eventually require many
+keyboard actions.
 
     bf(Xd) was designed a long time ago (in the early 90s) to reduce the
 effort of changing a directory. Often we're well aware to which directory we
@@ -145,11 +146,6 @@ COMMENT(
             showing the actual parsing process on the standard output
             stream. When included, the debugging output is active by default,
 
-    it() lsoption(filenames)(f)(filename)nl()
-            Specific options overriding particular filenames are also
-            available (which then, in turn, overide the name specified by this
-            option).
-            terminate. 
     it() loption(verbose) (soption(V))nl() 
            Write a file containing verbose descriptions of
             the xxxxr states and what is done for each type of look-ahead
@@ -158,26 +154,63 @@ COMMENT(
             precedence and those that remain unresolved.  By default it will
             not be created, but if requested it will receive the filename
 END)
+    it() loption(debug)nl()
+           Information mainly used for debugging purposes is written to the
+            standard error stream.
+    it() lsoption(config-file)(c)(filename)nl()
+           The name of an bf(xd) configuration file. By default bf(xd) will
+            look for the file tt(.xdrc) in the user's home directory. The
+            existence of the default file is optional.
     it() loption(help) (soption(h))nl()
-            Write basic usage information to the standard output stream and
+           Basic usage information is written to the standard error stream.
     it() loption(version) (soption(v))nl()
-            Display bf(xd)'s version number and terminate.
+           bf(Xd)'s version number is is written to the standard error stream.
     )
     
 
 manpagesection(CONFGURATION FILE)
 
-    Coming
-COMMENT(
+The default configuration file is tt(.xdrc) in the user's home directory. It
+may be overruled by the program's tt(--debug) flag.
+
+Empty lines are ignored. Information at and beyond tt(#)-characters is
+interpreted as comment and is ignored as well.
+
+All directives in bf(xd) configuration files follow the pattern 
+    verb(
+    keyword value
+    ) 
+
+A line may at most contain one directive, but white space (including
+comment at the end of the line) is OK. The same keyword may be specified
+multiple times, in which case the em(last) directive will be used. All
+directives  are interpreted em(case sensitively).  Non-empty lines
+not beginning with a recognized keyword are silently ignored.
+
     The following directives can be used in the initial section of the
-grammar specification file. When command-line options for directives exist,
-they overrule the corresponding directives given in the grammar
-specification file.
+grammar specification file. 
     itemization(
-    it() bf(%baseclass-header) tt(header) nl()
-           Defines the pathname of the file containing the xxxxr's base
-            class. This directive is overridden by the
-            bf(--baseclass-header) or bf(-b) command-line options.
+    it() bf(add-root) tt(value) nl()
+        If the search starts at the user's home directory an additional
+search starting at the system's root directory may be performed as well,
+depending on the value specified for the tt(add-root) directive. nl()
+    If the value is specified as tt(never) no additional search is
+performed.nl()
+    If it is specified as tt(if-empty) then an additional search is performed
+if the initial search (starting at the user's home directory) did not yield
+any directory.nl()
+    If it is specified as tt(always) then an additional search is always 
+performed.nl()
+    This directive is overruled by the tt(---add-root) command line option.
+    it() bf(directories) tt(value) nl()
+    This directive is overruled by the tt(---directories) command line option.
+    it() bf(start-at) tt(value) nl()
+           Defines the default start location of directory searches. Values
+are tt(home) and tt(root). When tt(home) is specified all searches start at
+the user's home directory. When tt(root) is specified searches start at the
+disk's root (tt(/)) directory. If the directory is omitted or if another value
+is specified then the default is used, which is tt(home). This directive is
+overruled by the tt(---start-at) command line option.
     )
 )
                     

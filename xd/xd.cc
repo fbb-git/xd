@@ -11,9 +11,12 @@ namespace   // the anonymous namespace can be used here
 {
     Arg::LongOption longOptions[] =
     {
+        Arg::LongOption("add-root", Arg::Required),
         Arg::LongOption("config-file", 'c'),
-        Arg::LongOption("debug", 'd'),
+        Arg::LongOption("debug"),
+        Arg::LongOption("directories", Arg::Required),
         Arg::LongOption("help", 'h'),
+        Arg::LongOption("start-at", Arg::Required),
         Arg::LongOption("version", 'v'),
         Arg::LongOption("verbose", 'V'),
     };
@@ -26,11 +29,11 @@ namespace   // the anonymous namespace can be used here
 int main(int argc, char **argv)
 try
 {
-    Arg &arg = Arg::initialize("c:dhvV",
+    Arg &arg = Arg::initialize("c:hvV",
                     longOptions, longEnd, argc, argv);
 
     arg.versionHelp(usage, Icmbuild::version, 1);
-    Msg::setInfoBuf(cerr.rdbuf(), arg.option('d'));
+    Msg::setInfoBuf(cerr.rdbuf(), arg.option('V') || arg.option(0, "debug") );
 
     Alternatives alternatives;
     alternatives.viable();              // select viable alternatives

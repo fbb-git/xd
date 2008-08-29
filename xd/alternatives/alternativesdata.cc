@@ -2,11 +2,32 @@
 
 char const *Alternatives::s_triState[] = 
 {
-    "false",
-    "ifEmpty",
-    "true"
+    "never",
+    "if-empty",
+    "always"
 };
 
 char const **Alternatives::s_triStateEnd = 
         s_triState + sizeof(s_triState) / sizeof(char *);
+
+
+char const *Alternatives::s_startAt[] = 
+{
+    "root",
+    "home",
+};
+
+char const **Alternatives::s_startAtEnd = 
+        s_startAt + sizeof(s_startAt) / sizeof(char *);
+
+
+char const *Alternatives::s_dirs[] = 
+{
+    "unique",
+    "all",
+};
+
+char const **Alternatives::s_dirsEnd = 
+        s_dirs + sizeof(s_dirs) / sizeof(char *);
+
 

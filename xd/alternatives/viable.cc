@@ -5,11 +5,12 @@ void Alternatives::viable()
     if (!d_ok)
         throw 1;                    // terminate the program 
 
-    d_home = set("home", "true");
-    d_dirs = set("directories", "all");
+    d_home = set("start-at", s_startAt, s_startAtEnd, 1);
+
+    d_dirs = set("directories", s_dirs, s_dirsEnd, 1);
 
     d_addRoot = static_cast<TriState>
-                    (set("addRoot", s_triState, s_triStateEnd, IF_EMPTY));
+                    (set("add-root", s_triState, s_triStateEnd, IF_EMPTY));
 
     if (Arg::instance().option('d'))
     {

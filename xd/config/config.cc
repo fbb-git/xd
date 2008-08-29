@@ -2,7 +2,7 @@
 
 Config::Config()
 :
-    ConfigFile(ConfigFile::RemoveComment, ConfigFile::SearchCaseInsensitive),
+    ConfigFile(ConfigFile::RemoveComment),
     d_ok(true)
 {
     try
@@ -20,6 +20,8 @@ Config::Config()
                 d_home += '/';
         }
         // home set with ending /
+
+        msg() << "Home directory: " << d_home << info;
     
     
         if (arg.option(&d_configName, 'c'))
@@ -36,6 +38,7 @@ Config::Config()
                     open(d_configName);
             }
         }
+        msg() << "Configuration file: " << d_configName << info;
     }
     catch (Errno const &err)
     {

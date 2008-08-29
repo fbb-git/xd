@@ -9,6 +9,7 @@ class Config: public FBB::ConfigFile
 
     std::string d_home;         // /-terminated name of the homedir
     bool d_ok;                  // config file available (true) or not
+    bool d_debug;
     std::string d_searchResult;
 
     static char s_defaultConfig[];
