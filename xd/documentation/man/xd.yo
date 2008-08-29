@@ -133,11 +133,15 @@ when a non-existing configuration file is specified), or bf(xd)'s version or
 usage info is shown or requested.
 
 manpageoptions()
+
+    To be completed
+
     If available, single letter options are listed between parentheses
 following their associated long-option variants. Single letter options require
 arguments if their associated long options require arguments as well.
     itemization(
-    it() loption(debug)nl() 
+COMMENT(
+    it() soption(d)nl() 
             showing the actual parsing process on the standard output
             stream. When included, the debugging output is active by default,
 
@@ -145,8 +149,6 @@ arguments if their associated long options require arguments as well.
             Specific options overriding particular filenames are also
             available (which then, in turn, overide the name specified by this
             option).
-    it() loption(help) (soption(h))nl()
-            Write basic usage information to the standard output stream and
             terminate. 
     it() loption(verbose) (soption(V))nl() 
            Write a file containing verbose descriptions of
@@ -155,6 +157,9 @@ arguments if their associated long options require arguments as well.
             detected in the grammar, both those resolved by operator
             precedence and those that remain unresolved.  By default it will
             not be created, but if requested it will receive the filename
+END)
+    it() loption(help) (soption(h))nl()
+            Write basic usage information to the standard output stream and
     it() loption(version) (soption(v))nl()
             Display bf(xd)'s version number and terminate.
     )
@@ -195,7 +200,6 @@ can be used (to be added to, e.g., tt(.profile)):
 can be added to, e.g., the tt(~/.alias) file:
         verb(
   alias  xd  'cd `\xd \!*`'
-  }
         )
     Having defined the tt(xd) alias or script tt(xd ...) commands will result
 in the automatic or selected change of the current working directory
