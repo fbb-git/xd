@@ -147,6 +147,10 @@ tt(never) (no additional search is performed); tt(if-empty) (an additional
 search is performed if the initial search did not yield any directory; or
 tt(always) (an additional search is always performed).  There is also a
 configuration file directive tt(add-root) (see below).
+    it() loption(all) soption(a)nl()
+        If the configuration file (see below) contains tt(ignore) directives
+then these directives are ignored when computing the alternatives from which
+the user may select a directory to change to.
     it() lsoption(config-file)(c)(filename)nl()
            The name of an bf(xd) configuration file. By default bf(xd) will
             look for the file tt(.xdrc) in the user's home directory. The
@@ -183,14 +187,15 @@ interpreted as comment and is ignored as well.
 
 All directives in bf(xd) configuration files follow the pattern 
     verb(
-    keyword value
+    directive value
     ) 
 
 A line may at most contain one directive, but white space (including
-comment at the end of the line) is OK. The same keyword may be specified
-multiple times, in which case the em(last) directive will be used. All
+comment at the end of the line) is OK. The same directive may be specified
+multiple times, in which case the em(last) directive will be used (with the
+exception of the em(ignore) directive, see below). All
 directives  are interpreted em(case sensitively).  Non-empty lines
-not beginning with a recognized keyword are silently ignored.
+not beginning with a recognized directive are silently ignored.
 
     The following directives can be used in the initial section of the
 grammar specification file. Default values are shown between parentheses.
@@ -213,6 +218,14 @@ specification tt(all) will add these symbolic links to the list of
 alternatives. The specification tt(unique) will prevent the symbolic links
 from being added to the list of alternatives.nl()
     This directive is overruled by the tt(---directories) command line option.
+    it() bf(ignore) tt(path) nl()
+        The configuration file may contain multiple tt(ignore) directives
+which are --different from the way other directives are handled--  all
+interpreted. Each tt(ignore) directive is followed by a path specification as
+shown in a list of alternatives produced by bf(xd). When bf(xd) encounters a
+path matching any of the tt(ignore) directives it will not display that path
+in its list of alternatives.
+    This directive is overruled by the tt(---all) command line option.
     it() bf(start-at) tt(value) (home) nl()
            Defines the default start location of directory searches. Values
 are tt(home) and tt(root). When tt(home) is specified all searches start at

@@ -15,6 +15,7 @@ namespace   // the anonymous namespace can be used here
         Arg::LongOption("directories",  Arg::Required),
         Arg::LongOption("start-at",     Arg::Required),
 
+        Arg::LongOption("all",          'a'),
         Arg::LongOption("config-file",  'c'),
         Arg::LongOption("help",         'h'),
         Arg::LongOption("version",      'v'),
@@ -29,7 +30,7 @@ namespace   // the anonymous namespace can be used here
 int main(int argc, char **argv)
 try
 {
-    Arg &arg = Arg::initialize("c:hvV",
+    Arg &arg = Arg::initialize("ac:hvV",
                     longOptions, longEnd, argc, argv);
 
     arg.versionHelp(usage, Icmbuild::version, 1);

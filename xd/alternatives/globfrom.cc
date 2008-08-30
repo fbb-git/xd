@@ -2,11 +2,16 @@
 
 void Alternatives::globFrom(string initial)
 {
-    std::set<pair<size_t, size_t> > stored;
+    GlobContext context = {*this};
 
-    glob(initial, stored);
+    if (not Arg::instance().option('a'))
+        for_each(d_config.beginRE("^\\s*ignore\\s+\\S+\\s*$"),
+             d_config.endRE(), FnWrap1c<string const &, std::set<string> &>
+                                (addIgnored, context.ignore));
+
+    glob(initial, context);
 
     if (d_addRoot == TRUE || (size() == 0 && d_addRoot == IF_EMPTY))
-        glob("/", stored);
+        glob("/", context);
 }
 

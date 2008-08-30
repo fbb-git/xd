@@ -73,3 +73,6 @@
 #   addRoot         true
 # directories unique
 # home false
+
+ignore /usr/lib/bonobo-activation/
+ignore /usr/lib/bonobo/

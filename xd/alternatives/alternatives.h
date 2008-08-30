@@ -55,18 +55,21 @@ class Alternatives: public std::vector<std::string>
 
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);
-        void glob(std::string initial, 
-                    std::set<std::pair<size_t, size_t> > &stored);
+
+        struct GlobContext
+        {
+            Alternatives &alternatives;
+            std::set<std::pair<size_t, size_t> > stored;
+            std::set<std::string> ignore;
+        };
+        void glob(std::string initial, GlobContext &context);
 
         inline static void addPath(std::string const &element, 
                                                         std::string &path);
 
-        struct GlobContext
-        {
-            std::set<std::pair<size_t, size_t> > &stored;
-            Alternatives &alternatives;
-        };
         static void globFilter(char const *entry, GlobContext &context);
+
+        static void addIgnored(std::string const &, std::set<std::string> &);
 };
 
 void Alternatives::addPath(std::string const &element, std::string &path)

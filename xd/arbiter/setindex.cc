@@ -17,6 +17,9 @@ void Arbiter::setIndex()
         d_index = '9' - '0' + 1 + 'z' - 'a' + 1 + c - 'A';
     else
         throw 1;
+
+    if (d_index > d_alternatives.size())
+        throw 1;
 }
 
 

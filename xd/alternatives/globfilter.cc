@@ -12,6 +12,12 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         return;
     }
 
+    if (context.ignore.find(entry) != context.ignore.end())
+    {
+        msg() << "ignored" << info;
+        return;
+    }
+
     string spec = entry;
 
     if  // ignore the . nd .. directories
