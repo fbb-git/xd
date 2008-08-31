@@ -1,66 +1,57 @@
-This are the installation instructions for xd.
-
-Quick Installation instruction:
-===============================
-
-1. Do as root in the directory where xd unpacked to:
-
-        install xd /usr/local/bin
-        
-to install the provided version of xd in /usr/local/bin
-
-2. Add the following alias to your csh.cshrc (or whatever file you use as
-your system-wide alias file):
-   
-        alias   xd  'cd `/usr/local/bin/xd \!*`'
-
+These are the installation instructions for xd.
 
 Extensive Installation Instruction:
 ===================================
+
+License:
+    This is free software according to the Gnu General Public License
+
+    Copyright (c) 1994-NOW Frank B. Brokken (f.b.brokken@rug.nl)
 
 Preliminaries:
 --------------
 
 You need icmake to compile xd yourself. Icmake may be obtained from
-ftp.icce.rug.nl, or from sunsite.unc.edu or from tsx-11.mit.edu.
+ftp://ftp.rug.nl/contrib/frank/software/linux/icmake/
 
 If you don't have icmake, you have to compile and link all sources by hand.
 No support for this case is provided here.
 
+To construct the man-page you need Yodl. Yodl can be obtained from
+http://yodl.sourceforge.net 
+
+Both icmake and yodl are available as Debian linux packages, see
+www.debian.org 
+
 --------------
 
-Xd depends on some classes defined in the libicce-library. The library (and its
-sources) can be obtained from ftp.icce.rug.nl, in the directory pub/unix. 
+Xd depends on the Bobcat library. Bobcat is found at
+http://bobcat.sourceforge.net.
+
+Bobcat is also available as Debian linux packages, see www.debian.org
 
 Installation Instructions:
 --------------------------
 
 1. All instructions should be done from the directory where
-   the xd.X.YY.tgz archive unpacked to (i.e., xd/).
-2. Make sure you have the libicce.a library (e.g., in /usr/local/lib)
-   and the associated header files (e.g., in /usr/local/include/icce)
-   installed.
-3. If preferred, edit the name of the configurationfile to be used.
-   to do this, edit in configure.h, the #define XD_CONFIG_PATH.
-   It is always relative to $HOME, and in the distribution it is set
-   to "/.conf/xd/xd.conf".
+   the xd_XX.YY.ZZ.tar.gz archive unpacks to (i.e., xd-XX.YY.ZZ/).
+2. Make sure you have the bobcat library and headers installed
+3. Verify (and optionally modify) the directory locations in INSTALL.im
 4. Do (not necessarily as root)
-    ./build
-    This creates in the current directory libxd.a and xd.
-    During the compilation, two warnings are generated.
-    They can safely be ignored.
+    ./build program
+    This creates tmp/bin/xd
+    and 
+    ./build man
+    This creates tmp/man/xd.1 and tmp/manhtml/xdman.html  
 5. Do (as root)
-    install xd /usr/local/bin
-6. Add the following alias to your csh.cshrc (or whatever file you use as
-   your system-wide alias file):
-   
-    alias   xd      'cd `/usr/local/bin/xd \!*`'
+    ./build install /
+6. Read the man-page for useful bash- and/or tcsh aliases for xd.
 
 Cleanup-instructions.
 ---------------------
 
-Some simple cleanup may be required. The compilation left libxd.a and xd.
-All other intermediate compilation products were removed by build.
+./build distclean should cleanup all files created during the construction
+process of either program or man-page. Alternatively, remove the xd-XX.YY.ZZ
+directory extracted from xd_XX.YY.ZZ.tar.gz
 
-If required, libxd.a and xd can be removed.
-
+Frank B. Brokken <f.b.brokken@rug.nl>

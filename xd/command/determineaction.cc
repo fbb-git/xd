@@ -1,59 +1,22 @@
 #include "command.ih"
 
-//    The following table is not maintained, currently. See the manpage for
-//  more up-to-date info.
-//
-//    ----------------------------------------------------------
-//                            using sub-specifications 
-//                           (/ and - separate subspecs)
-//    ----------------------------------------------------------
-//    intention               no              yes
-//    ----------------------------------------------------------
-//    from CWD              .abc (11)       ./a/bc (12)
-//                                          ./abc
-//
-//    from $HOME            0abc (21)       0/a/bc  (22)
-//                                          0.  (all .* dirs at $HOME)
-//         
-//    from /                /abc (31)       /a/bc  (32)
-//                          /               //abc
-//                          (/ sitches to the root directory only)
-//
-//    from cwd's parent #   #abc (41)       #a/bc  (42)
-//    (#: [1-9])                            #/abc
-//         
-//    from config           abc  (51)       -abc    (51)
-//      (- can be used as a pattern indicator at the 1st position)
-//    ----------------------------------------------------------
-//
-//    command[0] determines the initial cell:
-//        0   indicates from the current directory onward
-//        .   indicates subspecifications from $HOME
-//        /   indicates from the root
-//        #   (#: [1-9]) indicates specifications from parent #
-//        other   indicates from $HOME
-//
-//        any / or - beyond command[0] automatically switches to
-//        sub-specifications (the last / on command is not counted
-//        here, as this one was added by Command() itself.
-
 bool Command::determineAction(string &args)
 {                    
-    switch (int ch = *args.begin()) // Interpret the first character
+    switch (int ch = args[0])   // Interpret the first character
     {
-        case '0':           // from parent 0 or cwd (cells 41, 42)
+        case '0':               // from parent 0 or cwd
             d_action = FROM_CWD;
         break;
 
-        case '.':           // from HOME (21, 22)
+        case '.':           // from HOME
             d_action = FROM_HOME;
         break;
 
-        case '/':           // explicitly from the root: cells 31, 32
+        case '/':           // explicitly from the root
             d_action = FROM_ROOT;
         break;              // breaks remove the 1st char from args
 
-        // start from a parent (cells 41, 42)
+        // start from a parent
         case '1':         
         case '2':
         case '3':
@@ -67,7 +30,7 @@ bool Command::determineAction(string &args)
             d_action = FROM_PARENT;
         break;
 
-        // other characters: 1st letter of directory (cell 51)
+        // other characters: 1st letter of directory
         default:
         {
             bool firstIsSeparator = (ch == '_');

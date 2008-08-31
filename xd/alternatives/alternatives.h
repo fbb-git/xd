@@ -69,7 +69,10 @@ class Alternatives: public std::vector<std::string>
 
         static void globFilter(char const *entry, GlobContext &context);
 
-        static void addIgnored(std::string const &, std::set<std::string> &);
+        static void addIgnored(std::string const &line, 
+                                std::set<std::string> &ignoreSet);
+
+        static bool matchIgnore(std::string const &ignore, char const *entry);
 };
 
 void Alternatives::addPath(std::string const &element, std::string &path)

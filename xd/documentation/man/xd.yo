@@ -200,19 +200,19 @@ not beginning with a recognized directive are silently ignored.
     The following directives can be used in the initial section of the
 grammar specification file. Default values are shown between parentheses.
     itemization(
-    it() bf(add-root) tt(value) (if-empty)nl()
+    it() bf(add-root) tt(when) (if-empty)nl()
             If the search starts at the user's home directory an additional
 search starting at the system's root directory may be performed as well,
 depending on the value specified for the tt(add-root) directive. nl()
-    If the value is specified as tt(never) no additional search is
-performed.nl()
+    If tt(when) is specified as tt(always) then an additional search is
+always performed.nl()
             If it is specified as tt(if-empty) then an additional search is
 performed if the initial search (starting at the user's home directory) did
 not yield any directory.nl()
-            If it is specified as tt(always) then an additional search is
-always performed.nl()
+            If it is specified as tt(never) no additional search is
+performed.nl()
     This directive is overruled by the tt(---add-root) command line option.
-    it() bf(directories) tt(value) (all)nl()
+    it() bf(directories) tt(which) (all)nl()
         Directories may be also be reached via symbolic links. The
 specification tt(all) will add these symbolic links to the list of
 alternatives. The specification tt(unique) will prevent the symbolic links
@@ -220,11 +220,13 @@ from being added to the list of alternatives.nl()
     This directive is overruled by the tt(---directories) command line option.
     it() bf(ignore) tt(path) nl()
         The configuration file may contain multiple tt(ignore) directives
-which are --different from the way other directives are handled--  all
+which are --different from the way other directives are handled-- all
 interpreted. Each tt(ignore) directive is followed by a path specification as
-shown in a list of alternatives produced by bf(xd). When bf(xd) encounters a
-path matching any of the tt(ignore) directives it will not display that path
-in its list of alternatives.
+shown in a list of alternatives produced by bf(xd) or an initial substring of
+such a path terminating in a tt(*) character. When bf(xd) encounters a path
+matching any of the tt(ignore) directives (with the tt(*) interpreted as `any
+further directory name' specification) it will not display that path in its
+list of alternatives.
     This directive is overruled by the tt(---all) command line option.
     it() bf(start-at) tt(value) (home) nl()
            Defines the default start location of directory searches. Values
@@ -276,6 +278,24 @@ manpagesection(EXAMPLES)
                 - all directories at the root starting with t
 
     xd ..       - all directories starting with a dot in the cwd
+    )
+    Assuming the following directories exist:
+    verb(
+  /usr/lib/bonobo
+  /usr/lib/bonobo-activation
+  /usr/local/bin
+    )
+    then the following two tt(ignore) specifications in bf(xd)'s configuration
+file will result in ignoring the tt(bonobo) directory alternatives:
+
+    First specification:
+    verb(
+  ignore /usr/lib/bonobo
+  ignore /usr/lib/bonobo-activation
+    )
+    Second specification:
+    verb(
+  ignore /usr/lib/bonobo*
     )
 
 manpagefiles()

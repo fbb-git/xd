@@ -34,7 +34,7 @@ try
                     longOptions, longEnd, argc, argv);
 
     arg.versionHelp(usage, Icmbuild::version, 1);
-    Msg::setInfoBuf(cerr.rdbuf(), arg.option('V') || arg.option(0, "debug") );
+    Msg::setInfoBuf(cerr.rdbuf(), arg.option('V'));
 
     Alternatives alternatives;
     alternatives.viable();              // select viable alternatives

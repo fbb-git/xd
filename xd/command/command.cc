@@ -11,7 +11,8 @@ Command::Command()
 
     bool subSpecs = determineAction(arguments);
 
-    String::split(this, arguments, "/-");
+    String::split(this, arguments, s_separators);
+
     if (!subSpecs && size() && Arg::instance().nArgs() == 1)
     {
         for_each(front().begin() + 1, front().end(), 

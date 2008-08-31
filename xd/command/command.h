@@ -11,7 +11,8 @@ class Command: public std::vector<std::string>
                        // stores the elements of the pattern
 {
     static char const *s_action[];
-
+    static char const s_separators[];   // separating parts of nested dir
+                                        // names 
     public:
         // modify commanddata.cc if Action is modified
         enum Action                     // starting point as determined 
