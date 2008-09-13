@@ -2,8 +2,10 @@
 
 void Arbiter::setIndex()
 {
-    OneKey oneKey;
     int c;
+    OneKey oneKey;
+
+    oneKey.verify();
 
     c = oneKey.get();           // get the replay
 

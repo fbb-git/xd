@@ -1,3 +1,7 @@
+xd (3.00.1)
+
+  * Minor modifications due to changes in Bobcat
+
 xd (3.00.0)
 
   * Complete rewrite of XD according to current views about C++
