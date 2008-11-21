@@ -19,6 +19,9 @@ class Alternatives: public std::vector<std::string>
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
 
+    struct GlobContext;
+    void (Alternatives::*d_globFun)(std::string initial, GlobContext &context);
+
     enum TriState
     {
         FALSE,
@@ -33,13 +36,16 @@ class Alternatives: public std::vector<std::string>
     Command d_command;
 
     static char const *s_triState[];
-    static char const **s_triStateEnd;
+    static char const *const *const s_triStateEnd;
 
     static char const *s_startAt[];
-    static char const **s_startAtEnd;
+    static char const * const *const s_startAtEnd;
 
     static char const *s_dirs[];
-    static char const **s_dirsEnd;
+    static char const *const *const s_dirsEnd;
+
+    static char const *s_merge[];
+    static char const *const *const s_mergeEnd;
 
     public:
         Alternatives();
@@ -48,7 +54,9 @@ class Alternatives: public std::vector<std::string>
         void viable();
 
     private:
-        size_t set(char const *key, char const **begin, char const **end, 
+        size_t set(int keyChar, 
+                    char const *longKey, char const *const * const begin, 
+                                    char const *const *const end, 
                                     size_t notFound);
 
         void getCwd(std::auto_ptr<char> *dest);
@@ -64,8 +72,15 @@ class Alternatives: public std::vector<std::string>
         };
         void glob(std::string initial, GlobContext &context);
 
+        void globMerged(std::string initial, GlobContext &context);
+        void globHead(std::string const &initial, 
+                      std::string searchCmd, GlobContext &context);
+        void globPattern(std::string pattern, 
+                                std::string const &searchCmd, size_t idx,
+                                GlobContext &context);
+
         inline static void addPath(std::string const &element, 
-                                                        std::string &path);
+                                    std::string &path);
 
         static void globFilter(char const *entry, GlobContext &context);
 

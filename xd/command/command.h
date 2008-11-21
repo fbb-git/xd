@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <numeric>
 
 // determine the command as received and the kind of action according to
 // the received pattern.
@@ -10,6 +11,8 @@
 class Command: public std::vector<std::string> 
                        // stores the elements of the pattern
 {
+    std::string d_accumulated;
+
     static char const *s_action[];
     static char const s_separators[];   // separating parts of nested dir
                                         // names 
@@ -29,10 +32,12 @@ class Command: public std::vector<std::string>
         size_t d_parent;                
 
     public:
-        Command();      
+        Command();
+
+        inline std::string const &accumulate();
         inline size_t parent() const;
         inline Action action() const;
-
+        
     private:
         void concatArgs(std::string *args);
         inline static void catArg(char const *arg, std::string &dest);
@@ -61,6 +66,11 @@ void Command::catArg(char const *arg, std::string &dest)
 void Command::add(char ch, std::vector<std::string> &cmd)
 {
     cmd.push_back(std::string(1, ch));
+}
+
+std::string const &Command::accumulate()
+{
+    return d_accumulated = std::accumulate(begin(), end(), std::string());
 }
 
 #endif

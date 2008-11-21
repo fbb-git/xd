@@ -121,6 +121,11 @@ tt(cd) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
 section) executing tt(cd `xd $*`). The default dot produced by bf(xd) will
 then prevent a unintended change of directory.
 
+    Since version 3.10.0 bf(xd) also supports merged search command
+processing. When merged search command processing is requested separators are
+no longer required, and bf(xd) will find all posible alternatives resulting
+from all possible sequential combinations of the initial search command.
+
     If bf(xd) is called without arguments then em(usage) information is
 written to the standard error stream.
 

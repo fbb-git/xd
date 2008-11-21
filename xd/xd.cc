@@ -18,6 +18,7 @@ namespace   // the anonymous namespace can be used here
         Arg::LongOption("all",          'a'),
         Arg::LongOption("config-file",  'c'),
         Arg::LongOption("help",         'h'),
+        Arg::LongOption("merge",        'm'),
         Arg::LongOption("version",      'v'),
         Arg::LongOption("verbose",      'V'),
     };
@@ -30,7 +31,7 @@ namespace   // the anonymous namespace can be used here
 int main(int argc, char **argv)
 try
 {
-    Arg &arg = Arg::initialize("ac:hvV",
+    Arg &arg = Arg::initialize("ac:hm:vV",
                     longOptions, longEnd, argc, argv);
 
     arg.versionHelp(usage, Icmbuild::version, 1);

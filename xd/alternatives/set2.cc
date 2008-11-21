@@ -1,31 +1,33 @@
 #include "alternatives.ih"
 
-size_t Alternatives::set(char const *key, 
-                            char const **begin, char const **end, 
+size_t Alternatives::set(int keyChar, char const *longKey, 
+                            char const *const *const begin, 
+                            char const *const *const end, 
                             size_t notFound)
 {
     string conf;
 
-    if (!d_arg.option(&conf, key))
-         d_config.search(key);
+    if (!d_arg.option(&conf, keyChar) && !d_arg.option(&conf, longKey))
+         d_config.search(longKey);
 
     if (conf.length() == 0)
     {
-        msg() << "Option or config: No key " << key << info;
+        msg() << "Option or config: No key " << longKey << info;
         return notFound;
     }
 
-    char const **ret = find_if(begin, end, bind2nd(equal_to<string>(), conf));
+    char const *const *const ret = 
+                    find_if(begin, end, bind2nd(equal_to<string>(), conf));
 
     if (ret != end)
     {
-        msg() << "Option or config `" << key << " " << conf << "' found" <<
+        msg() << "Option or config `" << longKey << " " << conf << "' found" <<
                 info;
 
         return ret - begin;
     }
 
-    msg() << "`" << key << " " << conf << 
+    msg() << "`" << longKey << " " << conf << 
             "' not supported. Using the default `" << begin[notFound] <<
             "'." << info;
 

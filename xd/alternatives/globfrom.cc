@@ -9,7 +9,7 @@ void Alternatives::globFrom(string initial)
              d_config.endRE(), FnWrap1c<string const &, std::set<string> &>
                                 (addIgnored, context.ignore));
 
-    glob(initial, context);
+    (this->*d_globFun)(initial, context);
 
     if (d_addRoot == TRUE || (size() == 0 && d_addRoot == IF_EMPTY))
         glob("/", context);

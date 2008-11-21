@@ -15,7 +15,6 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     if (find_if(context.ignore.begin(), context.ignore.end(),
                 FnWrap1c<string const &, char const *, bool>
                     (matchIgnore, entry)) != context.ignore.end())
-        // find(entry) != context.ignore.end())
     {
         msg() << "ignored" << info;
         return;

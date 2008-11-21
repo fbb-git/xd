@@ -6,6 +6,7 @@
 
 #include <functional>
 #include <algorithm>
+#include <numeric>
 
 #include <bobcat/string>
 #include <bobcat/fnwrap1c>
