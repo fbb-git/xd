@@ -1,8 +1,8 @@
 #include "command.ih"
 
-bool Command::determineAction(string &args)
+bool Command::determineAction()
 {                    
-    switch (int ch = args[0])   // Interpret the first character
+    switch (int ch = d_arguments[0])   // Interpret the first character
     {
         case '0':               // from parent 0 or cwd
             d_action = FROM_CWD;
@@ -35,12 +35,12 @@ bool Command::determineAction(string &args)
         {
             bool firstIsSeparator = (ch == '_');
             if (firstIsSeparator)
-                args.erase(0, 1);      // remove the 1st char
+                d_arguments.erase(0, 1);      // remove the 1st char
             d_action = FROM_CONFIG;
             return firstIsSeparator;
         }
     }
 
-    args.erase(0, 1);      // remove the 1st (location) character
+    d_arguments.erase(0, 1);      // remove the 1st (location) character
     return false;
 }

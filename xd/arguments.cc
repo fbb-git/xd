@@ -8,12 +8,12 @@ namespace   // the anonymous namespace can be used here
         ArgConfig::LongOption("directories",  ArgConfig::Required),
         ArgConfig::LongOption("start-at",     ArgConfig::Required),
 
-        ArgConfig::LongOption("all",          'a'),
-        ArgConfig::LongOption("config-file",  'c'),
-        ArgConfig::LongOption("help",         'h'),
-        ArgConfig::LongOption("merge",        'm'),
-        ArgConfig::LongOption("version",      'v'),
-        ArgConfig::LongOption("verbose",      'V'),
+        ArgConfig::LongOption("all",            	'a'),
+        ArgConfig::LongOption("config-file",    	'c'),
+        ArgConfig::LongOption("help",               'h'),
+        ArgConfig::LongOption("generalized-search", 'g'),
+        ArgConfig::LongOption("version",            'v'),
+        ArgConfig::LongOption("verbose",            'V'),
     };
 
     ArgConfig::LongOption const *const longEnd =
@@ -23,7 +23,7 @@ namespace   // the anonymous namespace can be used here
 
 void arguments(int argc, char **argv)
 {
-    ArgConfig &arg = ArgConfig::initialize("ac:hmvV",
+    ArgConfig &arg = ArgConfig::initialize("ac:ghvV",
                         longOptions, longEnd, argc, argv);
     arg.setCommentHandling(ArgConfig::RemoveComment);
 

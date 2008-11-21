@@ -6,7 +6,8 @@
 #include <string>
 #include <memory>
 
-#include <bobcat/argconfig>
+//#include <bobcat/argconfig>
+#include <argconfig>
 
 #include "../command/command.h"
 
@@ -71,7 +72,7 @@ class Alternatives: public std::vector<std::string>
         };
         void glob(std::string initial, GlobContext &context);
 
-        void globMerged(std::string initial, GlobContext &context);
+        void generalizedGlob(std::string initial, GlobContext &context);
         void globHead(std::string const &initial, 
                       std::string searchCmd, GlobContext &context);
         void globPattern(std::string pattern, 

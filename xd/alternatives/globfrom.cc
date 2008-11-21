@@ -9,13 +9,15 @@ void Alternatives::globFrom(string initial)
              d_arg.endRE(), FnWrap1c<string const &, std::set<string> &>
                                 (addIgnored, context.ignore));
 
-    (this->*(d_arg.option('m') ? 
-                &Alternatives::globMerged 
-            : 
-                &Alternatives::glob)
-    )(initial, context);
+    void (Alternatives::*globFun)(string dir, GlobContext &context) = 
+        d_arg.option('g') ? 
+            &Alternatives::generalizedGlob
+        : 
+            &Alternatives::glob;
+
+    (this->*globFun)(initial, context);
 
     if (d_addRoot == TRUE || (size() == 0 && d_addRoot == IF_EMPTY))
-        glob("/", context);
+        (this->*globFun)("/", context);
 }
 

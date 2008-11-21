@@ -22,7 +22,7 @@ void usage(std::string  const  &progname)
     "  --directories <which>     - which directories to show?\n"
     "                              (all)\n"
     "  --help (-h)               - provide this help\n"
-    "  --merge (-m) <true/false> - merge all arguments (false)\n"
+    "  --generalized-search (-g) - performe a generalized dir-pattern match\n"
     "  --start-at <origin>       - where to start the search?\n"
     "                              (home)\n"
     "  --version (-v)            - show version information and terminate\n"

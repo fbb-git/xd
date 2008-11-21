@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include <bobcat/argconfig>
+//#include <bobcat/argconfig>
+#include <argconfig>
+
 #include <bobcat/msg>
 
 #include "alternatives/alternatives.h"
