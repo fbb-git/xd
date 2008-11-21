@@ -13,14 +13,14 @@ Command::Command()
 
     String::split(this, arguments, s_separators);
 
-    if (!subSpecs && size() && Arg::instance().nArgs() == 1)
+    if (!subSpecs && size() && ArgConfig::instance().nArgs() == 1)
     {
         for_each(front().begin() + 1, front().end(), 
             FnWrap1c<char, vector<string> &>(add, *this));
         front().resize(1);
     }
 
-    if (Arg::instance().option('d'))
+    if (ArgConfig::instance().option('V'))
     {
         cerr << "Parent nr: " << d_parent << "\n"
                 "Action: " << s_action[d_action] << "\n"

@@ -1,10 +1,10 @@
 
-#define COPT               "-Wall -O3"
+#define COPT               "-Wall -O3 -I/tmp"
 
 #define ECHO_REQUEST       1
 
-#define LIBS               "bobcat"
-#define LIBPATH            ""
+#define LIBS               "argconfig bobcat"
+#define LIBPATH            "/tmp"
 
 
 string                  // contain options for

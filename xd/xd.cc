@@ -6,42 +6,15 @@
 
 #include "xd.ih"               // program header file
 
-
-namespace   // the anonymous namespace can be used here
-{
-    Arg::LongOption longOptions[] =
-    {
-        Arg::LongOption("add-root",     Arg::Required),
-        Arg::LongOption("directories",  Arg::Required),
-        Arg::LongOption("start-at",     Arg::Required),
-
-        Arg::LongOption("all",          'a'),
-        Arg::LongOption("config-file",  'c'),
-        Arg::LongOption("help",         'h'),
-        Arg::LongOption("merge",        'm'),
-        Arg::LongOption("version",      'v'),
-        Arg::LongOption("verbose",      'V'),
-    };
-
-    Arg::LongOption const *const longEnd =
-                    longOptions +
-                    sizeof(longOptions) / sizeof(Arg::LongOption);
-}
-
 int main(int argc, char **argv)
 try
 {
-    Arg &arg = Arg::initialize("ac:hm:vV",
-                    longOptions, longEnd, argc, argv);
-
-    arg.versionHelp(usage, Icmbuild::version, 1);
-    Msg::setInfoBuf(cerr.rdbuf(), arg.option('V'));
+    arguments(argc, argv);
 
     Alternatives alternatives;
     alternatives.viable();              // select viable alternatives
 
     Arbiter arbiter(alternatives);
-
     arbiter.select();                   // make the selection
 
     return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter

@@ -9,12 +9,12 @@ string Alternatives::determineInitialDirectory()
     switch (d_command.action())
     {
         case Command::FROM_CONFIG:
-            cwd = d_home ? d_config.homeDir() : "/";
+            cwd = d_home ? d_homeDir : string("/");
             rescan = true;
         break;
 
         case Command::FROM_HOME:
-            cwd = d_config.homeDir();
+            cwd = d_homeDir;
         break;
 
         case Command::FROM_ROOT:

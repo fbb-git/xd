@@ -2,7 +2,7 @@
 
 void Command::concatArgs(string *args)
 {
-    Arg &arg = Arg::instance();
+    ArgConfig &arg = ArgConfig::instance();
 
     for_each(arg.argPointers(), arg.argPointers() + arg.nArgs(), 
             FnWrap1c<char const *, string &>(catArg, *args));

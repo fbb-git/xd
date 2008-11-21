@@ -40,3 +40,4 @@ char const *const *const Alternatives::s_dirsEnd =
         s_dirs + sizeof(s_dirs) / sizeof(char *);
 
 
+char Alternatives::s_defaultConfig[] = ".xdrc";   // in $HOME

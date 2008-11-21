@@ -6,21 +6,18 @@
 #include <string>
 #include <memory>
 
-#include <bobcat/arg>
+#include <bobcat/argconfig>
 
-#include "../config/config.h"
 #include "../command/command.h"
 
 class Alternatives: public std::vector<std::string>
 {
-    FBB::Arg &d_arg;
-    Config d_config;
-    bool d_ok;
+    FBB::ArgConfig &d_arg;
+
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
 
-    struct GlobContext;
-    void (Alternatives::*d_globFun)(std::string initial, GlobContext &context);
+    std::string d_homeDir;
 
     enum TriState
     {
@@ -47,15 +44,17 @@ class Alternatives: public std::vector<std::string>
     static char const *s_merge[];
     static char const *const *const s_mergeEnd;
 
+    static char s_defaultConfig[];
+
     public:
         Alternatives();
-        inline operator bool() const;
-
         void viable();
 
     private:
-        size_t set(int keyChar, 
-                    char const *longKey, char const *const * const begin, 
+        void setHome();
+        void setConfigFile();
+
+        size_t set(char const *longKey, char const *const * const begin, 
                                     char const *const *const end, 
                                     size_t notFound);
 
@@ -94,11 +93,6 @@ void Alternatives::addPath(std::string const &element, std::string &path)
 {
     path += element;
     path += "*/";
-}
-
-Alternatives::operator bool() const
-{
-    return d_ok;
 }
 
 #endif
