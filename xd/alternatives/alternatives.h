@@ -6,8 +6,7 @@
 #include <string>
 #include <memory>
 
-//#include <bobcat/argconfig>
-#include <argconfig>
+#include <bobcat/argconfig>
 
 #include "../command/command.h"
 

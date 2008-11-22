@@ -7,9 +7,10 @@ namespace   // the anonymous namespace can be used here
         ArgConfig::LongOption("add-root",     ArgConfig::Required),
         ArgConfig::LongOption("directories",  ArgConfig::Required),
         ArgConfig::LongOption("start-at",     ArgConfig::Required),
+        ArgConfig::LongOption("traditional"),
 
-        ArgConfig::LongOption("all",            	'a'),
-        ArgConfig::LongOption("config-file",    	'c'),
+        ArgConfig::LongOption("all",                'a'),
+        ArgConfig::LongOption("config-file",        'c'),
         ArgConfig::LongOption("help",               'h'),
         ArgConfig::LongOption("generalized-search", 'g'),
         ArgConfig::LongOption("version",            'v'),

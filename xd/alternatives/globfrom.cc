@@ -10,7 +10,7 @@ void Alternatives::globFrom(string initial)
                                 (addIgnored, context.ignore));
 
     void (Alternatives::*globFun)(string dir, GlobContext &context) = 
-        d_arg.option('g') ? 
+        d_arg.option('g') && !d_arg.option(0, "traditional") ? 
             &Alternatives::generalizedGlob
         : 
             &Alternatives::glob;
