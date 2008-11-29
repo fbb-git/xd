@@ -187,7 +187,7 @@ arguments if their associated long options require arguments as well.
 search starting at the system's root directory may be performed as well,
 depending on the value specified for the tt(add-root) option. Alternatives are
 tt(never) (no additional search is performed); tt(if-empty) (an additional
-search is performed if the initial search did not yield any directory; or
+search is performed if the initial search did not yield any directory); or
 tt(always) (an additional search is always performed).  There is also a
 configuration file directive tt(add-root) (see below).
     it() loption(all) soption(a)nl()
@@ -223,8 +223,8 @@ the configuration file as well as the tt(-g) option.
            More extensive information about the actions taken by the bf(xd)
 program is written to the standard error stream.
     it() loption(version) (soption(v))nl()
-           bf(Xd)'s version number is is written to the standard error stream.
-    )
+           bf(Xd)'s version number is written to the standard error stream.
+    )    
     
 
 manpagesection(CONFGURATION FILE)
