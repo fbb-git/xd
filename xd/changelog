@@ -1,3 +1,9 @@
+xd (3.10.0)
+
+  * Implemented Generalized Directory Search (GDS) inserting directory
+    separators at all possible positions of the search string. See the
+    man-page for details. GDS use is optional. 
+
 xd (3.00.1)
 
   * Minor modifications due to changes in Bobcat
