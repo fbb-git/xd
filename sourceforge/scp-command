@@ -1,0 +1,14 @@
+#!/bin/bash
+
+WD=`pwd`
+
+cd ../xd
+    build man || exit 1
+cd $WD
+
+yodl2html index.yo || exit 1
+
+scp ../xd/tmp/man*/*.html index.html \
+    fbb,xd-home@web.sourceforge.net:htdocs/
+
+

@@ -357,7 +357,7 @@ file will result in ignoring the tt(bonobo) directory alternatives:
 manpagefiles()
     itemization(
     it() bf($HOME/.xdrc): Default location of the configuration file
-    it() tt(https://oosix.icce.rug.nl/svnroot/xd): Svn repository
+    it() tt(http://xd-home.sourceforge.net/): Home directory
     )
 
 manpagebugs()

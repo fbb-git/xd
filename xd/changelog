@@ -1,3 +1,9 @@
+xd (3.10.1)
+
+   * XD's home directory now at http://xd-home.sourceforge.net/
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 28 Mar 2009 10:47:36 +0100
+
 xd (3.10.0)
 
   * Implemented Generalized Directory Search (GDS) inserting directory

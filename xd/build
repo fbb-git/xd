@@ -48,6 +48,12 @@ void main(int argc, list argv, list envp)
     if (option == "manual")
         manual();
 
+    if (option == "sourceforge")
+    {
+        special();
+        exit(0);
+    }
+
     if (option == "library")
         library(1);
 
@@ -75,6 +81,7 @@ void main(int argc, list argv, list envp)
         "                        in the INSTALL.cf file, optionally "
                                                             "below <base>\n"
         "   installprog <base> - only install the program and skeleton files\n"
+        "   sourceforge        - create a new release.yo for sourceforge\n"
         "\n"
         "If the environment variable DRYRUN is defined, no commands are\n"
         "actually executed\n"

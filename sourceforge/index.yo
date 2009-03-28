@@ -1,0 +1,48 @@
+htmlbodyopt(text)(#27408B)
+htmlbodyopt(bgcolor)(#FFFAF0)
+
+includefile(../xd/release.yo)
+
+mailto(fbbrokken@users.sourceforge.net)
+
+affiliation(Center for Information Technology, University of Groningen)
+
+notableofcontents()
+
+report(xd V _CurVers_)
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl())
+      (_CurYrs_)
+
+COMMENT(
+center(
+    htmlcommand(
+        <img src="bison.jpg" border="0" alt="xd Image" />
+    )
+  )
+END)
+
+
+This is the (preliminary) main page of the XD project as hosted on
+Sourceforge.net. 
+
+The project itself can be reached at 
+lurl(http://sourceforge.net/projects/xd-home/)
+
+htmlcommand(
+<a href="http://sourceforge.net/projects/xd-home"><img
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=257535&amp;type=8"
+width="80" height="15" alt="Get xd at SourceForge.net. Fast, secure and Free
+Open Source software downloads" /></a> 
+    )
+
+    itemization(
+    it() Here is the url(html-version of the xd man-page)
+                (xdman.html).
+    )
+
+Enjoy xd !
+
+includefile(/home/frank/svn/PROJECTS.yo)
+
+Contact the author through url(his sourceforge e-mail address)
+                              (mailto:fbbrokken@users.sourceforge.net)
