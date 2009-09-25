@@ -12,9 +12,14 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         return;
     }
 
+                            // if a trailing / was removed reinstall it.
+    string dirEntry(entry);
+    if (*dirEntry.rbegin() != '/')
+        dirEntry += '/';
+    
     if (find_if(context.ignore.begin(), context.ignore.end(),
                 FnWrap1c<string const &, char const *, bool>
-                    (matchIgnore, entry)) != context.ignore.end())
+                    (matchIgnore, dirEntry.c_str())) != context.ignore.end())
     {
         msg() << "ignored" << info;
         return;

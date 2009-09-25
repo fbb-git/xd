@@ -11,7 +11,6 @@ try
     msg() << "Passing `" << dir << "' to glob" << info;
 
     Glob glob(dir, Glob::NOSORT, Glob::DEFAULT);    // find matching elements
-    // verify() not called since we're ignoring exceptions here
 
     for_each(glob.begin(), glob.end(),              // accept unique dirs.
              FnWrap1c<char const *, GlobContext &>(globFilter, context));

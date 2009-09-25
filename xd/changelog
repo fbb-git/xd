@@ -1,3 +1,10 @@
+xd (3.11.0)
+
+   * Generalized search didn't recognize plain directories to ignore unless a
+     trailing * was appended. Now fixed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 25 Sep 2009 22:27:31 +0200
+
 xd (3.10.2)
 
    * Using compiler option --std=c++0x

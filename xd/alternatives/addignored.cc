@@ -7,8 +7,9 @@ void Alternatives::addIgnored(string const &line, std::set<string> &ignoreSet)
     string path;
     in >> path >> path;         // skip ignore, extract path
 
-    if (*path.rbegin() == '/')  // keep the final * if it's there
-        path.resize(path.length() - 1);
+                                // add a / unless the path ends in * or / 
+    if (*path.rbegin() != '*' && *path.rbegin() != '/')
+        path += '/';
 
     msg() << "ignoring " << path << info;
 
