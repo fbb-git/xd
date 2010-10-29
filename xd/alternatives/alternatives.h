@@ -58,7 +58,7 @@ class Alternatives: public std::vector<std::string>
                                     char const *const *const end, 
                                     size_t notFound);
 
-        void getCwd(std::auto_ptr<char> *dest);
+        void getCwd(std::unique_ptr<char> *dest);
 
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);

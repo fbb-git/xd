@@ -1,3 +1,12 @@
+xd (3.12.0)
+
+   * XD now requires Bobcat >= 2.09.00, using Bobcat's Mstream objects for
+     message handling
+
+   * Changed all fnwrap1c calls into fnwrap::unary calls
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 29 Oct 2010 10:24:43 +0200
+
 xd (3.11.0)
 
    * Generalized search didn't recognize plain directories to ignore unless a

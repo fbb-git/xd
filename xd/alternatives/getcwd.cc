@@ -1,6 +1,6 @@
 #include "alternatives.ih"
 
-void Alternatives::getCwd(auto_ptr<char> *dest)
+void Alternatives::getCwd(unique_ptr<char> *dest)
 {
     dest->reset(new char[PATH_MAX]);
 
