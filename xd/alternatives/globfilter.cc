@@ -4,11 +4,11 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
 {
     Stat stat(entry);
 
-    msg() << "Inspecting `" << entry << "': " << spool;
+    imsg << "Inspecting `" << entry << "': ";
 
     if (!stat.isType(Stat::DIRECTORY))
     {
-        msg() << "no directory" << info;
+        imsg << "no directory" << endl;
         return;
     }
 
@@ -18,10 +18,10 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         dirEntry += '/';
     
     if (find_if(context.ignore.begin(), context.ignore.end(),
-                FnWrap1c<string const &, char const *, bool>
-                    (matchIgnore, dirEntry.c_str())) != context.ignore.end())
+                FnWrap::unary(matchIgnore, dirEntry.c_str())) 
+                != context.ignore.end())
     {
-        msg() << "ignored" << info;
+        imsg << "ignored" << endl;
         return;
     }
 
@@ -33,7 +33,7 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         spec.rfind("/..") == spec.length() - 3
     )
     {
-        msg() << "dot-directory" << info;
+        imsg << "dot-directory" << endl;
         return;
     }
 
@@ -41,10 +41,9 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         // if not, the globbed name is a link to the true path
     if (!context.alternatives.d_dirs && stat.path() != spec)
     {
-        msg() << "symlink" << info;
+        imsg << "symlink" << endl;
         return;
     }
-
 
     if 
     (
@@ -53,11 +52,11 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         ).second == false           // entry already there
     )
     {
-        msg() << "already available" << info;
+        imsg << "already available" << endl;
         return;
     }
 
-    msg() << "ACCEPTED" << info;
+    imsg << "ACCEPTED" << endl;
 
     context.alternatives.push_back(entry);
 }

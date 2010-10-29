@@ -7,7 +7,7 @@ void Arbiter::select()
 
     if (d_alternatives.size() == 1)
     {
-        msg() << info;
+        imsg << endl;
         d_index = 0;            // forced selection: one option
     }
     else

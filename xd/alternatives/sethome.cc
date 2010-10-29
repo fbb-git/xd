@@ -14,5 +14,5 @@ void Alternatives::setHome()
     }
     // home set with ending /
 
-    msg() << "Home directory: " << d_homeDir << info;
+    imsg << "Home directory: " << d_homeDir << endl;
 }

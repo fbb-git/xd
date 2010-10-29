@@ -7,10 +7,10 @@ void Alternatives::viable()
     d_addRoot = static_cast<TriState>
                   (set("add-root", s_triState, s_triStateEnd, IF_EMPTY));
     
-    msg() << boolalpha  << "Search from $HOME: " << d_home << '\n' <<
+    imsg << boolalpha  << "Search from $HOME: " << d_home << '\n' <<
                 "Search all directories: " << d_dirs << '\n' <<
                 "Add root search if search from  $HOME fails: " <<
-                                            s_triState[d_addRoot] << info;
+                                            s_triState[d_addRoot] << endl;
 
     globFrom(determineInitialDirectory());
     sort(begin(), end());

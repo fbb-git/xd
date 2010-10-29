@@ -9,9 +9,8 @@
 #include <numeric>
 
 #include <bobcat/string>
-#include <bobcat/fnwrap1c>
-#include <bobcat/fnwrap2>
-#include <bobcat/msg>
+#include <bobcat/fnwrap>
+#include <bobcat/mstream>
 #include <bobcat/glob>
 #include <bobcat/stat>
 

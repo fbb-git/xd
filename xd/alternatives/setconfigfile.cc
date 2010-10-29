@@ -12,11 +12,11 @@ void Alternatives::setConfigFile()
         if (confStat)
         {
             if (not confStat.mode() & Stat::UR)
-                msg() << "Can't read " << confName << warning;
+                wmsg << "Can't read " << confName << endl;
             else
                 d_arg.open(confName);
         }
     }
-    msg() << "Configuration file: " << confName << info;
+    imsg << "Configuration file: " << confName << endl;
 }
 

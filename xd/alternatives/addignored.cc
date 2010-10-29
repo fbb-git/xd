@@ -11,7 +11,7 @@ void Alternatives::addIgnored(string const &line, std::set<string> &ignoreSet)
     if (*path.rbegin() != '*' && *path.rbegin() != '/')
         path += '/';
 
-    msg() << "ignoring " << path << info;
+    imsg << "ignoring " << path << endl;
 
     ignoreSet.insert(path);
 }

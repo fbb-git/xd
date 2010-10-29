@@ -3,7 +3,7 @@
 string Alternatives::determineInitialDirectory()
 {
     string cwd;
-    auto_ptr<char> buffer;
+    unique_ptr<char> buffer;
     bool rescan = false;
 
     switch (d_command.action())
@@ -42,13 +42,13 @@ string Alternatives::determineInitialDirectory()
 
     if (d_addRoot != FALSE && (!d_home || !rescan))
     {
-        msg() << "Search does not start at the home dir: "
-                "no additional search from the root" << info;
+        imsg << "Search does not start at the home dir: "
+                "no additional search from the root" << endl;
 
         d_addRoot = FALSE;
     }
 
-    msg() << "Resolved Cwd as: " << cwd << info;
+    imsg << "Resolved Cwd as: " << cwd << endl;
 
     if (*cwd.rbegin() != '/')         // all dirs end in /
         cwd += '/';

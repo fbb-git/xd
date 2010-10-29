@@ -42,12 +42,12 @@ try
     }
     else
     {
-        msg() << "Globbing merged pattern `" << pattern << '\'' << info;
+        imsg << "Globbing merged pattern `" << pattern << '\'' << endl;
         Glob glob(pattern, Glob::NOSORT, Glob::DEFAULT);
         // verify() not called since we're ignoring exceptions here
 
         for_each(glob.begin(), glob.end(), 
-             FnWrap1c<char const *, GlobContext &>(globFilter, context));
+                    FnWrap::unary(globFilter, context));
    }
 }
 catch (Errno const &err)      // to catch exceptions from glob

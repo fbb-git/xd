@@ -9,7 +9,7 @@ size_t Alternatives::set(char const *longKey,
 
     if (!d_arg.option(&conf, longKey))
     {
-        msg() << "Option or config: No key " << longKey << info;
+        imsg << "Option or config: No key " << longKey << endl;
         return notFound;
     }
 
@@ -18,15 +18,15 @@ size_t Alternatives::set(char const *longKey,
 
     if (ret != end)
     {
-        msg() << "Option or config `" << longKey << " " << conf << "' found" <<
-                info;
+        imsg << "Option or config `" << longKey << " " << conf << "' found" <<
+                endl;
 
         return ret - begin;
     }
 
-    msg() << "`" << longKey << " " << conf << 
+    imsg << "`" << longKey << " " << conf << 
             "' not supported. Using the default `" << begin[notFound] <<
-            "'." << info;
+            "'." << endl;
 
     return notFound;
 }

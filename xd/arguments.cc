@@ -30,7 +30,12 @@ void arguments(int argc, char **argv)
 
     arg.versionHelp(usage, Icmbuild::version, 1);
 
-    Msg::setInfoBuf(cerr.rdbuf(), arg.option('V'));
+    if (arg.option('V'))
+        imsg.reset(cerr);
+    else
+        imsg.off();
+
+    fmsg.reset(cerr);
 }
 
 

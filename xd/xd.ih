@@ -2,7 +2,7 @@
 #include <string>
 
 #include <bobcat/argconfig>
-#include <bobcat/msg>
+#include <bobcat/mstream>
 
 #include "alternatives/alternatives.h"
 #include "arbiter/arbiter.h" 

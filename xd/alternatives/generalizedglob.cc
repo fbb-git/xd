@@ -7,7 +7,7 @@ void Alternatives::generalizedGlob(string initial, GlobContext &context)
     searchCmd.resize(searchCmd.length() - 1);           // remove trailing /
 
 
-    msg() << "Merged search command: `" << searchCmd << '\'' << info;
+    imsg << "Merged search command: `" << searchCmd << '\'' << endl;
 
     globHead(initial, searchCmd, context);
 }
