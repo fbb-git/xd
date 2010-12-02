@@ -1,3 +1,9 @@
+xd (3.13.0) (WIP)
+
+   * Continuation patterns following a pattern not matching any file are
+     pruned, speeding up XD's search process.
+
+
 xd (3.12.0)
 
    * XD now requires Bobcat >= 2.09.00, using Bobcat's Mstream objects for

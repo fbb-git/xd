@@ -23,7 +23,7 @@ try
 catch(Errno const &err)     // handle exceptions
 {
     cerr << err.what() << endl;
-    cout << ".\n";          // to prevent a diretory change
+    cout << ".\n";          // to prevent a directory change
     return err.which();
 }
 catch(int x)

@@ -9,7 +9,7 @@ size_t Alternatives::set(char const *longKey,
 
     if (!d_arg.option(&conf, longKey))
     {
-        imsg << "Option or config: No key " << longKey << endl;
+        imsg << "Option or config: No key `" << longKey << '\'' << endl;
         return notFound;
     }
 

@@ -2,17 +2,17 @@
 
 // abcd is handled as:
 // 
-// 1. a*/ test bcd 
+// 1. a*/       if existing: test bcd else leave.
 //     
-// 1.1. a*/b* test cd (etc).
+// 1.1. a*/b*   if existing: test cd else leave (etc).
 // 
 // 2.  ab*/ test cd (etc). 
 // 
 // but if a/bcd is entered:
 // 
-// 1. a*/ test /bcd
+// 1. a*/       if existing: test /bcd, else leave
 // 
-// 1.1 a*/b* test cd (etc)
+// 1.1 a*/b*    if existing: test cd, else leave (etc)
 // 
 // 2.  a/b:    not tested
 // 3.  a/bc:   not tested
@@ -29,11 +29,15 @@ try
         // create a pattern from pattern + initial substring
     string head = searchCmd.substr(0, idx);
 
-    if (head.find('/') != string::npos)
-        throw false;    // caught by globHead
+    if (head.find('/') != string::npos)     // ignore if head has a /
+        throw false;                        // caught by globHead
 
     pattern += head;
-    pattern += "*/";
+    pattern += "*/";                        // this pattern must exist
+
+    Glob glob(pattern, Glob::NOSORT, Glob::DEFAULT);
+    imsg << "Pattern `" << pattern << "', " << glob.size() << 
+            " matches" << endl;
 
     if (idx != searchCmd.length())
     {
@@ -42,13 +46,20 @@ try
     }
     else
     {
-        imsg << "Globbing merged pattern `" << pattern << '\'' << endl;
-        Glob glob(pattern, Glob::NOSORT, Glob::DEFAULT);
-        // verify() not called since we're ignoring exceptions here
-
         for_each(glob.begin(), glob.end(), 
                     FnWrap::unary(globFilter, context));
    }
 }
 catch (Errno const &err)      // to catch exceptions from glob
-{}
+{
+    imsg << "No pattern matching `" << pattern << "', pruning this branch" <<
+            endl;
+
+    throw false;
+}
+
+
+
+
+
+

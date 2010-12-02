@@ -10,6 +10,15 @@
 
 #include "../command/command.h"
 
+#if 0
+| 
+|     If, when looking for /t*/m*/ps*/ the initial path /t*/m* does not exist
+| then there's no reason for inspecting /t*/mp*/s*/ as it won't exist either.
+| 
+|     So when determining alternatives ...
+| 
+#endif
+
 class Alternatives: public std::vector<std::string>
 {
     FBB::ArgConfig &d_arg;
