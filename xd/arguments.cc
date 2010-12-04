@@ -4,17 +4,20 @@ namespace   // the anonymous namespace can be used here
 {
     ArgConfig::LongOption longOptions[] =
     {
-        ArgConfig::LongOption("add-root",     ArgConfig::Required),
-        ArgConfig::LongOption("directories",  ArgConfig::Required),
-        ArgConfig::LongOption("start-at",     ArgConfig::Required),
-        ArgConfig::LongOption("traditional"),
+        {"add-root",     ArgConfig::Required},
+        {"directories",  ArgConfig::Required},
+        {"start-at",     ArgConfig::Required},
+        {"popularity",   ArgConfig::Required},
 
-        ArgConfig::LongOption("all",                'a'),
-        ArgConfig::LongOption("config-file",        'c'),
-        ArgConfig::LongOption("help",               'h'),
-        ArgConfig::LongOption("generalized-search", 'g'),
-        ArgConfig::LongOption("version",            'v'),
-        ArgConfig::LongOption("verbose",            'V'),
+        {"popular-last", ArgConfig::None},
+        {"traditional", ArgConfig::None},
+
+        {"all",                'a'},
+        {"config-file",        'c'},
+        {"help",               'h'},
+        {"generalized-search", 'g'},
+        {"version",            'v'},
+        {"verbose",            'V'},
     };
 
     ArgConfig::LongOption const *const longEnd =
