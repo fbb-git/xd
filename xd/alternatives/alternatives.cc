@@ -6,4 +6,5 @@ Alternatives::Alternatives()
 {
     setHome();
     setConfigFile();
+    setPopular();
 }

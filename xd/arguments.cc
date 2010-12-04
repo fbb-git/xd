@@ -9,7 +9,7 @@ namespace   // the anonymous namespace can be used here
         {"start-at",     ArgConfig::Required},
         {"popularity",   ArgConfig::Required},
 
-        {"popular-last", ArgConfig::None},
+        {"popular-last",   ArgConfig::None},
         {"traditional", ArgConfig::None},
 
         {"all",                'a'},

@@ -1,8 +1,12 @@
-xd (3.13.0) (WIP)
+xd (3.20.0) (WIP)
 
-   * Continuation patterns following a pattern not matching any file are
-     pruned, speeding up XD's search process.
+  * Continuation patterns following a pattern not matching any file are
+    pruned, speeding up XD's search process.
 
+  * Added memory for previous selections, showing the popular alternatives
+    matching a search pattern either at the beginning or at the end of the
+    list of alternatives. Using the previous selections memory can also be
+    suppressed. 
 
 xd (3.12.0)
 

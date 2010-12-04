@@ -7,6 +7,7 @@
 #include <functional>
 #include <algorithm>
 #include <numeric>
+#include <iterator>
 
 #include <bobcat/string>
 #include <bobcat/fnwrap>
@@ -16,4 +17,25 @@
 
 using namespace std;
 using namespace FBB;
+
+struct StreamLine: public string
+{};
+
+inline istream &operator>>(istream &in, StreamLine &sl)
+{
+    return getline(in, sl);
+}
+
+inline bool Alternatives::findEntry(string const &popular, string const &path)
+{
+    return popular.find(path) != string::npos;
+}
+
+inline vector<string>::const_iterator Alternatives::findPopular(
+                                                    string const &path) const
+{
+    return find_if(d_popular.begin(), d_popular.end(), 
+                    FnWrap::unary(findEntry, path));
+
+}
 

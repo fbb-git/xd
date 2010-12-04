@@ -1,6 +1,7 @@
 #ifndef _INCLUDED_ALTERNATIVES_H_
 #define _INCLUDED_ALTERNATIVES_H_
 
+#include <deque>
 #include <vector>
 #include <set>
 #include <string>
@@ -15,16 +16,24 @@
 |     If, when looking for /t*/m*/ps*/ the initial path /t*/m* does not exist
 | then there's no reason for inspecting /t*/mp*/s*/ as it won't exist either.
 | 
-|     So when determining alternatives ...
+| In those cases the non-existing path is pruned (i.e., t*/m* is) an 
+| subpatterns of the pruned path (e.g., t*/mp*) are not considered (and so:
+| not globbed)
 | 
 #endif
 
-class Alternatives: public std::vector<std::string>
+class Alternatives: public std::deque<std::string>
 {
     FBB::ArgConfig &d_arg;
 
+    size_t d_nPopular;  // Number of popular-alternatives encountered.
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
+    bool d_popularFirst;     // true: show the popular alternatives first
+    std::string d_popularityName;   // if not empty: name of the popularity
+                                    // file 
+    std::vector<std::string> d_popular; // each line contains:
+                                        // # choices so far and the dirpath
 
     std::string d_homeDir;
 
@@ -58,10 +67,16 @@ class Alternatives: public std::vector<std::string>
     public:
         Alternatives();
         void viable();
+        void updatePopular(size_t index) const;
+        void order();
 
     private:
         void setHome();
         void setConfigFile();
+        void setPopular();
+
+        std::vector<std::string>::const_iterator findPopular(
+                                            std::string const &path) const;
 
         size_t set(char const *longKey, char const *const * const begin, 
                                     char const *const *const end, 
@@ -71,6 +86,8 @@ class Alternatives: public std::vector<std::string>
 
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);
+    
+        void add(char const *path);
 
         struct GlobContext
         {
@@ -96,6 +113,9 @@ class Alternatives: public std::vector<std::string>
                                 std::set<std::string> &ignoreSet);
 
         static bool matchIgnore(std::string const &ignore, char const *entry);
+
+        static bool findEntry(std::string const &popular, 
+                                std::string const &entry);
 };
 
 void Alternatives::addPath(std::string const &element, std::string &path)

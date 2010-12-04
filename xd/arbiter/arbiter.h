@@ -14,17 +14,12 @@ class Arbiter
         Arbiter(Alternatives const &alternatives);
 
         void select();
-        inline bool decided() const;
+        bool decided() const;
 
     private:
         void showAlternatives() const;
         size_t show(size_t begin, char first, char last) const;
         void setIndex();
 };
-
-bool Arbiter::decided() const
-{
-    return d_index != d_alternatives.size();
-}
 
 #endif

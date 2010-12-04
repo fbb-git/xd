@@ -13,5 +13,8 @@ void Alternatives::viable()
                                             s_triState[d_addRoot] << endl;
 
     globFrom(determineInitialDirectory());
-    sort(begin(), end());
+
+    sort(begin(), begin() + d_nPopular);
+    sort(begin() + d_nPopular, end());
+
 }

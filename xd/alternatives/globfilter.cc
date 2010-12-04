@@ -58,5 +58,7 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
 
     imsg << "ACCEPTED" << endl;
 
-    context.alternatives.push_back(entry);
+    context.alternatives.add(entry);
 }
+
+
