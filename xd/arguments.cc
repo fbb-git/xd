@@ -9,8 +9,9 @@ namespace   // the anonymous namespace can be used here
         {"start-at",     ArgConfig::Required},
         {"popularity",   ArgConfig::Required},
 
-        {"popular-last",   ArgConfig::None},
-        {"traditional", ArgConfig::None},
+        {"popular-last",        ArgConfig::None},
+        {"popular-separate",    ArgConfig::None},
+        {"traditional",         ArgConfig::None},
 
         {"all",                'a'},
         {"config-file",        'c'},

@@ -61,4 +61,3 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     context.alternatives.add(entry);
 }
 
-

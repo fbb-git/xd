@@ -12,6 +12,9 @@ void Arbiter::select()
     }
     else
     {
+        d_beginPopular = d_alternatives.beginPopular();
+        d_endPopular = d_alternatives.endPopular();
+
         showAlternatives();
         setIndex();
     }

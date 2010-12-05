@@ -30,6 +30,11 @@ class Alternatives: public std::deque<std::string>
     bool d_home;    // true: search from $HOME
     bool d_dirs;    // true: search all dirs (also via links)
     bool d_popularFirst;     // true: show the popular alternatives first
+
+    size_t d_separateAt;
+    size_t d_beginPopular;
+    size_t d_endPopular;
+                        
     std::string d_popularityName;   // if not empty: name of the popularity
                                     // file 
     std::vector<std::string> d_popular; // each line contains:
@@ -67,13 +72,18 @@ class Alternatives: public std::deque<std::string>
     public:
         Alternatives();
         void viable();
-        void updatePopular(size_t index) const;
         void order();
+        void updatePopular(size_t index) const;
+
+        size_t beginPopular() const;
+        size_t endPopular() const;
+        size_t separateAt() const;
 
     private:
         void setHome();
         void setConfigFile();
         void setPopular();
+        void setPopularVars();
 
         std::vector<std::string>::const_iterator findPopular(
                                             std::string const &path) const;
@@ -118,10 +128,27 @@ class Alternatives: public std::deque<std::string>
                                 std::string const &entry);
 };
 
-void Alternatives::addPath(std::string const &element, std::string &path)
+inline void Alternatives::addPath(std::string const &element, 
+                                                            std::string &path)
 {
     path += element;
     path += "*/";
+}
+
+
+inline size_t Alternatives::separateAt() const
+{
+    return d_separateAt;
+}
+
+inline size_t Alternatives::beginPopular() const
+{
+    return d_beginPopular;
+}
+
+inline size_t Alternatives::endPopular() const
+{
+    return d_endPopular;
 }
 
 #endif

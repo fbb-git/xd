@@ -17,4 +17,5 @@ void Alternatives::viable()
     sort(begin(), begin() + d_nPopular);
     sort(begin() + d_nPopular, end());
 
+    setPopularVars();
 }

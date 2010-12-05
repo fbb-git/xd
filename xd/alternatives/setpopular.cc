@@ -2,11 +2,6 @@
 
 void Alternatives::setPopular()
 {
-    d_nPopular = 0;             // 0 popular alternatives encountered so far.
-
-    string str;
-    d_popularFirst = d_arg.option(&str, "popular-last") == 0;
-
     if (!d_arg.option(&d_popularityName, "popularity"))
         return;
 
@@ -21,3 +16,9 @@ void Alternatives::setPopular()
     copy(istream_iterator<StreamLine>(in), istream_iterator<StreamLine>(),
         back_inserter(d_popular));
 }
+
+
+
+
+
+
