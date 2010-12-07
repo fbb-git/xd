@@ -2,8 +2,8 @@
 
 void Alternatives::order()
 {
-    if (d_popularityName.empty() || d_nPopular == 0 || d_popularFirst)
+    if (d_historyName.empty() || d_nHistory == 0 || d_historyFirst)
         return;
 
-    rotate(begin(), begin() + d_nPopular, end());
+    rotate(begin(), begin() + d_nHistory, end());
 }

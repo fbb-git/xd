@@ -12,8 +12,8 @@ void Arbiter::select()
     }
     else
     {
-        d_beginPopular = d_alternatives.beginPopular();
-        d_endPopular = d_alternatives.endPopular();
+        d_beginHistory = d_alternatives.beginHistory();
+        d_endHistory = d_alternatives.endHistory();
 
         showAlternatives();
         setIndex();

@@ -4,13 +4,15 @@ namespace   // the anonymous namespace can be used here
 {
     ArgConfig::LongOption longOptions[] =
     {
-        {"add-root",     ArgConfig::Required},
-        {"directories",  ArgConfig::Required},
-        {"start-at",     ArgConfig::Required},
-        {"popularity",   ArgConfig::Required},
+        {"add-root",    ArgConfig::Required},
+        {"directories", ArgConfig::Required},
+        {"start-at",    ArgConfig::Required},
 
-        {"popular-last",        ArgConfig::None},
-        {"popular-separate",    ArgConfig::None},
+        {"history",             ArgConfig::Optional},
+        {"history-lifetime",    ArgConfig::Required},
+        {"history-maxsize",     ArgConfig::Required},
+        {"history-separate",    ArgConfig::Optional},   // top, bottom
+
         {"traditional",         ArgConfig::None},
 
         {"all",                'a'},

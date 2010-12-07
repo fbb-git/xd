@@ -24,68 +24,97 @@
 
 class Alternatives: public std::deque<std::string>
 {
-    FBB::ArgConfig &d_arg;
+    public:
+        enum Separate
+        {
+            DONT,
+            TOP,
+            BOTTOM
+        };
 
-    size_t d_nPopular;  // Number of popular-alternatives encountered.
-    bool d_home;    // true: search from $HOME
-    bool d_dirs;    // true: search all dirs (also via links)
-    bool d_popularFirst;     // true: show the popular alternatives first
+    private:
+        struct HistoryInfo
+        {
+            size_t      time;
+            size_t      count;
+            std::string path;
+        };
 
-    size_t d_separateAt;
-    size_t d_beginPopular;
-    size_t d_endPopular;
-                        
-    std::string d_popularityName;   // if not empty: name of the popularity
-                                    // file 
-    std::vector<std::string> d_popular; // each line contains:
-                                        // # choices so far and the dirpath
+        friend std::istream &operator>>(std::istream &in, HistoryInfo &hl);
 
-    std::string d_homeDir;
 
-    enum TriState
-    {
-        FALSE,
-        IF_EMPTY,
-        TRUE
-    };
-
+        FBB::ArgConfig &d_arg;
     
-    TriState d_addRoot; // true: always also search /, ifEmpty: only if 
-                        //      search from $HOME fails
+        size_t d_nHistory;  // Number of history-alternatives encountered.
+        bool d_home;    // true: search from $HOME
+        bool d_dirs;    // true: search all dirs (also via links)
+        size_t d_now;   // current time
+    
+        Separate d_historySep;
+    
+        size_t d_historyLifetime;
+        size_t d_beginHistory;
+        size_t d_endHistory;
+        size_t d_separateAt;
+                        
+        std::string d_historyName;   // if not empty: name of the history
+                                     // file 
+        std::vector<HistoryInfo> d_history;
+
+        std::string d_homeDir;
+
+        enum TriState
+        {
+            FALSE,
+            IF_EMPTY,
+            TRUE
+        };
+
+        TriState d_addRoot; // true: always also search /, ifEmpty: only if 
+                            //      search from $HOME fails
  
-    Command d_command;
+        Command d_command;
 
-    static char const *s_triState[];
-    static char const *const *const s_triStateEnd;
+        static char const *s_triState[];
+        static char const *const *const s_triStateEnd;
 
-    static char const *s_startAt[];
-    static char const * const *const s_startAtEnd;
+        static char const *s_startAt[];
+        static char const * const *const s_startAtEnd;
 
-    static char const *s_dirs[];
-    static char const *const *const s_dirsEnd;
-
-    static char const *s_merge[];
-    static char const *const *const s_mergeEnd;
-
-    static char s_defaultConfig[];
-
+        static char const *s_dirs[];
+        static char const *const *const s_dirsEnd;
+    
+        static char const *s_merge[];
+        static char const *const *const s_mergeEnd;
+    
+        static char s_defaultConfig[];
+        static char s_defaultHistory[];
+    
     public:
         Alternatives();
         void viable();
         void order();
-        void updatePopular(size_t index) const;
+        void updateHistory(size_t index) const;
 
-        size_t beginPopular() const;
-        size_t endPopular() const;
+        size_t beginHistory() const;
+        size_t endHistory() const;
         size_t separateAt() const;
 
     private:
         void setHome();
         void setConfigFile();
-        void setPopular();
-        void setPopularVars();
+        void setHistory();
+        void setHistoryVars();
+        void setHistoryLifetime();
 
-        std::vector<std::string>::const_iterator findPopular(
+        static void maybeInsert(std::string const &historyLine, 
+                                std::vector<std::string> &history, 
+                                size_t oldestTime);
+        static bool compareGreater(std::string const &first, 
+                                   std::string const &second);
+
+                                        // see if a path is in the history
+        std::vector<HistoryInfo>::const_iterator findHistory(
                                             std::string const &path) const;
 
         size_t set(char const *longKey, char const *const * const begin, 
@@ -97,7 +126,7 @@ class Alternatives: public std::deque<std::string>
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);
     
-        void add(char const *path);
+        void add(char const *path);         // also determines d_nPatterns
 
         struct GlobContext
         {
@@ -124,7 +153,7 @@ class Alternatives: public std::deque<std::string>
 
         static bool matchIgnore(std::string const &ignore, char const *entry);
 
-        static bool findEntry(std::string const &popular, 
+        static bool findEntry(HistoryInfo const &history,
                                 std::string const &entry);
 };
 
@@ -141,14 +170,14 @@ inline size_t Alternatives::separateAt() const
     return d_separateAt;
 }
 
-inline size_t Alternatives::beginPopular() const
+inline size_t Alternatives::beginHistory() const
 {
-    return d_beginPopular;
+    return d_beginHistory;
 }
 
-inline size_t Alternatives::endPopular() const
+inline size_t Alternatives::endHistory() const
 {
-    return d_endPopular;
+    return d_endHistory;
 }
 
 #endif

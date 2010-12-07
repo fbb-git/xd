@@ -2,11 +2,11 @@
 
 void Alternatives::add(char const *entry)
 {
-    if (findPopular(entry) == d_popular.end())
+    if (findHistory(entry) == d_history.end())
         push_back(entry);
     else
     {
         push_front(entry);
-        ++d_nPopular;
+        ++d_nHistory;
     }
 }

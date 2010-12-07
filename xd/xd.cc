@@ -13,7 +13,7 @@ try
 
     Alternatives alternatives;
     alternatives.viable();              // select viable alternatives
-    alternatives.order();               // popular alternatives first or last
+    alternatives.order();               // history alternatives first or last
 
     Arbiter arbiter(alternatives);
     arbiter.select();                   // make the selection

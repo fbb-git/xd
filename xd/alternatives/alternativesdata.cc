@@ -37,7 +37,8 @@ char const *Alternatives::s_dirs[] =
 };
 
 char const *const *const Alternatives::s_dirsEnd = 
-        s_dirs + sizeof(s_dirs) / sizeof(char *);
+                                s_dirs + sizeof(s_dirs) / sizeof(char *);
 
 
-char Alternatives::s_defaultConfig[] = ".xdrc";   // in $HOME
+char Alternatives::s_defaultConfig[] = ".xdrc";     // in $HOME
+char Alternatives::s_defaultHistory[] = ".xd.his";  // in $HOME

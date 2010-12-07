@@ -8,8 +8,8 @@
 class Arbiter
 {
     size_t d_index;
-    size_t d_beginPopular;      // set in showAlternatives
-    size_t d_endPopular;
+    size_t d_beginHistory;      // set in showAlternatives
+    size_t d_endHistory;
     Alternatives const &d_alternatives;
             
     public:
