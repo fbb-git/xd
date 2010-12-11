@@ -1,10 +1,10 @@
-#include "alternatives.ih"
+#include "history.ih"
 
-// called from setHistory
+// called from load
     // true: first < second, smallest elements are put first
     // return false to put the largest elements first
 
-bool Alternatives::compareGreater(HistoryInfo const &first, 
+bool History::compareGreater(HistoryInfo const &first, 
                                   HistoryInfo const &second)
 {
     if (first.path.empty())

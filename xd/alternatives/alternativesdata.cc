@@ -41,4 +41,3 @@ char const *const *const Alternatives::s_dirsEnd =
 
 
 char Alternatives::s_defaultConfig[] = ".xdrc";     // in $HOME
-char Alternatives::s_defaultHistory[] = ".xd.his";  // in $HOME

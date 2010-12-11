@@ -2,8 +2,8 @@
 
 void Alternatives::order()
 {
-    if (d_historyName.empty() || d_nHistory == 0 || d_historySep != BOTTOM)
+    if (not d_History.rotate())
         return;
 
-    rotate(begin(), begin() + d_nHistory, end());
+    rotate(begin(), begin() + d_nInHistory, end());
 }

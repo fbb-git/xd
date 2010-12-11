@@ -14,8 +14,8 @@ void Alternatives::viable()
 
     globFrom(determineInitialDirectory());
 
-    sort(begin(), begin() + d_nHistory);
-    sort(begin() + d_nHistory, end());
+    sort(begin(), begin() + d_nInHistory);
+    sort(begin() + d_nInHistory, end());
 
-    setHistoryVars();
+    d_History.setLocation(d_nInHistory);
 }

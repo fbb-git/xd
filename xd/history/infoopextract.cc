@@ -1,6 +1,6 @@
-#include "alternatives.ih"
+#include "history.ih"
 
-istream &operator>>(istream &in, Alternatives::HistoryInfo &hi)
+istream &operator>>(istream &in, History::HistoryInfo &hi)
 {
     if (getline(in, hi.path))
     {
