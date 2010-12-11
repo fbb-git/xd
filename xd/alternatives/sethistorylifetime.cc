@@ -24,9 +24,9 @@ void Alternatives::setHistoryLifetime()
 
         d_historyLifetime *= d_now - 24 * 60 * 60 *
             (
-                lastChar == 'W' ? 7 :
-                lastChar == 'M' ? 30 :
-                lastChar == 'Y' ? 365
+                lastChar == 'W' ?   7 :
+                lastChar == 'M' ?  30 :
+                lastChar == 'Y' ? 365 : 1
             );
     }
 }

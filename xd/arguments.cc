@@ -11,7 +11,8 @@ namespace   // the anonymous namespace can be used here
         {"history",             ArgConfig::Optional},
         {"history-lifetime",    ArgConfig::Required},
         {"history-maxsize",     ArgConfig::Required},
-        {"history-separate",    ArgConfig::Optional},   // top, bottom
+        {"history-separate",    ArgConfig::None},
+        {"history-position",    ArgConfig::Required},   // top, bottom
 
         {"traditional",         ArgConfig::None},
 

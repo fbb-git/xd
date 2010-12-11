@@ -7,13 +7,13 @@ void Alternatives::updateHistory(size_t idx) const
 
     string const &choice = (*this)[idx];
 
-    if 
-    (
-        (d_historyFirst && idx >= d_nHistory)
+    if                                      // add a new choice to the
+    (                                       // history selections
+        (d_historySep == TOP  && d_separateAt <= idx)
         ||
-        (not d_historyFirst && idx < size() - d_nHistory)
-    )                                           // add a new choice to the
-    {                                           // history selections
+        (d_historySep == BOTTOM && idx < d_separateAt)
+    )                                           
+    {                                           
         ofstream out(d_historyName, ios::app);
         if (!out)
             imsg << "cannot write history file `" << d_historyName << 
@@ -22,30 +22,24 @@ void Alternatives::updateHistory(size_t idx) const
         {
             imsg << "added new choice `" << choice << "' to `" <<
                     d_historyName << '\'' << endl;
-            out << "1 " << choice << '\n';
+            out << d_now << " 1 " << choice << '\n';
         }
         return;
     }
 
-
-    vector<string>::const_iterator iter = findHistory(choice);
-
-    istringstream in(*iter);
-    size_t count;
-    in >> count;
-
+    auto iter = findHistory(choice);
 
     ofstream out(d_historyName);
     if (!out)
     {
-        imsg << "cannot write history file `" << d_historyName << 
-                                                        '\'' << endl;
+        imsg << "cannot write history file `" << d_historyName << '\'' << 
+                                                                        endl;
         return;
     }
 
-    copy(d_history.begin(), iter, ostream_iterator<string>(out, "\n"));
-    out << (count + 1) << ' ' << choice << '\n';
-    copy(iter + 1, d_history.end(), ostream_iterator<string>(out, "\n"));
+    copy(d_history.begin(), iter, ostream_iterator<HistoryInfo>(out, "\n"));
+    out << d_now << ' ' << (iter->count + 1) << ' ' << iter->path << '\n';
+    copy(iter + 1, d_history.end(), ostream_iterator<HistoryInfo>(out, "\n"));
 }
 
 

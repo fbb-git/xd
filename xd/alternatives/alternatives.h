@@ -41,6 +41,8 @@ class Alternatives: public std::deque<std::string>
         };
 
         friend std::istream &operator>>(std::istream &in, HistoryInfo &hl);
+        friend std::ostream &operator<<(std::ostream &in, 
+                                                    HistoryInfo const &hl);
 
 
         FBB::ArgConfig &d_arg;
@@ -107,11 +109,11 @@ class Alternatives: public std::deque<std::string>
         void setHistoryVars();
         void setHistoryLifetime();
 
-        static void maybeInsert(std::string const &historyLine, 
-                                std::vector<std::string> &history, 
-                                size_t oldestTime);
-        static bool compareGreater(std::string const &first, 
-                                   std::string const &second);
+        static void maybeInsert(HistoryInfo  const &historyInfo, 
+                                std::vector<HistoryInfo> &history, 
+                                size_t now);
+        static bool compareGreater(HistoryInfo const &first, 
+                                   HistoryInfo const &second);
 
                                         // see if a path is in the history
         std::vector<HistoryInfo>::const_iterator findHistory(
@@ -178,6 +180,12 @@ inline size_t Alternatives::beginHistory() const
 inline size_t Alternatives::endHistory() const
 {
     return d_endHistory;
+}
+
+inline std::ostream &operator<<(std::ostream &out, 
+                                Alternatives::HistoryInfo const &hi)
+{
+    return out << hi.time << ' ' << hi.count << ' ' << hi.path << '\n';    
 }
 
 #endif

@@ -1,11 +1,12 @@
 #include "alternatives.ih"
 
-void Alternatives::maybeInsert(HistoryLine const &hl, vector<string> &history, 
-                               size_t oldestTime) 
+void Alternatives::maybeInsert(HistoryInfo const &hi, 
+                                vector<HistoryInfo> &history, 
+                                size_t oldestTime) 
 {
-    if (hl.path.empty())
+    if (hi.path.empty())
         return;
 
-    if (oldestTime <= hl.time)
-        history.push_back(hl);
+    if (oldestTime <= hi.time)
+        history.push_back(hi);
 }
