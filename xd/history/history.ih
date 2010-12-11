@@ -1,0 +1,29 @@
+#include "history.h"
+
+#include <climits>
+#include <algorithm>
+
+#include <bobcat/a2x>
+#include <bobcat/mstream>
+#include <bobcat/argconfig>
+#include <bobcat/fnwrap>
+
+using namespace std;
+using namespace FBB;
+
+inline bool History::findEntry(HistoryInfo const &history, 
+                                    string const &path)
+{
+    return history.path == path;
+}
+
+
+inline vector<History::HistoryInfo>::const_iterator 
+    History::findHistory(string const &path) const
+{
+    return find_if(d_history.begin(), d_history.end(), 
+                    FnWrap::unary(findEntry, path));
+
+}
+
+
