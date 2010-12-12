@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
+
+#include <bobcat/fnwrap>
 
 namespace FBB
 {
@@ -12,55 +15,52 @@ namespace FBB
 
 class History
 {
-
-//    public:
-
-        enum Separate
+    public:
+        enum Position
         {
-            DONT,
             TOP,
             BOTTOM
         };
 
+    private:
         struct HistoryInfo
         {
             size_t      time;
             size_t      count;
             std::string path;
         };
-
+    
         friend std::istream &operator>>(std::istream &in, HistoryInfo &hl);
         friend std::ostream &operator<<(std::ostream &in, 
                                                     HistoryInfo const &hl);
-
+    
         FBB::ArgConfig &d_arg;
-
-        size_t d_now;   // current time
     
-        Separate d_separator;
+        size_t d_now;                   // current time
     
-        size_t d_lifetime;
-        size_t d_begin;
-        size_t d_end;
-        size_t d_separateAt;
-                        
-        std::string d_name;             // if not empty: name of the history
-                                        // file 
+        size_t d_oldest;
+        Position d_position;            // TOP or BOTTOM (TOP)
+        std::string d_name;             // name of the history file 
+                                        // (empty: no history used)
+    
         std::vector<HistoryInfo> d_history;
-
-        static char s_defaultHistory[];
     
+        static char s_defaultHistory[];
+        
     public:
         History(FBB::ArgConfig &arg, std::string const &homeDir);
-
-// TO DO:
         void setLocation(size_t nInHistory);
-// TO DO:
-        void save(size_t index, std::string const &choice) const;
-// TO DO:
+        void save(std::string const &choice) const;
         bool rotate() const;
+        Position position() const;
+                                        // see if a path is in the history
+        bool find(std::string const &path) const;
 
     private:
+        std::vector<HistoryInfo>::const_iterator findIter(
+                                            std::string const &path) const;
+
+
         void load(std::string const &homeDir);
         void setData();
 
@@ -70,14 +70,30 @@ class History
         static bool compareGreater(HistoryInfo const &first, 
                                    HistoryInfo const &second);
 
-                                        // see if a path is in the history
-        std::vector<HistoryInfo>::const_iterator findHistory(
-                                            std::string const &path) const;
-
         static bool findEntry(HistoryInfo const &history,
                               std::string const &entry);
 
 };
+
+inline History::Position History::position() const
+{
+    return d_position;
+}
+
+inline std::vector<History::HistoryInfo>::const_iterator History::findIter(
+                                                std::string const &path) const
+{
+    return 
+        find_if(
+            d_history.begin(), d_history.end(), 
+            FBB::FnWrap::unary(findEntry, path)
+        );
+}
+
+inline bool History::find(std::string const &path) const
+{
+    return findIter(path) != d_history.end();
+}
 
 inline std::ostream &operator<<(std::ostream &out, 
                                 History::HistoryInfo const &hi)
@@ -87,8 +103,7 @@ inline std::ostream &operator<<(std::ostream &out,
 
 inline bool History::rotate() const
 {
-    return not (d_name.empty() || d_history.empty());
-// TO DO:   || d_historySep != BOTTOM)
+    return d_name.length() && d_position == BOTTOM;
 }
         
 #endif

@@ -35,7 +35,9 @@ class Alternatives: public std::deque<std::string>
 
         std::string d_homeDir;
         FBB::ArgConfig &d_arg;
+        bool d_separate;
         size_t d_nInHistory;
+
         bool d_home;    // true: search from $HOME
         bool d_dirs;    // true: search all dirs (also via links)
 
@@ -50,8 +52,7 @@ class Alternatives: public std::deque<std::string>
         TriState d_addRoot; // true: always also search /, ifEmpty: only if 
                             //      search from $HOME fails
         Command d_command;
-        History d_History;
-
+        History d_history;
 
         static char const *s_triState[];
         static char const *const *const s_triStateEnd;
@@ -71,6 +72,7 @@ class Alternatives: public std::deque<std::string>
         Alternatives();
         void viable();
         void order();
+        void update(size_t idx);
 
         size_t beginHistory() const;
         size_t endHistory() const;
@@ -121,6 +123,11 @@ class Alternatives: public std::deque<std::string>
 
 };
 
+inline void Alternatives::update(size_t index)
+{
+    d_history.save((*this)[index]);
+}
+
 inline void Alternatives::addPath(std::string const &element, 
                                                             std::string &path)
 {
@@ -129,20 +136,15 @@ inline void Alternatives::addPath(std::string const &element,
 }
 
 
-//inline size_t Alternatives::separateAt() const
-//{
-//    return d_separateAt;
-//}
-//
-//inline size_t Alternatives::beginHistory() const
-//{
-//    return d_beginHistory;
-//}
-//
-//inline size_t Alternatives::endHistory() const
-//{
-//    return d_endHistory;
-//}
+inline size_t Alternatives::beginHistory() const
+{
+    return d_history.position() == History::TOP ? 0 : size() - d_nInHistory;
+}
+
+inline size_t Alternatives::endHistory() const
+{
+    return d_history.position() == History::TOP ? d_nInHistory : size();
+}
 
 #endif
 

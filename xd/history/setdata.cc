@@ -4,31 +4,31 @@ void History::setData()
 {
     string value;
 
-    d_separator = d_arg.option(&value, "history-separate") && 
-                  value == "bottom" ? 
-                        BOTTOM 
-                    : 
-                        TOP;
+    d_position = 
+        d_arg.option(&value, "history-position") && value == "bottom" ? 
+            BOTTOM 
+        : 
+            TOP;
 
     if (not d_arg.option(&value, "history-lifetime"))
     {
-        d_lifetime = UINT_MAX;
+        d_oldest = d_now - 24 * 60 * 60 * 30;       // 1 month lifetime
         return;
     }
 
     A2x a2x(value);
 
-    d_lifetime = a2x;
+    d_oldest = a2x;
     if (a2x.lastFail())
     {
         imsg << "Cannot determine history-lifetime " << value << endl;
-        d_lifetime = UINT_MAX;
+        d_oldest = d_now - 24 * 60 * 60 * 30;       // 1 month lifetime
     }
     else
     {
         int lastChar = toupper(*value.rbegin());
 
-        d_lifetime *= d_now - 24 * 60 * 60 *
+        d_oldest = d_now - 24 * 60 * 60 *
             (
                 lastChar == 'W' ?   7 :
                 lastChar == 'M' ?  30 :
@@ -36,3 +36,8 @@ void History::setData()
             );
     }
 }
+
+
+
+
+

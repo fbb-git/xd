@@ -10,10 +10,10 @@ class Arbiter
     size_t d_index;
     size_t d_beginHistory;      // set in showAlternatives
     size_t d_endHistory;
-    Alternatives const &d_alternatives;
+    Alternatives &d_alternatives;
             
     public:
-        Arbiter(Alternatives const &alternatives);
+        Arbiter(Alternatives &alternatives);
 
         void select();
         bool decided() const;

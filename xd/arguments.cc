@@ -10,7 +10,7 @@ namespace   // the anonymous namespace can be used here
 
         {"history",             ArgConfig::Optional},
         {"history-lifetime",    ArgConfig::Required},
-        {"history-maxsize",     ArgConfig::Required},
+        {"history-maxsize",     ArgConfig::Required},   // history/load.cc
         {"history-separate",    ArgConfig::None},
         {"history-position",    ArgConfig::Required},   // top, bottom
 

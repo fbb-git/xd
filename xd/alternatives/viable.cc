@@ -16,6 +16,4 @@ void Alternatives::viable()
 
     sort(begin(), begin() + d_nInHistory);
     sort(begin() + d_nInHistory, end());
-
-    d_History.setLocation(d_nInHistory);
 }
