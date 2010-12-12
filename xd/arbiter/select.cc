@@ -12,9 +12,6 @@ void Arbiter::select()
     }
     else
     {
-        d_beginHistory = d_alternatives.beginHistory();
-        d_endHistory = d_alternatives.endHistory();
-
         showAlternatives();
         setIndex();
     }

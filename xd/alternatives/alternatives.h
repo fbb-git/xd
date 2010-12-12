@@ -74,8 +74,8 @@ class Alternatives: public std::deque<std::string>
         void order();
         void update(size_t idx);
 
-        size_t beginHistory() const;
-        size_t endHistory() const;
+//        size_t beginHistory() const;
+//        size_t endHistory() const;
         size_t separateAt() const;
 
     private:
@@ -136,15 +136,15 @@ inline void Alternatives::addPath(std::string const &element,
 }
 
 
-inline size_t Alternatives::beginHistory() const
-{
-    return d_history.position() == History::TOP ? 0 : size() - d_nInHistory;
-}
-
-inline size_t Alternatives::endHistory() const
-{
-    return d_history.position() == History::TOP ? d_nInHistory : size();
-}
+//inline size_t Alternatives::beginHistory() const
+//{
+//    return d_history.position() == History::TOP ? 0 : size() - d_nInHistory;
+//}
+//
+//inline size_t Alternatives::endHistory() const
+//{
+//    return d_history.position() == History::TOP ? d_nInHistory : size();
+//}
 
 #endif
 
