@@ -42,6 +42,7 @@ void arguments(int argc, char **argv)
 
     arg.versionHelp(usage, Icmbuild::version, 1);
 
+    imsg.reset(cerr);
     imsg.setActive(arg.option('V'));
 
     fmsg.reset(cerr);
