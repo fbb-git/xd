@@ -5,8 +5,11 @@ void Alternatives::globFrom(string initial)
     GlobContext context = {*this};
 
     if (not d_arg.option('a'))
-        for_each(d_arg.beginRE("^\\s*ignore\\s+\\S+\\s*$"),
-             d_arg.endRE(), FnWrap::unary(addIgnored, context.ignore));
+    {
+        auto begin = d_arg.beginRE("^\\s*ignore\\s+\\S+\\s*$");
+        for_each(begin, d_arg.endRE(), 
+                 FnWrap::unary(addIgnored, context.ignore));
+    }
 
     void (Alternatives::*globFun)(string dir, GlobContext &context) = 
         d_arg.option('g') && !d_arg.option(0, "traditional") ? 

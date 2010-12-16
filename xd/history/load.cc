@@ -2,9 +2,7 @@
 
 void History::load(string const &homeDir)
 {
-    string value;
-
-    if (d_arg.option(&d_name, "history") && d_name.empty())
+    if (!d_arg.option(&d_name, "history"))
         d_name = homeDir + s_defaultHistory;
 
     ifstream in(d_name);
@@ -14,15 +12,22 @@ void History::load(string const &homeDir)
         return;
     }
 
+    imsg << "History file `" << d_name << '\'' << endl;
+
     for_each(istream_iterator<HistoryInfo>(in), 
              istream_iterator<HistoryInfo>(),
              FnWrap::unary(maybeInsert, d_history, d_oldest));
+
+    string value;
 
     size_t maxSize = 
         d_arg.option(&value, "history-maxsize") ?
             A2x(value)
         :
             UINT_MAX;
+
+    if (maxSize != UINT_MAX)
+        imsg << "Max. history size: " << maxSize << endl;
 
     if (d_history.size() > maxSize)
     {
