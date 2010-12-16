@@ -2,7 +2,7 @@
 
 void History::load(string const &homeDir)
 {
-    if (!d_arg.option(&d_name, "history"))
+    if (d_arg.option(&d_name, "history") && d_name.empty())
         d_name = homeDir + s_defaultHistory;
 
     ifstream in(d_name);

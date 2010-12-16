@@ -31,6 +31,11 @@ namespace   // the anonymous namespace can be used here
 
 void arguments(int argc, char **argv)
 {
+    char *last = argv[argc - 1];        // remove the / from the last
+    size_t idx = strlen(last) - 1;      // cmd line argument
+    if (last[idx] == '/')
+        last[idx] = 0;
+    
     ArgConfig &arg = ArgConfig::initialize("ac:ghvV",
                         longOptions, longEnd, argc, argv);
     arg.setCommentHandling(ArgConfig::RemoveComment);
