@@ -18,7 +18,8 @@ class Arbiter
 
     private:
         void showAlternatives() const;
-        size_t show(size_t begin, char first, char last) const;
+        size_t show(size_t begin, char first, char last, 
+                                                size_t separateAt) const;
         void setIndex();
 };
 

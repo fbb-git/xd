@@ -67,8 +67,10 @@ class History
         static void maybeInsert(HistoryInfo  const &historyInfo, 
                                 std::vector<HistoryInfo> &history, 
                                 size_t now);
-        static bool compareGreater(HistoryInfo const &first, 
-                                   HistoryInfo const &second);
+        static bool compareTimes(HistoryInfo const &first, 
+                                 HistoryInfo const &second);
+        static bool compareCounts(HistoryInfo const &first, 
+                                  HistoryInfo const &second);
 
         static bool findEntry(HistoryInfo const &history,
                               std::string const &entry);
@@ -98,7 +100,7 @@ inline bool History::find(std::string const &path) const
 inline std::ostream &operator<<(std::ostream &out, 
                                 History::HistoryInfo const &hi)
 {
-    return out << hi.time << ' ' << hi.count << ' ' << hi.path << '\n';    
+    return out << hi.time << ' ' << hi.count << ' ' << hi.path;   
 }
 
 inline bool History::rotate() const

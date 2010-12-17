@@ -190,38 +190,89 @@ tt(never) (no additional search is performed); tt(if-empty) (an additional
 search is performed if the initial search did not yield any directory); or
 tt(always) (an additional search is always performed).  There is also a
 configuration file directive tt(add-root) (see below).
+
     it() loption(all) soption(a)nl()
         If the configuration file (see below) contains tt(ignore) directives
 then these directives are ignored when computing the alternatives from which
 the user may select a directory to change to.
+
     it() lsoption(config-file)(c)(filename)nl()
            The name of an bf(xd) configuration file. By default bf(xd) will
             look for the file tt(.xdrc) in the user's home directory. The
             existence of the default file is optional.
+
     it() loption(directories) tt(inclusion)nl()
         Directories may be also be reached via symbolic links. The
 inclusion type tt(all) will add these symbolic links to the list of
 alternatives. The inclusion type tt(unique) will prevent the symbolic links
 from being added to the list of alternatives. There is also a
 configuration file directive tt(directives) (see below).
+
     it() loption(generalized-search) soption(g)nl()
         When this option is specified bf(xd) will use GDS unless the
 directive tt(traditional) is specified in the configuration file.
+
     it() loption(help) (soption(h))nl()
            Basic usage information is written to the standard error stream.
+
+    it() loption(history) tt([filename])nl()
+        A history of previously made choices is kept in the file
+tt(filename). If tt(--history) is specified, but the filename is 
+left empty the history file tt($HOME/.xd.his) is used. This file should only
+be modified by tt(xd) itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        verb(
+    1292596154 1 /home/frank/svn/xd/
+        )
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+
+    it() loption(history-lifetime) tt(spec)nl()
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by tt(D, W, M) or tt(Y), representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of tt(1M) (one month) is used. Entries older than tt(history-lifetime) are
+disregarded as history-items and are removed from the history file.
+
+    it() loption(history-maxsize) tt(nr)nl()
+    The maximum number of entries the history file may contain. By default
+there is no limit. When tt(history-maxsize) is specified and more than the
+maximum number of history items are found in the history file then the tt(nr)
+most popular choices are kept. Usually the cut-off point will be somewhere
+within a popularity category. In that case the most recently selected
+alternatives within that category are kept.
+
+    it() loption(history-position) tt([top|bottom])nl()
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next option tt(history-separate) is only used when this option is also
+specified. By merely specifying tt(history-position) the history items are
+shown at the top of the list.
+
+    it() loption(history-separate)nl()
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This option is only
+interpreted when the previous option is also specified.
+
     it() loption(start-at) tt(origin)nl()
         Defines the default start location of directory searches. Origin
 tt(home) results in all default searches to start at the user's home
 directory. Origin tt(root) results in searches to begin at the disk's root
 (tt(/)) directory. There is also a configuration file directive tt(start-at)
 (see below).
+
     it() loption(traditional)nl()
         When this option is specified bf(xd) will not use GDS but will use its
 traditional mode. It overrules a tt(generalized-search) directive specified in
 the configuration file as well as the tt(-g) option.
+
     it() loption(verbose) (soption(V))nl() 
            More extensive information about the actions taken by the bf(xd)
 program is written to the standard error stream.
+
     it() loption(version) (soption(v))nl()
            bf(Xd)'s version number is written to the standard error stream.
     )    
@@ -239,6 +290,7 @@ All directives in bf(xd) configuration files follow the pattern
     verb(
     directive value
     ) 
+    but for some directives tt(value) is optional.
 
 A line may at most contain one directive, but white space (including
 comment at the end of the line) is OK. The same directive may be specified
@@ -247,8 +299,8 @@ exception of the em(ignore) directive, see below). All
 directives  are interpreted em(case sensitively).  Non-empty lines
 not beginning with a recognized directive are silently ignored.
 
-    The following directives can be used in the initial section of the
-grammar specification file. Default values are shown between parentheses.
+    The following directives can be used in the 
+configuration file. Default values are shown between parentheses.
     itemization(
     it() bf(add-root) tt(when) (if-empty)nl()
             If the search starts at the user's home directory an additional
@@ -262,14 +314,59 @@ not yield any directory.nl()
             If it is specified as tt(never) no additional search is
 performed.nl()
     This directive is overruled by the tt(---add-root) command line option.
+
     it() bf(directories) tt(which) (all)nl()
         Directories may be also be reached via symbolic links. The
 specification tt(all) will add these symbolic links to the list of
 alternatives. The specification tt(unique) will prevent the symbolic links
 from being added to the list of alternatives.nl()
     This directive is overruled by the tt(---directories) command line option.
+
     it() bf(generalized-search) nl()
         When this directive is specified bf(xd) will use GDS by default.
+
+    it() bf(history) tt([filename])nl()
+        A history of previously made choices is kept in the file
+tt(filename). If tt(history) is specified, but the filename is 
+left empty the history file tt($HOME/.xd.his) is used. This file should only
+be modified by tt(xd) itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        verb(
+    1292596154 1 /home/frank/svn/xd/
+        )
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+
+    it() bf(history-lifetime) tt(spec)nl()
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by tt(D, W, M) or tt(Y), representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of tt(1M) (one month) is used. Entries older than tt(history-lifetime) are
+disregarded as history-items and are removed from the history file.
+
+    it() bf(history-maxsize) tt(nr)nl()
+    The maximum number of entries the history file may contain. By default
+there is no limit. When tt(history-maxsize) is specified and more than the
+maximum number of history items are found in the history file then the tt(nr)
+most popular choices are kept. Usually the cut-off point will be somewhere
+within a popularity category. In that case the most recently selected
+alternatives within that category are kept.
+
+    it() bf(history-position) tt([top|bottom])nl()
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next directive tt(history-separate) is only used when this directive is also
+specified. By merely specifying tt(history-position) the history items are
+shown at the top of the list.
+
+    it() bf(history-separate)nl()
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This directive is only
+interpreted when the previous directive is also specified. 
+
     it() bf(ignore) tt(path) nl()
         The configuration file may contain multiple tt(ignore) directives
 which are --different from the way other directives are handled-- all
@@ -280,6 +377,7 @@ matching any of the tt(ignore) directives (with the tt(*) interpreted as `any
 further directory name' specification) it will not display that path in its
 list of alternatives.
     This directive is overruled by the tt(---all) command line option.
+
     it() bf(start-at) tt(value) (home) nl()
            Defines the default start location of directory searches. Values
 are tt(home) and tt(root). When tt(home) is specified all searches start at
@@ -287,6 +385,7 @@ the user's home directory. When tt(root) is specified searches start at the
 disk's root (tt(/)) directory. If the directory is omitted or if another value
 is specified then the default is used, which is tt(home). This directive is
 overruled by the tt(---start-at) command line option.
+
     it() bf(traditional) nl()
         This directive may be used to request the use of bf(xd)'s traditional
 mode. It overrules the tt(-g) command line option and the

@@ -31,8 +31,9 @@ void History::load(string const &homeDir)
 
     if (d_history.size() > maxSize)
     {
-        partial_sort(d_history.begin(), d_history.begin() + maxSize, 
-                d_history.end(), compareGreater);
+        sort(d_history.begin(), d_history.end(), compareTimes);
+        stable_sort(d_history.begin(), d_history.end(), compareCounts);
+
         d_history.resize(maxSize);
     }
 }

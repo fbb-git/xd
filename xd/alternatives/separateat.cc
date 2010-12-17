@@ -2,7 +2,7 @@
 
 size_t Alternatives::separateAt() const
 {
-    if (not d_separate)
+    if (not d_separate || d_nInHistory == size())
         return UINT_MAX;
 
     return

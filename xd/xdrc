@@ -42,3 +42,32 @@
 #       home    - start the search from the user's home dir.
 #       root    - start the search from the root (/) directory.
 #start-at home
+
+#   Specify the name of the history file if a history of previously made 
+#   choices most be kept. If only the 'history' directive is specified the
+#   history file will be $HOME/.xd.his
+#   Remaining history- directives only have an effect if the 'history'
+#   directive is also specified
+#history
+
+#   Specify the maximum lifetime of history items. Use D(ays), W(eeks),
+#   M(onths) or Y(ears), prefixed by a number. By default 1M is used
+#history-lifetime 1M
+
+#   Specify the maximum size of the history. By default no limit.
+#   The value shown serves as an example.
+#history-maxsize 10
+
+#   Specify the postion of the history items. When merely the directive is 
+#   specified the history items are shown at the top of the
+#   list. Alternatively, use 'history-position bottom'
+#history-position top
+
+#   When history-position is specified then 'history-separate' can be used to
+#   insert a blank line between history items and new alternatives.
+history-separate
+
+#   Multiple ignore specifications may be specified. Directories matching the
+#   specification will not show up in the list of alternatives. Specifications
+#   should end in a *
+#ignore /usr/lib/bonobo*
