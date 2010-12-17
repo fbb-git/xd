@@ -1,12 +1,15 @@
-xd (3.20.0) (WIP)
+xd (3.20.0)
 
   * Continuation patterns following a pattern not matching any file are
     pruned, speeding up XD's search process.
 
   * Added memory for previous selections, showing the popular alternatives
     matching a search pattern either at the beginning or at the end of the
-    list of alternatives. Using the previous selections memory can also be
-    suppressed. 
+    list of alternatives. Using history is optional, cf. the xd(1) man-page.
+
+  * This version requires bobcat >= 2.10.0
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 17 Dec 2010 21:30:18 +0100
 
 xd (3.12.0)
 
