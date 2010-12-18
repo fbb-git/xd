@@ -28,6 +28,9 @@ class History
             size_t      time;
             size_t      count;
             std::string path;
+
+            HistoryInfo() = default;
+            HistoryInfo(size_t time, size_t count, std::string const &path);
         };
     
         friend std::istream &operator>>(std::istream &in, HistoryInfo &hl);
@@ -50,7 +53,7 @@ class History
     public:
         History(FBB::ArgConfig &arg, std::string const &homeDir);
         void setLocation(size_t nInHistory);
-        void save(std::string const &choice) const;
+        void save(std::string const &choice);
         bool rotate() const;
         Position position() const;
                                         // see if a path is in the history
@@ -76,6 +79,14 @@ class History
                               std::string const &entry);
 
 };
+
+inline History::HistoryInfo::HistoryInfo(size_t time, size_t count, 
+                                                    std::string const &path)
+:
+    time(time),
+    count(count),
+    path(path)
+{}
 
 inline History::Position History::position() const
 {

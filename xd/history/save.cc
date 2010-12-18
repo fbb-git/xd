@@ -1,6 +1,6 @@
 #include "history.ih"
 
-void History::save(string const &choice) const
+void History::save(string const &choice)
 {
     if (d_name.empty())               // no history file in use
         return;
@@ -14,16 +14,29 @@ void History::save(string const &choice) const
 
     auto iter = findIter(choice);
 
-    copy(d_history.begin(), iter, ostream_iterator<HistoryInfo>(out, "\n"));
-
-    if (iter == d_history.end()) 
-        out << d_now << " 1 " << choice << '\n';
+    if (iter == d_history.end())
+        d_history.push_back(HistoryInfo(d_now, 1, choice));
     else
-    {
-        out << d_now << ' ' << (iter->count + 1) << ' ' << choice << '\n';
-        copy(iter + 1, d_history.end(),
-                                    ostream_iterator<HistoryInfo>(out, "\n"));
-    }
+        ++const_cast<HistoryInfo *>(&*iter)->count;
+
+    sort(d_history.begin(), d_history.end(), compareTimes);
+    stable_sort(d_history.begin(), d_history.end(), compareCounts);
+
+    string value;
+
+    size_t maxSize = d_arg.option(&value, "history-maxsize") ?
+                        A2x(value)
+                    :
+                        UINT_MAX;
+
+    if (maxSize != UINT_MAX)
+        imsg << "Max. history size: " << maxSize << endl;
+
+    if (d_history.size() > maxSize)
+        d_history.resize(maxSize);
+    
+    copy(d_history.begin(), d_history.end(), 
+                                ostream_iterator<HistoryInfo>(out, "\n"));
 }
 
 

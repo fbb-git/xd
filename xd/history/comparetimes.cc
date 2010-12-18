@@ -3,5 +3,5 @@
 bool History::compareTimes(HistoryInfo const &first, 
                            HistoryInfo const &second)
 {
-    return  first.time < second.time;
+    return  second.time < first.time;
 }
