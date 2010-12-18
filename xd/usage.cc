@@ -24,7 +24,7 @@ void usage(std::string  const  &progname)
     "  --generalized-search (-g) - use the GDS mode\n"
     "  --help (-h)               - provide this help\n"
     "  --history <fname>         - use <fname> to store info about choices\n"
-    "                              (no history unless specified\n"
+    "                              (no history unless specified)\n"
     "  --history-lifetime <spec> - specify the max. lifetime of previously "
                                                                 "made\n"
     "                              choices. Use <int>[DWMY] for a lifetime\n"
@@ -38,8 +38,7 @@ void usage(std::string  const  &progname)
     "  --history-separate        - separate previously made choices from new\n"
     "                              ones by a blank line\n"   
 
-    "  --start-at <origin>       - where to start the search?\n"
-    "                              (home)\n"
+    "  --start-at <origin>       - where to start the search? (home)\n"
     "  --traditional             - use the traditional mode\n"
     "  --version (-v)            - show version information and terminate\n"
     "  --verbose (-V)            - show " << progname << "'s actions in "
