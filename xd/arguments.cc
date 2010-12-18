@@ -40,8 +40,18 @@ void arguments(int argc, char **argv)
                         longOptions, longEnd, argc, argv);
     arg.setCommentHandling(ArgConfig::RemoveComment);
 
-    arg.versionHelp(usage, Icmbuild::version, 1);
-
+    streambuf *buf = cout.rdbuf(cerr.rdbuf());      // make sure that
+    try                                             // versionHelp doesn't
+    {                                               // write to cout
+        arg.versionHelp(usage, Icmbuild::version, 1);
+        cout.rdbuf(buf);
+    }
+    catch(...)
+    {
+        cout.rdbuf(buf);
+        throw;
+    }
+    
     imsg.reset(cerr);
     imsg.setActive(arg.option('V'));
 
