@@ -11,4 +11,7 @@ yodl2html index.yo || exit 1
 scp ../xd/tmp/man*/*.html index.html \
     fbb,xd-home@web.sourceforge.net:htdocs/
 
+cd ../xd
+    build distclean
+
 
