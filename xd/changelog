@@ -1,3 +1,18 @@
+xd (3.21.00)
+
+  * The history retention mechanism has been simplified. Either the last x
+    number of history lines are kept (using --history-maxsize) or the most
+    recent history lines (as specified by --history-lifetime) are kept. 
+
+  * The selected choice is always given the current time stamp, so if a
+    history is kept, in will always contain the most recently made choice.
+
+  * The GPL is added to the tar.gz archive created by trunk/sourcetar
+
+  * Superfluous icmake files (rebuild, manual) were removed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 18 Feb 2011 15:23:45 +0100
+
 xd (3.20.0)
 
   * Continuation patterns following a pattern not matching any file are

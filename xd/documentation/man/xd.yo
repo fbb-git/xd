@@ -350,9 +350,8 @@ disregarded as history-items and are removed from the history file.
     The maximum number of entries the history file may contain. By default
 there is no limit. When tt(history-maxsize) is specified and more than the
 maximum number of history items are found in the history file then the tt(nr)
-most popular choices are kept. Usually the cut-off point will be somewhere
-within a popularity category. In that case the most recently selected
-alternatives within that category are kept.
+latest choices are kept. Each previously made selection counts as one.  If a
+new alternative is selected it always becomes an element in the history list.
 
     it() bf(history-position) tt([top|bottom])nl()
     When specified alternatives found in the history will be displayed either
