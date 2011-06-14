@@ -1,19 +1,6 @@
 #include "alternatives.h"
 
-// #include <unistd.h>
-// #include <climits>
-// #include <cstdlib>
-// #include <ctime>
-// #include <cctype>
-// 
-// #include <functional>
 #include <algorithm>
-// #include <numeric>
-// #include <iterator>
-// 
-// #include <bobcat/a2x>
-// #include <bobcat/string>
-#include <bobcat/fnwrap>
 #include <bobcat/mstream>
 #include <bobcat/glob>
 #include <bobcat/stat>

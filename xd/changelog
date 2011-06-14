@@ -1,3 +1,15 @@
+xd (3.22.00)
+
+  * Replaced Bobcat's FnWrap* calls by lambda functions
+
+  * The 'build' script now uses the -g option by default (set in
+    INSTALL.im). To modify the g++ compilation options change the #define
+    CPPOPT in INSTALL.im. By default it is set to "-O2 -g". To modify the
+    flags `on the fly' set the environment variable CPPFLAGS, overruling
+    CPPOPT.  The option "-Wall" is always used and should not be altered.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 14 Jun 2011 21:06:15 +0200
+
 xd (3.21.00)
 
   * The history retention mechanism has been simplified. Either the last x

@@ -20,8 +20,13 @@ Command::Command()
 //    if (!subSpecs && size() && ArgConfig::instance().nArgs() == 1)
     if (!subSpecs && size() == 1)
     {
-        for_each(front().begin() + 1, front().end(), 
-            FnWrap1c<char, vector<string> &>(add, *this));
+        for_each(
+            front().begin() + 1, front().end(), 
+            [&](char ch)
+            {
+                this->push_back(string(1, ch));
+            }
+        );
         front().resize(1);
     }
 

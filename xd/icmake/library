@@ -1,6 +1,4 @@
 
-#define COPT               "--std=c++0x -Wall -O2"
-
 #define ECHO_REQUEST       1
 
 #define LIBS               "bobcat"
@@ -8,6 +6,7 @@
 
 
 string                  // contain options for
+    g_copt,             // compiler options
     g_cwd,              // current WD
     libs,               // extra libs, e.g., "-lrss -licce"
     libpath,            // extra lib-paths, eg, "-L../rss"
@@ -17,6 +16,20 @@ int
     g_nClasses;         // number of classes/subdirectories
 list
     g_classes;          // list of classes/directories
+
+setGcopt(string always)
+{
+    list optvar;
+
+    optvar = getenv("CPPFLAGS");    
+
+    g_copt = always;
+
+    if (optvar[0] == "1")
+        g_copt += optvar[1];
+    else if (CPPOPT != "")
+        g_copt += CPPOPT;
+}
 
 void setClasses()
 {
@@ -137,7 +150,7 @@ void c_compile(int prefix, string srcDir, list cfiles)
         file = element(idx, cfiles);
         
         run(compiler + change_ext(file, "o") + " " + 
-                COPT + " " + srcDir + "/" + file);
+                g_copt + " " + srcDir + "/" + file);
     }
 }
 
@@ -199,6 +212,8 @@ void library(int lib_only)
     md("tmp/bin tmp/o");
 
     special();
+
+    setGcopt("-Wall --std=c++0x ");
 
     cpp_make
     (

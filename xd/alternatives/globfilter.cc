@@ -17,9 +17,15 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
     if (*dirEntry.rbegin() != '/')
         dirEntry += '/';
     
-    if (find_if(context.ignore.begin(), context.ignore.end(),
-                FnWrap::unary(matchIgnore, dirEntry.c_str())) 
-                != context.ignore.end())
+    if (
+        find_if(
+            context.ignore.begin(), context.ignore.end(),
+            [&](std::string const &ignore)
+            {
+                return matchIgnore(ignore, dirEntry.c_str());
+            }
+        ) 
+        != context.ignore.end())
     {
         imsg << "ignored" << endl;
         return;

@@ -14,11 +14,12 @@ void History::load(string const &homeDir)
 
     imsg << "History file `" << d_name << '\'' << endl;
 
-    for_each(istream_iterator<HistoryInfo>(in), 
-             istream_iterator<HistoryInfo>(),
-             FnWrap::unary(maybeInsert, d_history, d_oldest));
+    for_each(
+        istream_iterator<HistoryInfo>(in), 
+        istream_iterator<HistoryInfo>(),
+        [&, d_oldest](HistoryInfo  const &historyInfo)
+        {
+            maybeInsert(historyInfo, d_history, d_oldest);
+        }
+    );
 }
-
-
-
-

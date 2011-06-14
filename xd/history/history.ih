@@ -10,10 +10,10 @@
 using namespace std;
 using namespace FBB;
 
-inline bool History::findEntry(HistoryInfo const &history, 
-                                    string const &path)
-{
-    return history.path == path;
-}
+// inline bool History::findEntry(HistoryInfo const &history, 
+//                                     string const &path)
+// {
+//     return history.path == path;
+// }
 
 

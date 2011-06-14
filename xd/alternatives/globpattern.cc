@@ -46,9 +46,14 @@ try
     }
     else
     {
-        for_each(glob.begin(), glob.end(), 
-                    FnWrap::unary(globFilter, context));
-   }
+        for_each(
+            glob.begin(), glob.end(), 
+            [&](char const *entry)
+            {
+                globFilter(entry, context);
+            }
+        );
+    }
 }
 catch (Errno const &err)      // to catch exceptions from glob
 {

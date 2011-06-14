@@ -111,9 +111,6 @@ class Alternatives: public std::deque<std::string>
                                 std::string const &searchCmd, size_t idx,
                                 GlobContext &context);
 
-        inline static void addPath(std::string const &element, 
-                                    std::string &path);
-
         static void globFilter(char const *entry, GlobContext &context);
 
         static void addIgnored(std::string const &line, 
@@ -127,24 +124,6 @@ inline void Alternatives::update(size_t index)
 {
     d_history.save((*this)[index]);
 }
-
-inline void Alternatives::addPath(std::string const &element, 
-                                                            std::string &path)
-{
-    path += element;
-    path += "*/";
-}
-
-
-//inline size_t Alternatives::beginHistory() const
-//{
-//    return d_history.position() == History::TOP ? 0 : size() - d_nInHistory;
-//}
-//
-//inline size_t Alternatives::endHistory() const
-//{
-//    return d_history.position() == History::TOP ? d_nInHistory : size();
-//}
 
 #endif
 

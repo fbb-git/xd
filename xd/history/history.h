@@ -6,8 +6,6 @@
 #include <iostream>
 #include <algorithm>
 
-#include <bobcat/fnwrap>
-
 namespace FBB
 {
     class ArgConfig;
@@ -75,8 +73,8 @@ class History
         static bool compareCounts(HistoryInfo const &first, 
                                   HistoryInfo const &second);
 
-        static bool findEntry(HistoryInfo const &history,
-                              std::string const &entry);
+//        static bool findEntry(HistoryInfo const &history,
+//                              std::string const &entry);
 
 };
 
@@ -99,7 +97,10 @@ inline std::vector<History::HistoryInfo>::const_iterator History::findIter(
     return 
         find_if(
             d_history.begin(), d_history.end(), 
-            FBB::FnWrap::unary(findEntry, path)
+            [&](HistoryInfo const &history)
+            {
+                return history.path == path;
+            }
         );
 }
 

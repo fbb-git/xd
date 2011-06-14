@@ -32,41 +32,41 @@ class Command: public std::vector<std::string>
     public:
         Command();
 
-        inline std::string const &accumulate() const;
-        inline size_t parent() const;
-        inline Action action() const;
+        std::string const &accumulate() const;
+        size_t parent() const;
+        Action action() const;
         
     private:
         void concatArgs();
-        inline static void catArg(char const *arg, std::string &dest);
+//        inline static void catArg(char const *arg, std::string &dest);
 
         bool determineAction();
         
-        inline static void add(char ch, std::vector<std::string> &cmd);
+//        inline static void add(char ch, std::vector<std::string> &cmd);
 };
 
-size_t Command::parent() const
+inline size_t Command::parent() const
 {
     return d_parent;
 }
 
-Command::Action Command::action() const
+inline Command::Action Command::action() const
 {
     return d_action;
 }
 
-void Command::catArg(char const *arg, std::string &dest)
-{
-    dest += arg;
-    dest += '/';
-}
+//void Command::catArg(char const *arg, std::string &dest)
+//{
+//    dest += arg;
+//    dest += '/';
+//}
 
-void Command::add(char ch, std::vector<std::string> &cmd)
-{
-    cmd.push_back(std::string(1, ch));
-}
+//void Command::add(char ch, std::vector<std::string> &cmd)
+//{
+//    cmd.push_back(std::string(1, ch));
+//}
 
-std::string const &Command::accumulate() const
+inline std::string const &Command::accumulate() const
 {
     return d_arguments;
 }

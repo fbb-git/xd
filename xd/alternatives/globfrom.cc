@@ -7,8 +7,13 @@ void Alternatives::globFrom(string initial)
     if (not d_arg.option('a'))
     {
         auto begin = d_arg.beginRE("^\\s*ignore\\s+\\S+\\s*$");
-        for_each(begin, d_arg.endRE(), 
-                 FnWrap::unary(addIgnored, context.ignore));
+        for_each(
+            begin, d_arg.endRE(), 
+            [&](std::string const &line)
+            {
+                addIgnored(line, context.ignore);
+            }
+        );
     }
 
     void (Alternatives::*globFun)(string dir, GlobContext &context) = 
