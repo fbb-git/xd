@@ -1,7 +1,12 @@
-#define CPPOPT    "-O2 -g"
-    // Specify compiler options that should be used.
-    // This is overruled by the environment variable CPPFLAGS
-    // The option "-Wall" is always used, and should not be altered.
+#define CXXFLAGS    "-O2 -g"
+    // Specify compiler options that should be used. Overruled by the CXXFLAGS
+    // environment variables. 
+    // The option "-Wall" is always used.
+    // For profiling use the  -pg flags, and don't strip
+
+#define LDFLAGS     ""
+    // Specify linker options. None by default. Do not specify -s (strip) here
+    // as strip is handled by adding a command to the build call.
 
 #define EXTENSION ""
     // EXTENSION should be changed to ".exe" when compiling xd for 
@@ -39,11 +44,6 @@ string COMPILER;
     // COMPILER with a specific version (e.g., COMPILER=g++-4.1) that
     // particular version can be used. The distributed definition uses the
     // `default' compiler version.
-
-//#define PROFILE "-pg"
-    // Uncomment the above #define to construct a binary program that can be
-    // used with the gprof profiler. When specified, no stripping is performed
-    // at ./build program strip (see INSTALL)
 
 void setLocations()
 {
