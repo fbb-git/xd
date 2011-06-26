@@ -1,0 +1,57 @@
+These are the installation instructions for xd.
+
+Extensive Installation Instruction:
+===================================
+
+License:
+    This is free software according to the Gnu General Public License
+
+    Copyright (c) 1994-NOW Frank B. Brokken (f.b.brokken@rug.nl)
+
+Preliminaries:
+--------------
+
+You need icmake to compile xd yourself. Icmake may be obtained from
+ftp://ftp.rug.nl/contrib/frank/software/linux/icmake/
+
+If you don't have icmake, you have to compile and link all sources by hand.
+No support for this case is provided here.
+
+To construct the man-page you need Yodl. Yodl can be obtained from
+http://yodl.sourceforge.net 
+
+Both icmake and yodl are available as Debian linux packages, see
+www.debian.org 
+
+--------------
+
+Xd depends on the Bobcat library. Bobcat is found at
+http://bobcat.sourceforge.net.
+
+Bobcat is also available as Debian linux packages, see www.debian.org
+
+Installation Instructions:
+--------------------------
+
+1. All instructions should be done from the directory where
+   the xd_XX.YY.ZZ.tar.gz archive unpacks to (i.e., xd-XX.YY.ZZ/).
+2. Make sure you have the bobcat library and headers installed
+3. Verify (and optionally modify) the directory locations in INSTALL.im
+4. Do (not necessarily as root)
+    ./build program
+    This creates tmp/bin/xd
+    and 
+    ./build man
+    This creates tmp/man/xd.1 and tmp/manhtml/xdman.html  
+5. Do (as root)
+    ./build install /
+6. Read the man-page for useful bash- and/or tcsh aliases for xd.
+
+Cleanup-instructions.
+---------------------
+
+./build distclean should cleanup all files created during the construction
+process of either program or man-page. Alternatively, remove the xd-XX.YY.ZZ
+directory extracted from xd_XX.YY.ZZ.tar.gz
+
+Frank B. Brokken <f.b.brokken@rug.nl>

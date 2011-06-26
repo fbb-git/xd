@@ -1,0 +1,73 @@
+#   XD configuration file example
+
+#   Default location used by xd: $HOME/.xdrc
+
+#   If you don't have a file  $HOME/.xdrc and did not specify a configuration
+#   file using the --config-file command line option then program defined
+#   defaults (shown here as well) will be used.
+
+#   All directives and values are interpreted case sensitively
+
+#   When directives are provided repeatedly the last directive will be used
+#   (except for ignore, which are all interpreted)
+
+#   The program defined default is shown where applicable as a commented out
+#   example
+
+
+# The add-root directive determines when to perform an additional search
+#starting from the root (/) directory:
+#       always      - an additional search is always performed.
+#       if-empty    - an additional search is performed if the initial search 
+#                     did not yield any directory.
+#       never       - no additional search is performed.
+#add-root if-empty
+
+#   The directories directive defines which directives are shown:
+#       all     - show all alternatives, including symbolic links (symlinks)
+#       unique  - do not show symlinks to directories
+#directories all
+
+#   The ignore directives (multiple ignore directives are all interpreted)
+#   defines directories that should not appear in alternative
+#   lists. Specifications may end in a final *, indicating that all
+#   directories matching the provided pattern will be ignored. 
+#   There is no default. Some exampes:
+#       ignore /usr/lib/bonobo/
+#       ignore /usr/lib/bonobo-activation/
+#   or, using a wildcard:
+#       ignore /usr/lib/bonobo*
+
+#   The start-at directive defines the origin of the search:
+#       home    - start the search from the user's home dir.
+#       root    - start the search from the root (/) directory.
+#start-at home
+
+#   Specify the name of the history file if a history of previously made 
+#   choices most be kept. If only the 'history' directive is specified the
+#   history file will be $HOME/.xd.his
+#   Remaining history- directives only have an effect if the 'history'
+#   directive is also specified
+#history
+
+#   Specify the maximum lifetime of history items. Use D(ays), W(eeks),
+#   M(onths) or Y(ears), prefixed by a number. By default 1M is used
+#history-lifetime 1M
+
+#   Specify the maximum size of the history. By default no limit.
+#   The value shown serves as an example.
+#history-maxsize 10
+
+#   Specify the postion of the history items. When merely the directive is 
+#   specified the history items are shown at the top of the
+#   list. Alternatively, use 'history-position bottom'
+#history-position top
+
+#   When history-position is specified then 'history-separate' can be used to
+#   insert a blank line between history items and new alternatives.
+history-separate
+
+#   Multiple ignore specifications may be specified. Directories matching the
+#   specification will not show up in the list of alternatives. Specifications
+#   should end in a *
+#ignore /usr/lib/bonobo*

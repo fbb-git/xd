@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+
+#include <bobcat/argconfig>
+#include <bobcat/mstream>
+
+#include "alternatives/alternatives.h"
+#include "arbiter/arbiter.h" 
+
+namespace Icmbuild
+{
+    extern char version[];
+    extern char year[];
+    extern char author[];
+};
+
+void arguments(int argc, char **argv);
+void usage(std::string const &progname);
+
+using namespace std;
+using namespace FBB;

@@ -1,0 +1,84 @@
+
+                       ===============================
+                                      XD
+                                      by
+                               Frank B. Brokken
+                             <f.b.brokken@rug.nl>
+                       ===============================
+
+Thank you for retrieving XD!
+----------------------------
+
+The XD program is a smart directory changer. In cases where you have to change
+directories, you probably often have enter long commands, like
+
+    cd /usr/include/c++/4.3/i486-linux-gnu/bits
+
+For case like this, xd was developed. XD uses the initial characters of
+subdirectories to expand them for you. Instead of the above command,
+a simple
+
+    xd uic4ib
+
+would be enough. The command may seem weird at first, but realize that you
+know where you wanted to go to: while telling yourself where you want to go to
+you simply enter the initial character of the directory you mumble to
+yourself. That's all.
+
+The program and its sources is distributed under the terms of the GNU General
+Public Licence. 
+
+
+When xd is started without arguments you get something like:
+
+======================================================================
+xd by Frank B. Brokken (f.b.brokken@rug.nl)
+xd V3.00.0 1994-2008
+
+Usage: xd [options] args
+Where:
+   [options] - optional arguments (short options and default values between
+               parentheses):
+  --all (-a)                - skip `ignore' specification in the
+                              configuration file
+  --config-file (-c) <file> - path to the config file to use
+                              ($HOME/.xdrc)
+  --add-root <when>         - search expansions from /
+                              (if-empty)
+  --directories <which>     - which directories to show?
+                              (all)
+  --help (-h)               - provide this help
+  --start-at <origin>       - where to start the search?
+                              (home)
+  --version (-v)            - show version information and terminate
+  --verbose (-V)            - show xd's actions in detail
+  args     - arguments, possibly containing directory separators [/-].
+
+xd eXchanges Directories by interpreting the characters of its
+argument(s) as the initial characters of nested subdirectories.
+Multiple arguments or arguments separated by / or - define the
+initial characters of subsequently nested subdirectories.
+
+If the first argument starts with . expansion starts at the current
+directory; if it's 0 expansion starts in the user's home directory;
+if it's / expansion starts at the root; if it's a number (1 .. 9) 
+expansion starts at parent <number>; otherwise expansion starts
+at the location defined by the configuration file
+
+When the specification results in multiple solutions, a final
+selection is requested from a displayed list of alternatives.
+
+Use 'man xd' or read the xdrc file provided with the distribution
+for details about xd's configuration file
+======================================================================
+
+
+This should help you out to configure xd to your needs. The man-page provides
+much more information about how to use xd.
+
+
+I hope you find xd useful and will enjoy using it.
+
+Frank.
+
+

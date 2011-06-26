@@ -1,0 +1,11 @@
+#include "command.h"
+
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+
+#include <bobcat/argconfig>
+#include <bobcat/string>
+
+using namespace std;
+using namespace FBB;

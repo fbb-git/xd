@@ -1,0 +1,19 @@
+#include "history.h"
+
+#include <climits>
+
+#include <bobcat/a2x>
+#include <bobcat/mstream>
+#include <bobcat/argconfig>
+#include <bobcat/string>
+
+using namespace std;
+using namespace FBB;
+
+// inline bool History::findEntry(HistoryInfo const &history, 
+//                                     string const &path)
+// {
+//     return history.path == path;
+// }
+
+

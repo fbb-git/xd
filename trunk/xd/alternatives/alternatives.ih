@@ -1,0 +1,11 @@
+#include "alternatives.h"
+
+#include <algorithm>
+#include <bobcat/mstream>
+#include <bobcat/glob>
+#include <bobcat/stat>
+#include <bobcat/argconfig>
+
+using namespace std;
+using namespace FBB;
+

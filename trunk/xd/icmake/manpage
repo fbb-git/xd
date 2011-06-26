@@ -1,0 +1,18 @@
+#define MANPAGE "../../tmp/man/xd.1"
+#define MANHTML "../../tmp/manhtml/xdman.html"
+
+void manpage()
+{
+    md("tmp/man tmp/manhtml");
+
+    special();
+
+    chdir("documentation/man");
+
+    if ("xd.yo" younger MANPAGE || "release.yo" younger MANPAGE)
+    {
+        run("yodl2man  -o " MANPAGE " xd");
+        run("yodl2html  -o " MANHTML " xd");
+    }
+    exit(0);
+}

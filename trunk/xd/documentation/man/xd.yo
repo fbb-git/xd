@@ -1,0 +1,485 @@
+NOUSERMACRO(xd)
+
+includefile(../../release.yo)
+
+htmlbodyopt(text)(#27408B)
+htmlbodyopt(bgcolor)(#FFFAF0)
+whenhtml(mailto(Frank B. Brokken: f.b.brokken@rug.nl))
+
+DEFINEMACRO(lsoption)(3)(\
+    bf(--ARG1)=tt(ARG3) (bf(-ARG2))\
+)
+DEFINEMACRO(laoption)(2)(\
+    bf(--ARG1)=tt(ARG2)\
+)
+DEFINEMACRO(loption)(1)(\
+    bf(--ARG1)\
+)
+DEFINEMACRO(soption)(1)(\
+    bf(-ARG1)\
+)
+
+
+DELETEMACRO(tt)
+DEFINEMACRO(tt)(1)(em(ARG1))
+
+COMMENT( man-request, section, date, distribution file, general name)
+manpage(xd)(1)(_CurYrs_)(xd._CurVers_.tar.gz)
+        (xd - fast directory changes)
+
+COMMENT( man-request, larger title )
+manpagename(xd)(eXtra fast Directory changer)
+
+COMMENT( all other: add after () )
+manpagesynopsis()
+       bf(xd) [OPTIONS] tt(arguments)
+
+manpagedescription()
+
+    The program bf(xd) is used to perform e+bf(X)tra fast bf(D)irectory
+changes. Usually to change a directory the user is required to enter a command
+like, e.g., tt(cd /usr/local/bin), possibly with the aid of shell
+completion. In many cases this is a tedious task: shell completion shows all
+entries, including files, when we're only interested in directories and the
+full specification of our intented directory may eventually require many
+keyboard actions.
+
+    bf(Xd) was designed a long time ago (in the early 90s) to reduce the
+effort of changing a directory. Often we're well aware to which directory we
+want to change, and it's easy to produce the initial directory characters of
+that directory. E.g., if the intent is to tt(cd) to tt(/usr/local/bin),
+it's rather easy to produce the letters tt(ulb). 
+
+    bf(Xd) capitalizes on this capability. By providing the initial directory
+characters of directories bf(xd) will determine the proper expansion allowing
+you to change directories fast. So, entering the command tt(xd ulb) will
+result in the expansion tt(/usr/local/bin).
+
+    Often life is not that easy. Often there are multiple expansions from a
+given set of initial characters. E.g., when entering tt(xd ulb) bf(xd) may
+find several alternatives. E.g.,
+        verb(
+ 1: /usr/lib/base-config
+ 2: /usr/lib/bonobo
+ 3: /usr/lib/bonobo-activation
+ 4: /usr/local/bin
+        )
+    If these are the alternatives, this is exactly what bf(xd) will show
+you. Then, by simply pressing the tt(3) key (em(no) tt(Enter) key required)
+bf(xd) will produce the required tt(/usr/local/bin). 
+
+    Commands to bf(xd) can be specified so as to fine-tune bf(xd)'s behavior:
+    itemization(
+    it() By default (as specified by the configuration file, see below)
+expansions may start at the user's home directory or at the system's root
+directory.
+    it() Initial character bf(/): If the first character of the command is
+tt(/) all expansions will be performed from the system's root directory. E.g.,
+tt(xd /t) will result in tt(/tmp) but not in tt(/home/user/tmp).
+    it() Initial character bf(.): If the first character of the command is
+tt(.) all expansions will be performed from the user's home directory. E.g.,
+tt(xd .t) will result in tt(/home/user/tmp) but not in tt(/tmp)
+    it() Initial character bf(0): If the first character of the command is
+tt(0), all expansions will start at the current working directory. In fact,
+this is a specialization of the following, more general form:
+    it() Initial character bf(1..9): If the first character of the command is
+a digit between tt(1) and tt(9) all expansions will start at that parent
+directory level of the current working directory (up to the system's root
+directory). E.g., if the current working directory is tt(/usr/share/doc) then
+tt(xd 2lb) will offer the alterative tt(/usr/local/bin): two steps up, then
+look for directories starting with tt(l) and therein directories starting with
+tt(b).
+    it() Separators (space, forward slash and underscore (tt( ), / and _)):
+sometimes it is clear that there are many alternatives and the intention is to
+reduce that number. By using a separator subsequently nested directories must
+start with the characters between the separators. E.g., tt(xd u l bi) will not
+produce the alternative tt(/usr/lib/base-config) anymore, since
+tt(base-config) does not start with tt(bi). In this case only
+tt(/usr/local/bin) is produced. Separators may be mixed (tt(xd u/l bi) is
+identical to tt(xd u l bi)). Since the tt(/) can also be used as a
+root-directory specification, a conflict is implied by a command like tt(xd /u
+l bi). This conflict is solved by given the initial character a higher
+precedence than the separator. Using the underscore (_) separator in this case
+is another way to solve the conflict (which in practice hardly ever occurs).
+    )
+
+    If there's only one solution, bf(Xd) will write that directory to its
+standard output stream. If there are multiple solutions, a list of at most 62
+alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the
+letters A..Z) will be written to the standard error stream from which the user
+may select an alternative by simply pressing the key associated with the
+selection of choice. If no selection is requested any other key may be pressed
+(e.g., the space bar or the tt(Enter) key). If there is no solutioon bf(xd)
+will write the text tt(No Solutions) to the standard error stream.
+
+    When tt(xd) is given at least one argument, all its output is sent to the
+standard error stream, but for the selected directory name which is written to
+the standard output stream. If no selection is made or if the selection
+process is aborted a single dot is written to the standard output
+stream. Usually tt(xd) will be called by a shell alias, providing the
+tt(cd) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
+section) executing tt(cd `xd $*`). The default dot produced by bf(xd) will
+then prevent a unintended change of directory.
+
+    If bf(xd) is called without arguments then em(usage) information is
+written to the standard error stream.
+
+    bf(Xd) may be further configured using options and a configuration file,
+discussed in the bf(OPTIONS) and bf(CONFIGURATION FILE) sections below.
+
+manpagesection(GENERALIZED DIRECTORY SEARCH)
+
+    Starting with version 3.10.0 bf(xd) also supports generalized directory
+search command processing (GDS). When GDS is requested separators are no
+longer required, and bf(xd) will find all posible alternatives resulting from
+all possible sequential combinations of the initial search command. GDS is
+activated either by specifying the tt(-g) command line flag or by entering
+tt(generalized-search) in bf(xd)'s configuration file. Alternatively, when the
+latter is specified then the tt(--traditional) command line option will
+suppress GDS.
+
+    Under GDS each initial substring of the command to bf(xd) will be
+considered as the initial characters of a directory. E.g., if the command
+tt(xd tmps) is entered using GDS then directories matching the following
+search patterns will be found;
+    itemization(
+    it() tt(/t*/m*/p*/s*/)
+    it() tt(/t*/m*/ps*/)
+    it() tt(/t*/mp*/s*/)
+    it() tt(/t*/mps*/)
+    it() tt(/tm*/p*/s*/)
+    it() tt(/tm*/ps*/)
+    it() tt(/tmp*/s*/)
+    it() tt(/tmps*/)
+    )
+    Only the first of these will be considered under the traditional
+processing mode.
+    
+    Multiple command line arguments, the slash and the underscore can still be
+used with GDS in which case they force a directory change in the considered
+patterns. E.g., with the command tt(xd tm/ps) the following patterns will be
+considered: 
+    itemization(
+    it() tt(/t*/m*/p*/s*/)
+    it() tt(/t*/m*/ps*/)
+    it() tt(/tm*/p*/s*/)
+    it() tt(/tm*/ps*/)
+    )
+    In this set all of the previous patterns showing the tt(...mp...)
+combination were dropped, as a directory change is forced between the tt(m)
+and tt(p) characters.
+    
+
+manpagesection(RETURN VALUE)
+
+    bf(Xd) returns 0 to the operating system unless an error occurs (e.g.,
+when a non-existing configuration file is specified), or bf(xd)'s version or
+usage info is shown or requested.
+
+manpageoptions()
+
+    If available, single letter options are listed between parentheses
+following their associated long-option variants. Single letter options require
+arguments if their associated long options require arguments as well.
+    itemization(
+    it() loption(add-root) tt(condition)nl()
+            If the search starts at the user's home directory an additional
+search starting at the system's root directory may be performed as well,
+depending on the value specified for the tt(add-root) option. Alternatives are
+tt(never) (no additional search is performed); tt(if-empty) (an additional
+search is performed if the initial search did not yield any directory); or
+tt(always) (an additional search is always performed).  There is also a
+configuration file directive tt(add-root) (see below).
+
+    it() loption(all) soption(a)nl()
+        If the configuration file (see below) contains tt(ignore) directives
+then these directives are ignored when computing the alternatives from which
+the user may select a directory to change to.
+
+    it() lsoption(config-file)(c)(filename)nl()
+           The name of an bf(xd) configuration file. By default bf(xd) will
+            look for the file tt(.xdrc) in the user's home directory. The
+            existence of the default file is optional.
+
+    it() loption(directories) tt(inclusion)nl()
+        Directories may be also be reached via symbolic links. The
+inclusion type tt(all) will add these symbolic links to the list of
+alternatives. The inclusion type tt(unique) will prevent the symbolic links
+from being added to the list of alternatives. There is also a
+configuration file directive tt(directives) (see below).
+
+    it() loption(generalized-search) soption(g)nl()
+        When this option is specified bf(xd) will use GDS unless the
+directive tt(traditional) is specified in the configuration file.
+
+    it() loption(help) (soption(h))nl()
+           Basic usage information is written to the standard error stream.
+
+    it() loption(history) tt([filename])nl()
+        A history of previously made choices is kept in the file
+tt(filename). If tt(--history) is specified, but the filename is 
+left empty the history file tt($HOME/.xd.his) is used. This file should only
+be modified by tt(xd) itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        verb(
+    1292596154 1 /home/frank/svn/xd/
+        )
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+
+    it() loption(history-lifetime) tt(spec)nl()
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by tt(D, W, M) or tt(Y), representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of tt(1M) (one month) is used. Entries older than tt(history-lifetime) are
+disregarded as history-items and are removed from the history file.
+
+    it() loption(history-maxsize) tt(nr)nl()
+    The maximum number of entries the history file may contain. By default
+there is no limit. When tt(history-maxsize) is specified and more than the
+maximum number of history items are found in the history file then the tt(nr)
+most popular choices are kept. Usually the cut-off point will be somewhere
+within a popularity category. In that case the most recently selected
+alternatives within that category are kept.
+
+    it() loption(history-position) tt([top|bottom])nl()
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next option tt(history-separate) is only used when this option is also
+specified. By merely specifying tt(history-position) the history items are
+shown at the top of the list.
+
+    it() loption(history-separate)nl()
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This option is only
+interpreted when the previous option is also specified.
+
+    it() loption(start-at) tt(origin)nl()
+        Defines the default start location of directory searches. Origin
+tt(home) results in all default searches to start at the user's home
+directory. Origin tt(root) results in searches to begin at the disk's root
+(tt(/)) directory. There is also a configuration file directive tt(start-at)
+(see below).
+
+    it() loption(traditional)nl()
+        When this option is specified bf(xd) will not use GDS but will use its
+traditional mode. It overrules a tt(generalized-search) directive specified in
+the configuration file as well as the tt(-g) option.
+
+    it() loption(verbose) (soption(V))nl() 
+           More extensive information about the actions taken by the bf(xd)
+program is written to the standard error stream.
+
+    it() loption(version) (soption(v))nl()
+           bf(Xd)'s version number is written to the standard error stream.
+    )    
+    
+
+manpagesection(CONFGURATION FILE)
+
+The default configuration file is tt(.xdrc) in the user's home directory. It
+may be overruled by the program's tt(--debug) flag.
+
+Empty lines are ignored. Information at and beyond tt(#)-characters is
+interpreted as comment and is ignored as well.
+
+All directives in bf(xd) configuration files follow the pattern 
+    verb(
+    directive value
+    ) 
+    but for some directives tt(value) is optional.
+
+A line may at most contain one directive, but white space (including
+comment at the end of the line) is OK. The same directive may be specified
+multiple times, in which case the em(last) directive will be used (with the
+exception of the em(ignore) directive, see below). All
+directives  are interpreted em(case sensitively).  Non-empty lines
+not beginning with a recognized directive are silently ignored.
+
+    The following directives can be used in the 
+configuration file. Default values are shown between parentheses.
+    itemization(
+    it() bf(add-root) tt(when) (if-empty)nl()
+            If the search starts at the user's home directory an additional
+search starting at the system's root directory may be performed as well,
+depending on the value specified for the tt(add-root) directive. nl()
+    If tt(when) is specified as tt(always) then an additional search is
+always performed.nl()
+            If it is specified as tt(if-empty) then an additional search is
+performed if the initial search (starting at the user's home directory) did
+not yield any directory.nl()
+            If it is specified as tt(never) no additional search is
+performed.nl()
+    This directive is overruled by the tt(---add-root) command line option.
+
+    it() bf(directories) tt(which) (all)nl()
+        Directories may be also be reached via symbolic links. The
+specification tt(all) will add these symbolic links to the list of
+alternatives. The specification tt(unique) will prevent the symbolic links
+from being added to the list of alternatives.nl()
+    This directive is overruled by the tt(---directories) command line option.
+
+    it() bf(generalized-search) nl()
+        When this directive is specified bf(xd) will use GDS by default.
+
+    it() bf(history) tt([filename])nl()
+        A history of previously made choices is kept in the file
+tt(filename). If tt(history) is specified, but the filename is 
+left empty the history file tt($HOME/.xd.his) is used. This file should only
+be modified by tt(xd) itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        verb(
+    1292596154 1 /home/frank/svn/xd/
+        )
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+
+    it() bf(history-lifetime) tt(spec)nl()
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by tt(D, W, M) or tt(Y), representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of tt(1M) (one month) is used. Entries older than tt(history-lifetime) are
+disregarded as history-items and are removed from the history file.
+
+    it() bf(history-maxsize) tt(nr)nl()
+    The maximum number of entries the history file may contain. By default
+there is no limit. When tt(history-maxsize) is specified and more than the
+maximum number of history items are found in the history file then the tt(nr)
+latest choices are kept. Each previously made selection counts as one.  If a
+new alternative is selected it always becomes an element in the history list.
+
+    it() bf(history-position) tt([top|bottom])nl()
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next directive tt(history-separate) is only used when this directive is also
+specified. By merely specifying tt(history-position) the history items are
+shown at the top of the list.
+
+    it() bf(history-separate)nl()
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This directive is only
+interpreted when the previous directive is also specified. 
+
+    it() bf(ignore) tt(path) nl()
+        The configuration file may contain multiple tt(ignore) directives
+which are --different from the way other directives are handled-- all
+interpreted. Each tt(ignore) directive is followed by a path specification as
+shown in a list of alternatives produced by bf(xd) or an initial substring of
+such a path terminating in a tt(*) character. When bf(xd) encounters a path
+matching any of the tt(ignore) directives (with the tt(*) interpreted as `any
+further directory name' specification) it will not display that path in its
+list of alternatives.
+    This directive is overruled by the tt(---all) command line option.
+
+    it() bf(start-at) tt(value) (home) nl()
+           Defines the default start location of directory searches. Values
+are tt(home) and tt(root). When tt(home) is specified all searches start at
+the user's home directory. When tt(root) is specified searches start at the
+disk's root (tt(/)) directory. If the directory is omitted or if another value
+is specified then the default is used, which is tt(home). This directive is
+overruled by the tt(---start-at) command line option.
+
+    it() bf(traditional) nl()
+        This directive may be used to request the use of bf(xd)'s traditional
+mode. It overrules the tt(-g) command line option and the
+tt(generalized-search) directive.
+    )
+)
+                    
+manpagesection(SHELL SCRIPTS)
+
+    Assuming bf(xd) is installed in tt(/usr/bin) scripts can be defined around
+bf(xd) for various shell programs. This allows the shell to change directories
+under control of bf(xd).
+
+    To use bf(xd) with the bf(bash)(1)-shell, the following script
+can be used (to be added to, e.g., tt(.profile)):
+        verb(
+  xd()                    # function to do `cd` using `xd`
+  {
+      cd `/usr/bin/xd $*`
+  }
+        )
+    
+    To use bf(xd) with the bf(tcsh)(1)-shell, the following alias 
+can be added to, e.g., the tt(~/.alias) file:
+        verb(
+  alias  xd  'cd `\xd \!*`'
+        )
+    Having defined the tt(xd) alias or script tt(xd ...) commands will result
+in the automatic or selected change of the current working directory
+
+
+manpagesection(EXAMPLES)
+
+    verb(
+    xd ulb      - all directories starting subsequently, 
+                  with u, l and b origin is default, or 
+                  specified in .xdrc as  home or root
+
+    xd 0t       - all directories starting with t below the cwd
+
+    xd 2t       - all directories starting at the `grandparent' 
+                  (2 steps up) of the cwd
+
+    xd --start-at root t
+                - all directories at the root starting with t
+
+    xd ..       - all directories starting with a dot in the cwd
+    )
+    Assuming the following directories exist:
+    verb(
+  /usr/lib/bonobo
+  /usr/lib/bonobo-activation
+  /usr/local/bin
+    )
+    then the following two tt(ignore) specifications in bf(xd)'s configuration
+file will result in ignoring the tt(bonobo) directory alternatives:
+
+    First specification:
+    verb(
+  ignore /usr/lib/bonobo
+  ignore /usr/lib/bonobo-activation
+    )
+    Second specification:
+    verb(
+  ignore /usr/lib/bonobo*
+    )
+
+manpagefiles()
+    itemization(
+    it() bf($HOME/.xdrc): Default location of the configuration file
+    it() tt(http://xd-home.sourceforge.net/): Home directory
+    )
+
+manpagebugs()
+
+    None reported
+
+manpagesection(ABOUT xd)
+
+    The program bf(xd) was initially (before 1994) written for the MS-DOS
+platform. In 1994 it was designed to work under Unix (Linux, AIX) and it was
+converted to bf(C++). The original bf(C++) code is still available
+(tt(https://oosix.icce.rug.nl/svnroot/xd/tags/start/xd/)) and is funny to look
+at as it is a remarkable illustration of bf(C++) code written by bf(C)
+programmers who had just learned about bf(C++). Versions tt(2.x) have been
+used until 2008, and in late August 2008 I rewrote bf(xd) completely,
+reflecting my current views about bf(C++), resulting in versions tt(3.x.y) and
+beyond. The tt(3.x.y) and later versions extensively use the facilities
+offered by the bf(bobcat)(7) library.
+
+manpagesection(ACKNOWLEDGEMENTS)
+
+    GDS was added to bf(xd) following a suggestion by Bram Neijt (bram at
+neijt dot nl).
+    
+manpageauthor()
+
+Frank B. Brokken (f.b.brokken@rug.nl).
