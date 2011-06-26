@@ -3,6 +3,8 @@ xd (3.22.01)
   * `build' script now recognizes CXXFLAGS and LDFLAGS for, resp. g++ and ld
      flags. Default values are set in INSTALL.im, as before.
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 26 Jun 2011 15:09:45 +0200
+
 xd (3.22.00)
 
   * Replaced Bobcat's FnWrap* calls by lambda functions
