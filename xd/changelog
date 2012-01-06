@@ -1,3 +1,10 @@
+xd (3.22.02)
+
+  * New version to link against bobcat 2.20.02, changes some for_eaches into
+    range-based for-loops
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 06 Jan 2012 08:55:35 +0100
+
 xd (3.22.01)
 
   * `build' script now recognizes CXXFLAGS and LDFLAGS for, resp. g++ and ld

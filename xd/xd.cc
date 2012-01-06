@@ -16,6 +16,7 @@ try
     alternatives.order();               // history alternatives first or last
 
     Arbiter arbiter(alternatives);
+
     arbiter.select();                   // make the selection
 
     return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter

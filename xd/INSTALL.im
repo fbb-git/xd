@@ -54,5 +54,6 @@ void setLocations()
     DOC  = BASE + "/share/doc/xd";
 
     COMPILER = "g++";
+//    COMPILER = "g++-4.6";
 }
 

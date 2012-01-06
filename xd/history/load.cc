@@ -17,9 +17,12 @@ void History::load(string const &homeDir)
     for_each(
         istream_iterator<HistoryInfo>(in), 
         istream_iterator<HistoryInfo>(),
-        [&, d_oldest](HistoryInfo  const &historyInfo)
+        [&](HistoryInfo  const &historyInfo)
         {
             maybeInsert(historyInfo, d_history, d_oldest);
         }
     );
 }
+
+
+

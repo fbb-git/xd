@@ -46,13 +46,8 @@ try
     }
     else
     {
-        for_each(
-            glob.begin(), glob.end(), 
-            [&](char const *entry)
-            {
-                globFilter(entry, context);
-            }
-        );
+        for (auto entry: glob)
+            globFilter(entry, context);
     }
 }
 catch (Errno const &err)      // to catch exceptions from glob

@@ -3,13 +3,8 @@
 void Alternatives::glob(string dir, GlobContext &context)
 try
 {
-    for_each(
-        d_command.begin(), d_command.end(),    // add */ to each cmd arg
-        [&](std::string const &element)
-        {
-            (dir += element) += "*/";
-        }
-    );
+    for (auto &element: d_command)
+        (dir += element) += "*/";                   // add */ to each cmd arg
 
     dir.resize(dir.length() - 1);                   // remove trailing /
 
@@ -17,15 +12,10 @@ try
 
     Glob glob(dir, Glob::NOSORT, Glob::DEFAULT);    // find matching elements
 
-    for_each(
-        glob.begin(), glob.end(),              // accept unique dirs.
-        [&](char const *entry)
-        {
-            globFilter(entry, context);
-        }
-    );
+    for (auto entry: glob)
+        globFilter(entry, context);                 // accept unique dirs.
 }
-catch (Errno const &err)      // to catch the exception from glob
+catch (Errno const &err)      // to catch exception from glob
 {}
 
 
