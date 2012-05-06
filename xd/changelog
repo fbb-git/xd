@@ -1,3 +1,9 @@
+xd (3.22.03)
+
+  * New version requires bobcat >= 3.00.00
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 03 May 2012 20:30:17 +0200
+
 xd (3.22.02)
 
   * New version to link against bobcat 2.20.02, changes some for_eaches into

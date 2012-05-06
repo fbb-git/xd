@@ -4,6 +4,7 @@
 
 #include <bobcat/argconfig>
 #include <bobcat/mstream>
+#include <bobcat/errno>
 
 #include "alternatives/alternatives.h"
 #include "arbiter/arbiter.h" 
