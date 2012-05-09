@@ -5,6 +5,7 @@
 #include <bobcat/glob>
 #include <bobcat/stat>
 #include <bobcat/argconfig>
+#include <bobcat/errno>
 
 using namespace std;
 using namespace FBB;

@@ -1,3 +1,9 @@
+xd (3.22.03)
+
+  * Added missing headers 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 09 May 2012 14:09:11 +0200
+
 xd (3.22.02)
 
   * New version to link against bobcat 2.20.02, changes some for_eaches into
