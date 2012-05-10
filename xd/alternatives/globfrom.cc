@@ -6,10 +6,10 @@ void Alternatives::globFrom(string initial)
 
     if (not d_arg.option('a'))
     {
-        auto begin = d_arg.beginRE("^\\s*ignore\\s+\\S+\\s*$");
+        auto iterators = d_arg.beginEndRE("^\\s*ignore\\s+\\S+\\s*$");
         
         for_each(
-            begin, d_arg.endRE(), 
+            iterators.first, iterators.second, 
             [&](std::string const &line)
             {
                 addIgnored(line, context.ignore);
