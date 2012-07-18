@@ -1,0 +1,263 @@
+oxref by Frank B. Brokken (f.b.brokken@rug.nl)
+oxref V0.90.10 2012
+
+CREATED Wed, 18 Jul 2012 13:29:30 +0000
+CROSS REFERENCE FOR: -fxs tmp/libmodules.a 
+----------------------------------------------------------------------
+
+add(char const*)
+  Full name: Alternatives::add(char const*)
+  Source:    add.cc 
+  Used By:
+    globfilter.cc: Alternatives::globFilter(char const*, Alternatives::GlobContext&)
+
+addIgnored(std::string const&, std::set<std::string, std::less<std::string>, std::allocator<std::string> >&)
+  Full name: Alternatives::addIgnored(std::string const&, std::set<std::string, std::less<std::string>, std::allocator<std::string> >&)
+  Source:    addignored.cc 
+  Used By:
+    globfrom.cc: Alternatives::globFrom(std::string)
+
+author
+  Full name: Icmbuild::author
+  Source:    version.cc 
+  Used By:
+    usage.cc: usage(std::string const&)
+
+Command()
+  Full name: Command::Command()
+  Source:    command.cc 
+  Used By:
+    alternatives.cc: Alternatives::Alternatives()
+
+compareTimes(History::HistoryInfo const&, History::HistoryInfo const&)
+  Full name: History::compareTimes(History::HistoryInfo const&, History::HistoryInfo const&)
+  Source:    comparetimes.cc 
+  Used By:
+    save.cc: History::save(std::string const&)
+
+concatArgs()
+  Full name: Command::concatArgs()
+  Source:    concatargs.cc 
+  Used By:
+    command.cc: Command::Command()
+
+configFile()
+  Full name: Alternatives::configFile()
+  Source:    configfile.cc 
+  Used By:
+    alternatives.cc: Alternatives::Alternatives()
+
+determineAction()
+  Full name: Command::determineAction()
+  Source:    determineaction.cc 
+  Used By:
+    command.cc: Command::Command()
+
+determineInitialDirectory()
+  Full name: Alternatives::determineInitialDirectory()
+  Source:    determineinitialdir.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+generalizedGlob(std::string, Alternatives::GlobContext&)
+  Full name: Alternatives::generalizedGlob(std::string, Alternatives::GlobContext&)
+  Source:    generalizedglob.cc 
+  Used By:
+    globfrom.cc: Alternatives::globFrom(std::string)
+
+getCwd(std::unique_ptr<char, std::default_delete<char> >*)
+  Full name: Alternatives::getCwd(std::unique_ptr<char, std::default_delete<char> >*)
+  Source:    getcwd.cc 
+  Used By:
+    determineinitialdir.cc: Alternatives::determineInitialDirectory()
+
+getHome()
+  Full name: Alternatives::getHome()
+  Source:    gethome.cc 
+  Used By:
+    alternatives.cc: Alternatives::Alternatives()
+
+glob(std::string, Alternatives::GlobContext&)
+  Full name: Alternatives::glob(std::string, Alternatives::GlobContext&)
+  Source:    glob.cc 
+  Used By:
+    globfrom.cc: Alternatives::globFrom(std::string)
+
+globFilter(char const*, Alternatives::GlobContext&)
+  Full name: Alternatives::globFilter(char const*, Alternatives::GlobContext&)
+  Source:    globfilter.cc 
+  Used By:
+    glob.cc: Alternatives::glob(std::string, Alternatives::GlobContext&)
+    globpattern.cc: Alternatives::globPattern(std::string, std::string const&, unsigned int, Alternatives::GlobContext&)
+
+globFrom(std::string)
+  Full name: Alternatives::globFrom(std::string)
+  Source:    globfrom.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+globHead(std::string const&, std::string, Alternatives::GlobContext&)
+  Full name: Alternatives::globHead(std::string const&, std::string, Alternatives::GlobContext&)
+  Source:    globhead.cc 
+  Used By:
+    generalizedglob.cc: Alternatives::generalizedGlob(std::string, Alternatives::GlobContext&)
+    globpattern.cc: Alternatives::globPattern(std::string, std::string const&, unsigned int, Alternatives::GlobContext&)
+
+globPattern(std::string, std::string const&, unsigned int, Alternatives::GlobContext&)
+  Full name: Alternatives::globPattern(std::string, std::string const&, unsigned int, Alternatives::GlobContext&)
+  Source:    globpattern.cc 
+  Used By:
+    globhead.cc: Alternatives::globHead(std::string const&, std::string, Alternatives::GlobContext&)
+
+History(FBB::ArgConfig&, std::string const&)
+  Full name: History::History(FBB::ArgConfig&, std::string const&)
+  Source:    history1.cc 
+  Used By:
+    alternatives.cc: Alternatives::Alternatives()
+
+load(std::string const&)
+  Full name: History::load(std::string const&)
+  Source:    load.cc 
+  Used By:
+    history1.cc: History::History(FBB::ArgConfig&, std::string const&)
+
+matchIgnore(std::string const&, char const*)
+  Full name: Alternatives::matchIgnore(std::string const&, char const*)
+  Source:    matchignore.cc 
+  Used By:
+    globfilter.cc: Alternatives::globFilter(char const*, Alternatives::GlobContext&)
+
+maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned int)
+  Full name: History::maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned int)
+  Source:    maybeinsert.cc 
+  Used By:
+    load.cc: History::load(std::string const&)
+
+operator>>(std::istream&, History::HistoryInfo&)
+  Full name: operator>>(std::istream&, History::HistoryInfo&)
+  Source:    infoopextract.cc 
+  Used By:
+    load.cc: History::load(std::string const&)
+
+s_action
+  Full name: Command::s_action
+  Source:    commanddata.cc 
+  Used By:
+    command.cc: Command::Command()
+
+s_defaultConfig
+  Full name: Alternatives::s_defaultConfig
+  Source:    alternativesdata.cc 
+  Used By:
+    configfile.cc: Alternatives::configFile()
+
+s_defaultHistory
+  Full name: History::s_defaultHistory
+  Source:    historydata.cc 
+  Used By:
+    load.cc: History::load(std::string const&)
+
+s_dirs
+  Full name: Alternatives::s_dirs
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+s_dirsEnd
+  Full name: Alternatives::s_dirsEnd
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+s_separators
+  Full name: Command::s_separators
+  Source:    commanddata.cc 
+  Used By:
+    command.cc: Command::Command()
+
+s_startAt
+  Full name: Alternatives::s_startAt
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+s_startAtEnd
+  Full name: Alternatives::s_startAtEnd
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+s_triState
+  Full name: Alternatives::s_triState
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+s_triStateEnd
+  Full name: Alternatives::s_triStateEnd
+  Source:    alternativesdata.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+save(std::string const&)
+  Full name: History::save(std::string const&)
+  Source:    save.cc 
+  Used By:
+    decided.cc: Arbiter::decided() const
+
+separateAt() const
+  Full name: Alternatives::separateAt() const
+  Source:    separateat.cc 
+  Used By:
+    showalternatives.cc: Arbiter::showAlternatives() const
+
+set(char const*, char const* const*, char const* const*, unsigned int)
+  Full name: Alternatives::set(char const*, char const* const*, char const* const*, unsigned int)
+  Source:    set2.cc 
+  Used By:
+    viable.cc: Alternatives::viable()
+
+setData()
+  Full name: History::setData()
+  Source:    setdata.cc 
+  Used By:
+    history1.cc: History::History(FBB::ArgConfig&, std::string const&)
+
+setIndex()
+  Full name: Arbiter::setIndex()
+  Source:    setindex.cc 
+  Used By:
+    select.cc: Arbiter::select()
+
+show(unsigned int, char, char, unsigned int) const
+  Full name: Arbiter::show(unsigned int, char, char, unsigned int) const
+  Source:    show.cc 
+  Used By:
+    showalternatives.cc: Arbiter::showAlternatives() const
+
+showAlternatives() const
+  Full name: Arbiter::showAlternatives() const
+  Source:    showalternatives.cc 
+  Used By:
+    select.cc: Arbiter::select()
+
+usage(std::string const&)
+  Full name: usage(std::string const&)
+  Source:    usage.cc 
+  Used By:
+    arguments.cc: arguments(int, char**)
+
+version
+  Full name: Icmbuild::version
+  Source:    version.cc 
+  Used By:
+    arguments.cc: arguments(int, char**)
+    usage.cc: usage(std::string const&)
+
+year
+  Full name: Icmbuild::year
+  Source:    version.cc 
+  Used By:
+    usage.cc: usage(std::string const&)
+
+

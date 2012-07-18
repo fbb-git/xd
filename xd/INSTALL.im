@@ -1,59 +1,36 @@
-#define CXXFLAGS    "-O2 -g"
-    // Specify compiler options that should be used. Overruled by the CXXFLAGS
-    // environment variables. 
-    // The option "-Wall" is always used.
-    // For profiling use the  -pg flags, and don't strip
+    // Specify the name of the project:
+#define PROJECT             "xd"
 
-#define LDFLAGS     ""
-    // Specify linker options. None by default. Do not specify -s (strip) here
-    // as strip is handled by adding a command to the build call.
+    // When defined, these overrule COMPILER and COMPILER_OPTIONS
+    // COMPILER and COMPILER_OPTIONS are now obsolete
+    // Instead of CXX and CXXFLAGS, CC and CFLAGS can be used.
+    // Their #define values are overruled by identically named environment
+    // variables. 
 
-#define EXTENSION ""
-    // EXTENSION should be changed to ".exe" when compiling xd for 
-    // Cygwin environments. Don't forget the initial dot (.)
-    // See also README.CYGWIN
+#define CXX                 "g++"
+    // the compiler to use. 
 
-string BASE;
+#define CXXFLAGS            "--std=c++0x -Wall -O2 -g"
+    // the compiler options to use.
 
-    // BASE=is the directory below which ALL xd files will be stored.
+#define LDFLAGS             ""
+    // flags passed to the linker
 
-    // For an operational non-Debian installation, you probably must be
-    // `root', and BASE "/usr" or BASE "/usr/local" is suggested (see
-    // below). `BASE' itself is not used outside of this file, so feel free to
-    // define BIN, SKEL, MAN and DOC (below) in any which way you like.
+// =========================================================================
+// The following locations are overruled by `build install' arguments
 
-string BIN;
-    // the directory in which xd will be stored
+#define BINARY     "/usr/bin/"${PROJECT}
+    // the full path of the final program
 
-string SKEL;
-    // SKEL is the directory below BASE in which the skeleton files will be
-    // stored
+#define MAN     "/usr/share/man/man1"
+    // the directory whre the manual page is stored
 
-string MAN;
-    // MAN is the directory in which the manual page will be stored
+#define STD     "/usr/share/doc/"${PROJECT}
+    // the directory where the standard documentation is stored 
 
-string DOC;
-    // DOC is the directory in which all other documentation will be stored
 
-string COMPILER;
-    // COMPILER specifies the compiler to use. xd is coined as
-    // belonging to the Debian `unstable' distribution, which may use a
-    // different version of the compiler you currently have in your
-    // system. E.g., in july 2006 the Debian `testing' version of the compiler
-    // was 4.0.4, but the `unstable' version's compiler was 4.1.2. By defining
-    // COMPILER with a specific version (e.g., COMPILER=g++-4.1) that
-    // particular version can be used. The distributed definition uses the
-    // `default' compiler version.
 
-void setLocations()
-{
-    BASE  = "/usr";
-    BIN  = BASE + "/bin";
-    SKEL = BASE + "/share/xd";
-    MAN  = BASE + "/share/man/man1";    
-    DOC  = BASE + "/share/doc/xd";
 
-    COMPILER = "g++";
-//    COMPILER = "g++-4.6";
-}
+
+
 
