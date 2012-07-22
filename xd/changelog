@@ -1,4 +1,4 @@
-xd (3.22.04)
+xd (3.22.05)
 
   * The following #defines in INSTALL.im can be overruled by defining
     identically named environment variables: 
@@ -9,6 +9,12 @@ xd (3.22.04)
                  passed to the linker.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 18 Jul 2012 15:39:24 +0200
+
+xd (3.22.04)
+
+  * New upstream release, cosmetic changes (removed 3.22.03 headers again)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 10 May 2012 15:55:34 +0200
 
 xd (3.22.03)
 
