@@ -42,7 +42,7 @@ Open Source software downloads" /></a>
 
 Enjoy xd !
 
-includefile(/home/frank/svn/PROJECTS.yo)
+includefile(../../PROJECTS.yo)
 
 Contact the author through url(his sourceforge e-mail address)
                               (mailto:fbbrokken@users.sourceforge.net)
