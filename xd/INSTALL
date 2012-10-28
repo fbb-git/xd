@@ -11,8 +11,8 @@ License:
 Preliminaries:
 --------------
 
-You need icmake to compile xd yourself. Icmake may be obtained from
-ftp://ftp.rug.nl/contrib/frank/software/linux/icmake/
+You should use icmake to compile xd. Icmake may be obtained from
+http://icmake.sourceforge.net
 
 If you don't have icmake, you have to compile and link all sources by hand.
 No support for this case is provided here.
@@ -23,29 +23,36 @@ http://yodl.sourceforge.net
 Both icmake and yodl are available as Debian linux packages, see
 www.debian.org 
 
---------------
+---------------------------------------------------------------------------
 
-Xd depends on the Bobcat library. Bobcat is found at
+Xd itself depends on the Bobcat library. Bobcat is found at
 http://bobcat.sourceforge.net.
 
-Bobcat is also available as Debian linux packages, see www.debian.org
+All prerequisites are also available as Debian Linux packages, see
+www.debian.org
 
 Installation Instructions:
 --------------------------
 
-1. All instructions should be done from the directory where
+1. All commands should be entered in the directory where
    the xd_XX.YY.ZZ.tar.gz archive unpacks to (i.e., xd-XX.YY.ZZ/).
 2. Make sure you have the bobcat library and headers installed
 3. Verify (and optionally modify) the directory locations in INSTALL.im
-4. Do (not necessarily as root)
-    ./build program
-    This creates tmp/bin/xd
-    and 
-    ./build man
+    (usually the default paths are fine)
+4. Do (not necessarily as root):
+        ./build program
+    This creates tmp/bin/xd, and 
+        ./build man
     This creates tmp/man/xd.1 and tmp/manhtml/xdman.html  
-5. Do (as root)
-    ./build install /
-6. Read the man-page for useful bash- and/or tcsh aliases for xd.
+5. Do (now as root):
+    to install the program xd itself:
+        ./build install program
+    to install the man-page:
+        ./build install man
+    to install the additional standard documentation:
+        ./build install std
+
+6. Read the man-page for useful bash- and/or tcsh aliases to be used with xd.
 
 Cleanup-instructions.
 ---------------------
@@ -55,3 +62,4 @@ process of either program or man-page. Alternatively, remove the xd-XX.YY.ZZ
 directory extracted from xd_XX.YY.ZZ.tar.gz
 
 Frank B. Brokken <f.b.brokken@rug.nl>
+

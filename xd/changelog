@@ -1,3 +1,7 @@
+xd (3.22.06)
+
+  * Added the build-depends file and updated the INSTALL file.
+
 xd (3.22.05)
 
   * The following #defines in INSTALL.im can be overruled by defining
