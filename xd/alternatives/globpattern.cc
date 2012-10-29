@@ -35,7 +35,7 @@ try
     pattern += head;
     pattern += "*/";                        // this pattern must exist
 
-    Glob glob(pattern, Glob::NOSORT, Glob::DEFAULT);
+    Glob glob(Glob::DIRECTORY, pattern, Glob::NOSORT, Glob::DEFAULT);
     imsg << "Pattern `" << pattern << "', " << glob.size() << 
             " matches" << endl;
 

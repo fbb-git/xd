@@ -1,3 +1,9 @@
+xd (3.22.07)
+
+  * Using Glob(Glob::DIRECTORY, ... to find directories
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 29 Oct 2012 11:50:45 +0100
+
 xd (3.22.06)
 
   * Added the build-depends file and updated the INSTALL file.

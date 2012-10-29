@@ -10,7 +10,8 @@ try
 
     imsg << "Passing `" << dir << "' to glob" << endl;
 
-    Glob glob(dir, Glob::NOSORT, Glob::DEFAULT);    // find matching elements
+                                                    // find matching elements
+    Glob glob(Glob::DIRECTORY, dir, Glob::NOSORT, Glob::DEFAULT);
 
     for (auto entry: glob)
         globFilter(entry, context);                 // accept unique dirs.

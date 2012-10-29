@@ -2,16 +2,7 @@
 
 void Alternatives::globFilter(char const *entry, GlobContext &context) 
 {
-    Stat stat(entry);
-
     imsg << "Inspecting `" << entry << "': ";
-
-    if (!stat.isType(Stat::DIRECTORY))
-    {
-        imsg << "no directory" << endl;
-        return;
-    }
-
                             // if a trailing / was removed reinstall it.
     string dirEntry(entry);
     if (*dirEntry.rbegin() != '/')
@@ -42,6 +33,8 @@ void Alternatives::globFilter(char const *entry, GlobContext &context)
         imsg << "dot-directory" << endl;
         return;
     }
+
+    Stat stat(entry);
 
         // check if the entry name (globbed) is equal to the true path name
         // if not, the globbed name is a link to the true path
