@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <exception>
 
 #include <bobcat/argconfig>
 #include <bobcat/mstream>
-#include <bobcat/errno>
 
 #include "alternatives/alternatives.h"
 #include "arbiter/arbiter.h" 

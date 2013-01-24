@@ -50,7 +50,7 @@ try
             globFilter(entry, context);
     }
 }
-catch (Errno const &err)      // to catch exceptions from glob
+catch (exception const &err)
 {
     imsg << "No pattern matching `" << pattern << "', pruning this branch" <<
             endl;

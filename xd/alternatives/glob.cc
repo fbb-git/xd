@@ -16,7 +16,7 @@ try
     for (auto entry: glob)
         globFilter(entry, context);                 // accept unique dirs.
 }
-catch (Errno const &err)      // to catch exception from glob
+catch (exception const &exc)
 {}
 
 

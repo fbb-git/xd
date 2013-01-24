@@ -22,19 +22,20 @@ try
     return arbiter.decided() ? 0 : 1;   // return 0 to the OS if the arbiter
                                         // did do its work 
 }
-catch(Errno const &err)     // handle exceptions
+catch(exception const &err)     // handle exceptions
 {
     cerr << err.what() << endl;
     cout << ".\n";          // to prevent a directory change
-    return err.which();
+    return 1;
 }
 catch(int x)
 {
     if (x == 0)
         cerr << "No Solutions\n";
     cout << ".\n";
-    return x;
+    return ArgConfig::instance().option("hv") ? 0 : x;
 }
+
 
 
 

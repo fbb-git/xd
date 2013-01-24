@@ -1,11 +1,11 @@
 #include "alternatives.h"
 
 #include <algorithm>
+#include <exception>
 #include <bobcat/mstream>
 #include <bobcat/glob>
 #include <bobcat/stat>
 #include <bobcat/argconfig>
-#include <bobcat/errno>
 #include <bobcat/ranger>
 
 using namespace std;

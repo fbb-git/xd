@@ -1,3 +1,9 @@
+xd (3.22.08)
+
+  * Catching std::exceptions instead of FBB::Errno exceptions
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 24 Jan 2013 13:42:22 +0100
+
 xd (3.22.07)
 
   * Using Glob(Glob::DIRECTORY, ... to find directories
