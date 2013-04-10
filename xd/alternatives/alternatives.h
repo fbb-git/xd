@@ -17,16 +17,12 @@ namespace FBB
 }
 
 
-#if 0
-| 
-|     If, when looking for /t*/m*/ps*/ the initial path /t*/m* does not exist
-| then there's no reason for inspecting /t*/mp*/s*/ as it won't exist either.
-| 
-| In those cases the non-existing path is pruned (i.e., t*/m* is) an 
-| subpatterns of the pruned path (e.g., t*/mp*) are not considered (and so:
-| not globbed)
-| 
-#endif
+//     If, when looking for /t*/m*/ps*/ the initial path /t*/m* does not exist
+// then there's no reason for inspecting /t*/mp*/s*/ as it won't exist either.
+// 
+// In those cases the non-existing path is pruned (i.e., t*/m* is) an 
+// subpatterns of the pruned path (e.g., t*/mp*) are not considered (and so:
+// not globbed)
 
 
 class Alternatives: public std::deque<std::string>
