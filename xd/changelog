@@ -1,3 +1,9 @@
+xd (3.22.09)
+
+  * Added missing (since g++ 2.8.2) #include <sstream> to alternatives.ih
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 12 Nov 2013 09:33:03 +0100
+
 xd (3.22.08)
 
   * Catching std::exceptions instead of FBB::Errno exceptions
