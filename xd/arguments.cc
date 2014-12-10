@@ -19,6 +19,7 @@ namespace   // the anonymous namespace can be used here
         {"all",                'a'},
         {"config-file",        'c'},
         {"help",               'h'},
+        {"icase",              'i'},
         {"generalized-search", 'g'},
         {"version",            'v'},
         {"verbose",            'V'},
@@ -36,7 +37,7 @@ void arguments(int argc, char **argv)
     if (last[idx] == '/')
         last[idx] = 0;
     
-    ArgConfig &arg = ArgConfig::initialize("ac:ghvV",
+    ArgConfig &arg = ArgConfig::initialize("ac:gihvV",
                         longOptions, longEnd, argc, argv);
     arg.setCommentHandling(ArgConfig::RemoveComment);
 

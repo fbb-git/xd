@@ -70,16 +70,12 @@ class Alternatives: public std::deque<std::string>
         void order();
         void update(size_t idx);
 
-//        size_t beginHistory() const;
-//        size_t endHistory() const;
         size_t separateAt() const;
 
     private:
         static std::string getHome();
 
         FBB::ArgConfig &configFile();
-
-
 
         size_t set(char const *longKey, char const *const * const begin, 
                                     char const *const *const end, 
@@ -89,6 +85,8 @@ class Alternatives: public std::deque<std::string>
 
         std::string determineInitialDirectory();        
         void globFrom(std::string initial);
+
+		void checkCase(std::string &head, size_t *idx) const;
     
         void add(char const *path);         // also determines d_nPatterns
 
@@ -103,8 +101,8 @@ class Alternatives: public std::deque<std::string>
         void generalizedGlob(std::string initial, GlobContext &context);
         void globHead(std::string const &initial, 
                       std::string searchCmd, GlobContext &context);
-        void globPattern(std::string pattern, 
-                                std::string const &searchCmd, size_t idx,
+            void globPattern(std::string pattern, 
+                                std::string &searchCmd, size_t *idx,
                                 GlobContext &context);
 
         static void globFilter(char const *entry, GlobContext &context);

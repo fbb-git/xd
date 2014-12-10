@@ -22,16 +22,19 @@
 // If the tail starts with /, that char is ignored.
 
 void Alternatives::globPattern(string pattern, 
-                                string const &searchCmd, size_t idx,
+                                string &searchCmd, size_t *idx,
                                 GlobContext &context)
 try
 {
+	checkCase(searchCmd, idx);
+
         // create a pattern from pattern + initial substring
-    string head = searchCmd.substr(0, idx);
+    string head = searchCmd.substr(0, *idx);
 
     if (head.find('/') != string::npos)     // ignore if head has a /
         throw false;                        // caught by globHead
 
+    
     pattern += head;
     pattern += "*/";                        // this pattern must exist
 
@@ -39,9 +42,9 @@ try
     imsg << "Pattern `" << pattern << "', " << glob.size() << 
             " matches" << endl;
 
-    if (idx != searchCmd.length())
+    if (*idx != searchCmd.length())
     {
-        string tail = searchCmd.substr(idx);
+        string tail = searchCmd.substr(*idx);
         globHead(pattern, tail[0] == '/' ? tail.substr(1) : tail, context);
     }
     else

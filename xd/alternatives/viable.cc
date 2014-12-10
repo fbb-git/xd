@@ -13,7 +13,7 @@ void Alternatives::viable()
                                             s_triState[d_addRoot] << endl;
 
     globFrom(determineInitialDirectory());
-
+    
     sort(begin(), begin() + d_nInHistory);
     sort(begin() + d_nInHistory, end());
 }
