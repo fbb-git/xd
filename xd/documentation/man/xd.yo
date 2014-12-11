@@ -257,6 +257,19 @@ shown at the top of the list.
 and new alternatives (not previously selected). This option is only
 interpreted when the previous option is also specified.
 
+    it() loption(icase) soption(i)nl()
+    This option is used to specify case-insensitive pattern matching. E.g.,
+specifying tt(xd /ub) returns the directory tt(/usr/bin), but not a directory
+like tt(/UnSpecified/Books), which is returned by tt(xd /UB). However, tt(xd
+-i /ub) (using any letter casing for the specification) returns both
+directories. The option tt(icase) could of course be specified in the
+configuration file, which which case case-insensitive matching is used by
+default. In the latter case specifying tt(-i) as a command line option reverts
+the matching procedure to case-sensitive directory matching. In general, when
+an even number of em(icase) specifications is provided bf(xd) uses
+case-sensitive directory matching, while an odd number of em(icase)
+specifications results in case-insensitive directory matching.
+
     it() loption(start-at) tt(origin)nl()
         Defines the default start location of directory searches. Origin
 tt(home) results in all default searches to start at the user's home
@@ -366,6 +379,17 @@ shown at the top of the list.
 and new alternatives (not previously selected). This directive is only
 interpreted when the previous directive is also specified. 
 
+    it() loption(icase) soption(i)nl()
+    This specification is used to request case-insensitive pattern
+matching. If this option is entered in the configuration file then specifying
+tt(xd /ub) returns the directory tt(/usr/bin) as welll as a directory like
+(assuming it exists) tt(/UnSpecified/Books). When specified in the
+configuration file, the command-line option tt(-i) reverts the matching
+procedure back to case-sensitive directory matching. In general, when an even
+number of em(icase) specifications is provided bf(xd) uses case-sensitive
+directory matching, while an odd number of em(icase) specifications results in
+case-insensitive directory matching.
+
     it() bf(ignore) tt(path) nl()
         The configuration file may contain multiple tt(ignore) directives
 which are --different from the way other directives are handled-- all
@@ -398,8 +422,8 @@ manpagesection(SHELL SCRIPTS)
 bf(xd) for various shell programs. This allows the shell to change directories
 under control of bf(xd).
 
-    To use bf(xd) with the bf(bash)(1)-shell, the following script
-can be used (to be added to, e.g., tt(.profile)):
+    To use bf(xd) with the bf(bash)(1)-shell, the following function
+can be used (which could be added to, e.g., tt(.bash_login)):
         verb(
   xd()                    # function to do `cd` using `xd`
   {
