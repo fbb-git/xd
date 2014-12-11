@@ -4,7 +4,7 @@ xd (3.23.00)
 
   * Changed compilation option --std=c++0x to --std=c++14
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 11 Dec 2014 13:14:01 +0100
 
 xd (3.22.09)
 
