@@ -13,17 +13,14 @@ report(xd V _CurVers_)
       (Frank B. Brokken (f.b.brokken@rug.nl)nl())
       (_CurYrs_)
 
-COMMENT(
 center(
     htmlcommand(
-        <img src="bison.jpg" border="0" alt="xd Image" />
+        <img src="xd.jpg" border="0" alt="xd Image" />
     )
   )
-END)
 
 
-This is the (preliminary) main page of the XD project as hosted on
-Sourceforge.net. 
+This is the main page of the XD project as hosted on Sourceforge.net.
 
 The project itself can be reached at 
 lurl(http://sourceforge.net/projects/xd-home/)
@@ -42,7 +39,7 @@ Open Source software downloads" /></a>
 
 Enjoy xd !
 
-includefile(../../PROJECTS.yo)
+includefile(../../../PROJECTS.yo)
 
-Contact the author through url(his sourceforge e-mail address)
-                              (mailto:fbbrokken@users.sourceforge.net)
+Contact the author through url(his e-mail address)
+                              (mailto:f.b.brokken@rug.nl)
