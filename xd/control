@@ -1,0 +1,11 @@
+This file lists non-standard software only. Thus, standard utilities like cp,
+mv, sed, etc, etc, are not explicitly mentioned. Neither is the g++ compiler
+explicitly mentioned, but a fairly recent one is assumed.
+
+Required software for building XD 3.23.01:
+------------------------------------------
+
+Build-Depends: 
+    libbobcat-dev   (>= 3.23.01)
+    icmake          (>= 7.21.01)
+    yodl            (>= 3.04.0)
