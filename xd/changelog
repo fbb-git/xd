@@ -1,3 +1,15 @@
+xd (3.23.01)
+
+  * Repaired a small flaw in the man-page
+
+  * Added the missing 'generalized-search' (cq. 'traditional') demo-entry to
+    the sample xdrc file
+
+  * Added the file 'required' summarizing the software which was used for
+    building xd.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 19 Jan 2015 20:07:19 +0100
+
 xd (3.23.00)
 
   * Added --icase (-i) allowing case insensitive directory matching

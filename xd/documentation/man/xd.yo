@@ -169,7 +169,6 @@ considered:
 combination were dropped, as a directory change is forced between the tt(m)
 and tt(p) characters.
     
-
 manpagesection(RETURN VALUE)
 
     bf(Xd) returns 0 to the operating system unless an error occurs (e.g.,
@@ -294,7 +293,7 @@ program is written to the standard error stream.
 manpagesection(CONFGURATION FILE)
 
 The default configuration file is tt(.xdrc) in the user's home directory. It
-may be overruled by the program's tt(--debug) flag.
+may be overruled by the program's tt(--config-file) option.
 
 Empty lines are ignored. Information at and beyond tt(#)-characters is
 interpreted as comment and is ignored as well.
