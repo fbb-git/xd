@@ -13,7 +13,7 @@ ArgConfig &Alternatives::configFile()
         Stat confStat(confName);
         if (confStat)
         {
-            if (not confStat.mode() & Stat::UR)
+            if ((not confStat.mode()) & Stat::UR)
                 wmsg << "Can't read " << confName << endl;
             else
                 arg.open(confName);

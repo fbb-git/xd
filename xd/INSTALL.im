@@ -7,14 +7,17 @@
     // Their #define values are overruled by identically named environment
     // variables. 
 
-#define CXX                 "g++"
+//#define CXX             "g++-5"
+#define CXX             "g++"
     // the compiler to use. 
 
-#define CXXFLAGS            "--std=c++14 -Wall -O2 -g"
+#define CXXFLAGS        "--std=c++14 -fdiagnostics-color=never -Wall -O2 -g"
     // the compiler options to use.
 
+//#define LDFLAGS             "/usr/lib/libbobcat.so.4"
 #define LDFLAGS             ""
     // flags passed to the linker
+    // See also README.g++-5
 
 // =========================================================================
 // The following locations are overruled by `build install' arguments

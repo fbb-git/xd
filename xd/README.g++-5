@@ -1,0 +1,39 @@
+To compiling with g++-5 on a system where g++-4 is still available the
+following steps can be performed:
+
+    1. First, libbobcat.so.4.00.00 should be created. It can be installed
+        in /usr/lib, and libbobcat.so.4 can be linked to it.
+    2. Do not link libbobcat.so to libbobcat.so.4, as this will invalidate 
+        all existing build-scripts that use -lbobcat.
+
+So, initially /usr/lib should show the following bobcat entries (the library
+libbobcat.a used for static linking is irrelevant here and is not mentioned):
+
+    libbobcat.so -> libbobcat.so.3
+    libbobcat.so.3 -> libbobcat.so.3.25.02
+    libbobcat.so.3.25.02
+    libbobcat.so.4 -> libbobcat.so.4.00.00
+    libbobcat.so.4.00.00
+
+    3. Remove the reference to bobcat in the ADD_LIBRARIES line in
+        'icmconf'. E.g., change it into:
+
+        #define ADD_LIBRARIES       ""
+
+    4. Add an explicit reference to libbobcat.so.4 to the LDFLAGS line in
+        'INSTALL.im'. E.g., change it into:
+
+        #define LDFLAGS             "/usr/lib/libbobcat.so.4"
+
+    5. Change the compiler definition in CXX in 'INSTALL.im'. E.g., change it
+        into:
+
+        #define CXX     "g++-5"
+
+    6. To build 'xd' execute:
+
+        ./build program
+
+
+
+
