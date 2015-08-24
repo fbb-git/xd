@@ -1,4 +1,4 @@
-To compiling with g++-5 on a system where g++-4 is still available the
+To compile with g++-5 on a system where g++-4 is still available the
 following steps can be performed:
 
     1. First, libbobcat.so.4.00.00 should be created. It can be installed
@@ -30,7 +30,10 @@ libbobcat.a used for static linking is irrelevant here and is not mentioned):
 
         #define CXX     "g++-5"
 
-    6. To build 'xd' execute:
+    6. Consider adding -fdiagnostics-color=never to the CXXFLAGS definition in
+        'INSTALL.im' 
+
+    7. To build the program execute:
 
         ./build program
 
