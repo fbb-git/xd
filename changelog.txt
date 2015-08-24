@@ -1,0 +1,238 @@
+  * Added README.g++-5 decribining how to compile xd using g++-5 on systems
+    where also g++-4 is available.
+
+  * Updated INSTALL.im and icmconf according to the requirements outlined in
+    README.g++-5, keeping the current (g++) configuration, and adding the
+    requirements for g++-5 as comment-lines.
+
+
+
+xd (3.23.01)
+
+  * Repaired a small flaw in the man-page
+
+  * Added the missing 'generalized-search' (cq. 'traditional') demo-entry to
+    the sample xdrc file
+
+  * Added the file 'required' summarizing the software which was used for
+    building xd.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 19 Jan 2015 20:07:19 +0100
+
+xd (3.23.00)
+
+  * Added --icase (-i) allowing case insensitive directory matching
+
+  * Changed compilation option --std=c++0x to --std=c++14
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 11 Dec 2014 13:14:01 +0100
+
+xd (3.22.09)
+
+  * Added missing (since g++ 2.8.2) #include <sstream> to alternatives.ih
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 12 Nov 2013 09:33:03 +0100
+
+xd (3.22.08)
+
+  * Catching std::exceptions instead of FBB::Errno exceptions
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 24 Jan 2013 13:42:22 +0100
+
+xd (3.22.07)
+
+  * Using Glob(Glob::DIRECTORY, ... to find directories
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 29 Oct 2012 11:50:45 +0100
+
+xd (3.22.06)
+
+  * Added the build-depends file and updated the INSTALL file.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 28 Oct 2012 10:06:05 +0100
+
+xd (3.22.05)
+
+  * The following #defines in INSTALL.im can be overruled by defining
+    identically named environment variables: 
+        CXX      defines the name of the compiler to use. By default `g++'
+        CXXFLAGS the options passed to the compiler. 
+                 By default `-Wall --std=c++0x -O2 -g'
+        LDFLAGS  the options passed to the linker. By default no options are
+                 passed to the linker.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 18 Jul 2012 15:39:24 +0200
+
+xd (3.22.04)
+
+  * New upstream release, cosmetic changes (removed 3.22.03 headers again)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 10 May 2012 15:55:34 +0200
+
+xd (3.22.03)
+
+  * New version requires bobcat >= 3.00.00
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 03 May 2012 20:30:17 +0200
+
+xd (3.22.02)
+
+  * New version to link against bobcat 2.20.02, changes some for_eaches into
+    range-based for-loops
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 06 Jan 2012 08:55:35 +0100
+
+xd (3.22.01)
+
+  * `build' script now recognizes CXXFLAGS and LDFLAGS for, resp. g++ and ld
+     flags. Default values are set in INSTALL.im, as before.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 26 Jun 2011 15:09:45 +0200
+
+xd (3.22.00)
+
+  * Replaced Bobcat's FnWrap* calls by lambda functions
+
+  * The 'build' script now uses the -g option by default (set in
+    INSTALL.im). To modify the g++ compilation options change the #define
+    CPPOPT in INSTALL.im. By default it is set to "-O2 -g". To modify the
+    flags `on the fly' set the environment variable CPPFLAGS, overruling
+    CPPOPT.  The option "-Wall" is always used and should not be altered.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 14 Jun 2011 21:06:15 +0200
+
+xd (3.21.00)
+
+  * The history retention mechanism has been simplified. Either the last x
+    number of history lines are kept (using --history-maxsize) or the most
+    recent history lines (as specified by --history-lifetime) are kept. 
+
+  * The selected choice is always given the current time stamp, so if a
+    history is kept, in will always contain the most recently made choice.
+
+  * The GPL is added to the tar.gz archive created by trunk/sourcetar
+
+  * Superfluous icmake files (rebuild, manual) were removed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 18 Feb 2011 15:23:45 +0100
+
+xd (3.20.0)
+
+  * Continuation patterns following a pattern not matching any file are
+    pruned, speeding up XD's search process.
+
+  * Added memory for previous selections, showing the popular alternatives
+    matching a search pattern either at the beginning or at the end of the
+    list of alternatives. Using history is optional, cf. the xd(1) man-page.
+
+  * This version requires bobcat >= 2.10.0
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 17 Dec 2010 21:30:18 +0100
+
+xd (3.12.0)
+
+   * XD now requires Bobcat >= 2.09.00, using Bobcat's Mstream objects for
+     message handling
+
+   * Changed all fnwrap1c calls into fnwrap::unary calls
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 29 Oct 2010 10:24:43 +0200
+
+xd (3.11.0)
+
+   * Generalized search didn't recognize plain directories to ignore unless a
+     trailing * was appended. Now fixed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 25 Sep 2009 22:27:31 +0200
+
+xd (3.10.2)
+
+   * Using compiler option --std=c++0x
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 30 Aug 2009 11:47:49 +0200
+
+xd (3.10.1)
+
+   * XD's home directory now at http://xd-home.sourceforge.net/
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 28 Mar 2009 10:47:36 +0100
+
+xd (3.10.0)
+
+  * Implemented Generalized Directory Search (GDS) inserting directory
+    separators at all possible positions of the search string. See the
+    man-page for details. GDS use is optional. 
+
+xd (3.00.1)
+
+  * Minor modifications due to changes in Bobcat
+
+xd (3.00.0)
+
+  * Complete rewrite of XD according to current views about C++
+    
+  * This version is now formally offered to Debian Linux
+
+  * Implemented 'ignore' and other directives and extended the earlier set
+    of command line options. 
+
+  * Added a man-page. See the man page and xd's usage info shown when the
+    program is started without arguments for details about how to use xd
+
+  * The default configuration file is now ~/.xdrc
+
+  * Current configuration defaults are:
+        add-root    if-empty
+        directories all
+        start-at    home
+
+    
+xd (2.13)
+
+  * Made XD selfsupporting. libicce isn't required anymore.
+    Adapted `build': now uses the -t argument
+        
+xd (2.11)
+
+  * Oops, embedded links weren't recognized in 2.10. Now the algorithm is
+    modified so as to compare the inode/device information. What comes
+    first is taken first: it may be the directory link. Apart from that:
+    the same operational functionality as in 2.10.
+    The line 'directories pure' should now be 'directories unique',
+    but it's also the default, so it can safely be omitted.
+
+xd (2.10)
+
+  * Solutions reducing to the same file (e.g., via links)
+    are prevented by default. In order to get all solutions
+    the line 'directories all' must be included in the xd.conf file.
+
+xd (2.09)
+
+  * libicce.a is now containing the NonCanon etc. classes. The formerly
+    used library libcclib.a. This library and the ICString.h, ICError.h,
+    ARG.h, NonCanon.h and ConfigFile.h files (normally in
+    /usr/local/include) can be removed. The functionality of xd has
+    not been changed.
+
+xd (2.08)
+
+  * from the $HOME directory fails.
+
+  * In xd.conf this may be suppressed by entering a line containing
+        extra no
+
+  * Alternatively, the extra evaluation may be forced in addition to the
+    standard evaluation (from the $HOME directory) if the line
+        extra always
+    is used in xd.conf
+    
+  * In the distribution, the xd.conf file is now expected in
+    $HOME/.conf/xd/xd.conf
+    
+  * Prior to the compilation, this path may be set by altering
+    XD_CONF_PATH in the file configure.h
+    
+xd (2.07)
+
+  * First Linux version. Previous versions were for MS-DOS

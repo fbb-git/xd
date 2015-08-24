@@ -1,0 +1,557 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>xd</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:Frank B. Brokken: f.b.brokken@rug.nl">
+</head>
+<body text="#27408B" bgcolor="#FFFAF0">
+<hr>
+<h1>xd</h1>
+<h2>xd.3.23.01.tar.gz</h2>
+<h2>1994-2015</h2>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:Frank B. Brokken: f.b.brokken@rug.nl">
+</head>
+<body text="#27408B" bgcolor="#FFFAF0">
+<hr>
+<h1></h1>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>xd(1)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:Frank B. Brokken: f.b.brokken@rug.nl">
+</head>
+<body text="#27408B" bgcolor="#FFFAF0">
+<hr>
+<h1>xd(1)</h1>
+<h2>xd.3.23.01.tar.gz xd - fast directory changes</h2>
+<h2>1994-2015</h2>
+
+
+<p>
+
+<h2>NAME</h2>xd - eXtra fast Directory changer
+<p>
+
+<h2>SYNOPSIS</h2>
+       <strong>xd</strong> [OPTIONS] <em>arguments</em>
+<p>
+<h2>DESCRIPTION</h2>
+<p>
+The program <strong>xd</strong> is used to perform e<strong>X</strong>tra fast <strong>D</strong>irectory
+changes. Usually to change a directory the user is required to enter a command
+like, e.g., <em>cd /usr/local/bin</em>, possibly with the aid of shell
+completion. In many cases this is a tedious task: shell completion shows all
+entries, including files, when we're only interested in directories and the
+full specification of our intented directory may eventually require many
+keyboard actions.
+<p>
+<strong>Xd</strong> was designed a long time ago (in the early 90s) to reduce the
+effort of changing a directory. Often we're well aware to which directory we
+want to change, and it's easy to produce the initial directory characters of
+that directory. E.g., if the intent is to <em>cd</em> to <em>/usr/local/bin</em>,
+it's rather easy to produce the letters <em>ulb</em>. 
+<p>
+<strong>Xd</strong> capitalizes on this capability. By providing the initial directory
+characters of directories <strong>xd</strong> will determine the proper expansion allowing
+you to change directories fast. So, entering the command <em>xd ulb</em> will
+result in the expansion <em>/usr/local/bin</em>.
+<p>
+Often life is not that easy. Often there are multiple expansions from a
+given set of initial characters. E.g., when entering <em>xd ulb</em> <strong>xd</strong> may
+find several alternatives. E.g.,
+        <pre>
+
+ 1: /usr/lib/base-config
+ 2: /usr/lib/bonobo
+ 3: /usr/lib/bonobo-activation
+ 4: /usr/local/bin
+        
+</pre>
+
+    If these are the alternatives, this is exactly what <strong>xd</strong> will show
+you. Then, by simply pressing the <em>3</em> key (<em>no</em> <em>Enter</em> key required)
+<strong>xd</strong> will produce the required <em>/usr/local/bin</em>. 
+<p>
+Commands to <strong>xd</strong> can be specified so as to fine-tune <strong>xd</strong>'s behavior:
+    <ul>
+    <li> By default (as specified by the configuration file, see below)
+expansions may start at the user's home directory or at the system's root
+directory.
+    <li> Initial character <strong>/</strong>: If the first character of the command is
+<em>/</em> all expansions will be performed from the system's root directory. E.g.,
+<em>xd /t</em> will result in <em>/tmp</em> but not in <em>/home/user/tmp</em>.
+    <li> Initial character <strong>.</strong>: If the first character of the command is
+<em>.</em> all expansions will be performed from the user's home directory. E.g.,
+<em>xd .t</em> will result in <em>/home/user/tmp</em> but not in <em>/tmp</em>
+    <li> Initial character <strong>0</strong>: If the first character of the command is
+<em>0</em>, all expansions will start at the current working directory. In fact,
+this is a specialization of the following, more general form:
+    <li> Initial character <strong>1..9</strong>: If the first character of the command is
+a digit between <em>1</em> and <em>9</em> all expansions will start at that parent
+directory level of the current working directory (up to the system's root
+directory). E.g., if the current working directory is <em>/usr/share/doc</em> then
+<em>xd 2lb</em> will offer the alterative <em>/usr/local/bin</em>: two steps up, then
+look for directories starting with <em>l</em> and therein directories starting with
+<em>b</em>.
+    <li> Separators (space, forward slash and underscore (<em> </em>, / and _)):
+sometimes it is clear that there are many alternatives and the intention is to
+reduce that number. By using a separator subsequently nested directories must
+start with the characters between the separators. E.g., <em>xd u l bi</em> will not
+produce the alternative <em>/usr/lib/base-config</em> anymore, since
+<em>base-config</em> does not start with <em>bi</em>. In this case only
+<em>/usr/local/bin</em> is produced. Separators may be mixed (<em>xd u/l bi</em> is
+identical to <em>xd u l bi</em>). Since the <em>/</em> can also be used as a
+root-directory specification, a conflict is implied by a command like <em>xd /u
+l bi</em>. This conflict is solved by given the initial character a higher
+precedence than the separator. Using the underscore (_) separator in this case
+is another way to solve the conflict (which in practice hardly ever occurs).
+    </ul>
+<p>
+If there's only one solution, <strong>Xd</strong> will write that directory to its
+standard output stream. If there are multiple solutions, a list of at most 62
+alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the
+letters A..Z) will be written to the standard error stream from which the user
+may select an alternative by simply pressing the key associated with the
+selection of choice. If no selection is requested any other key may be pressed
+(e.g., the space bar or the <em>Enter</em> key). If there is no solutioon <strong>xd</strong>
+will write the text <em>No Solutions</em> to the standard error stream.
+<p>
+When <em>xd</em> is given at least one argument, all its output is sent to the
+standard error stream, but for the selected directory name which is written to
+the standard output stream. If no selection is made or if the selection
+process is aborted a single dot is written to the standard output
+stream. Usually <em>xd</em> will be called by a shell alias, providing the
+<em>cd</em> command with <strong>xd</strong>'s output (see below at the <strong>SHELL SCRIPTS</strong>
+section) executing <em>cd `xd $*`</em>. The default dot produced by <strong>xd</strong> will
+then prevent a unintended change of directory.
+<p>
+If <strong>xd</strong> is called without arguments then <em>usage</em> information is
+written to the standard error stream.
+<p>
+<strong>Xd</strong> may be further configured using options and a configuration file,
+discussed in the <strong>OPTIONS</strong> and <strong>CONFIGURATION FILE</strong> sections below.
+<p>
+<h2>GENERALIZED DIRECTORY SEARCH</h2>
+<p>
+Starting with version 3.10.0 <strong>xd</strong> also supports generalized directory
+search command processing (GDS). When GDS is requested separators are no
+longer required, and <strong>xd</strong> will find all posible alternatives resulting from
+all possible sequential combinations of the initial search command. GDS is
+activated either by specifying the <em>-g</em> command line flag or by entering
+<em>generalized-search</em> in <strong>xd</strong>'s configuration file. Alternatively, when the
+latter is specified then the <em>--traditional</em> command line option will
+suppress GDS.
+<p>
+Under GDS each initial substring of the command to <strong>xd</strong> will be
+considered as the initial characters of a directory. E.g., if the command
+<em>xd tmps</em> is entered using GDS then directories matching the following
+search patterns will be found;
+    <ul>
+    <li> <em>/t*/m*/p*/s*/</em>
+    <li> <em>/t*/m*/ps*/</em>
+    <li> <em>/t*/mp*/s*/</em>
+    <li> <em>/t*/mps*/</em>
+    <li> <em>/tm*/p*/s*/</em>
+    <li> <em>/tm*/ps*/</em>
+    <li> <em>/tmp*/s*/</em>
+    <li> <em>/tmps*/</em>
+    </ul>
+    Only the first of these will be considered under the traditional
+processing mode.
+<p>
+Multiple command line arguments, the slash and the underscore can still be
+used with GDS in which case they force a directory change in the considered
+patterns. E.g., with the command <em>xd tm/ps</em> the following patterns will be
+considered: 
+    <ul>
+    <li> <em>/t*/m*/p*/s*/</em>
+    <li> <em>/t*/m*/ps*/</em>
+    <li> <em>/tm*/p*/s*/</em>
+    <li> <em>/tm*/ps*/</em>
+    </ul>
+    In this set all of the previous patterns showing the <em>...mp...</em>
+combination were dropped, as a directory change is forced between the <em>m</em>
+and <em>p</em> characters.
+<p>
+<h2>RETURN VALUE</h2>
+<p>
+<strong>Xd</strong> returns 0 to the operating system unless an error occurs (e.g.,
+when a non-existing configuration file is specified), or <strong>xd</strong>'s version or
+usage info is shown or requested.
+<p>
+<h2>OPTIONS</h2>
+<p>
+If available, single letter options are listed between parentheses
+following their associated long-option variants. Single letter options require
+arguments if their associated long options require arguments as well.
+    <ul>
+    <li> <strong>--add-root</strong> <em>condition</em><br>
+            If the search starts at the user's home directory an additional
+search starting at the system's root directory may be performed as well,
+depending on the value specified for the <em>add-root</em> option. Alternatives are
+<em>never</em> (no additional search is performed); <em>if-empty</em> (an additional
+search is performed if the initial search did not yield any directory); or
+<em>always</em> (an additional search is always performed).  There is also a
+configuration file directive <em>add-root</em> (see below).
+<p>
+<li> <strong>--all</strong> <strong>-a</strong><br>
+        If the configuration file (see below) contains <em>ignore</em> directives
+then these directives are ignored when computing the alternatives from which
+the user may select a directory to change to.
+<p>
+<li> <strong>--config-file</strong>=<em>filename</em> (<strong>-c</strong>)<br>
+           The name of an <strong>xd</strong> configuration file. By default <strong>xd</strong> will
+            look for the file <em>.xdrc</em> in the user's home directory. The
+            existence of the default file is optional.
+<p>
+<li> <strong>--directories</strong> <em>inclusion</em><br>
+        Directories may be also be reached via symbolic links. The
+inclusion type <em>all</em> will add these symbolic links to the list of
+alternatives. The inclusion type <em>unique</em> will prevent the symbolic links
+from being added to the list of alternatives. There is also a
+configuration file directive <em>directives</em> (see below).
+<p>
+<li> <strong>--generalized-search</strong> <strong>-g</strong><br>
+        When this option is specified <strong>xd</strong> will use GDS unless the
+directive <em>traditional</em> is specified in the configuration file.
+<p>
+<li> <strong>--help</strong> (<strong>-h</strong>)<br>
+           Basic usage information is written to the standard error stream.
+<p>
+<li> <strong>--history</strong> <em>[filename]</em><br>
+        A history of previously made choices is kept in the file
+<em>filename</em>. If <em>--history</em> is specified, but the filename is 
+left empty the history file <em>$HOME/.xd.his</em> is used. This file should only
+be modified by <em>xd</em> itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        <pre>
+
+    1292596154 1 /home/frank/svn/xd/
+        
+</pre>
+
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+<p>
+<li> <strong>--history-lifetime</strong> <em>spec</em><br>
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by <em>D, W, M</em> or <em>Y</em>, representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of <em>1M</em> (one month) is used. Entries older than <em>history-lifetime</em> are
+disregarded as history-items and are removed from the history file.
+<p>
+<li> <strong>--history-maxsize</strong> <em>nr</em><br>
+    The maximum number of entries the history file may contain. By default
+there is no limit. When <em>history-maxsize</em> is specified and more than the
+maximum number of history items are found in the history file then the <em>nr</em>
+most popular choices are kept. Usually the cut-off point will be somewhere
+within a popularity category. In that case the most recently selected
+alternatives within that category are kept.
+<p>
+<li> <strong>--history-position</strong> <em>[top|bottom]</em><br>
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next option <em>history-separate</em> is only used when this option is also
+specified. By merely specifying <em>history-position</em> the history items are
+shown at the top of the list.
+<p>
+<li> <strong>--history-separate</strong><br>
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This option is only
+interpreted when the previous option is also specified.
+<p>
+<li> <strong>--icase</strong> <strong>-i</strong><br>
+    This option is used to specify case-insensitive pattern matching. E.g.,
+specifying <em>xd /ub</em> returns the directory <em>/usr/bin</em>, but not a directory
+like <em>/UnSpecified/Books</em>, which is returned by <em>xd /UB</em>. However, <em>xd
+-i /ub</em> (using any letter casing for the specification) returns both
+directories. The option <em>icase</em> could of course be specified in the
+configuration file, which which case case-insensitive matching is used by
+default. In the latter case specifying <em>-i</em> as a command line option reverts
+the matching procedure to case-sensitive directory matching. In general, when
+an even number of <em>icase</em> specifications is provided <strong>xd</strong> uses
+case-sensitive directory matching, while an odd number of <em>icase</em>
+specifications results in case-insensitive directory matching.
+<p>
+<li> <strong>--start-at</strong> <em>origin</em><br>
+        Defines the default start location of directory searches. Origin
+<em>home</em> results in all default searches to start at the user's home
+directory. Origin <em>root</em> results in searches to begin at the disk's root
+(<em>/</em>) directory. There is also a configuration file directive <em>start-at</em>
+(see below).
+<p>
+<li> <strong>--traditional</strong><br>
+        When this option is specified <strong>xd</strong> will not use GDS but will use its
+traditional mode. It overrules a <em>generalized-search</em> directive specified in
+the configuration file as well as the <em>-g</em> option.
+<p>
+<li> <strong>--verbose</strong> (<strong>-V</strong>)<br> 
+           More extensive information about the actions taken by the <strong>xd</strong>
+program is written to the standard error stream.
+<p>
+<li> <strong>--version</strong> (<strong>-v</strong>)<br>
+           <strong>Xd</strong>'s version number is written to the standard error stream.
+    </ul>    
+<p>
+<h2>CONFGURATION FILE</h2>
+<p>
+The default configuration file is <em>.xdrc</em> in the user's home directory. It
+may be overruled by the program's <em>--config-file</em> option.
+<p>
+Empty lines are ignored. Information at and beyond <em>#</em>-characters is
+interpreted as comment and is ignored as well.
+<p>
+All directives in <strong>xd</strong> configuration files follow the pattern 
+    <pre>
+
+    directive value
+    
+</pre>
+ 
+    but for some directives <em>value</em> is optional.
+<p>
+A line may at most contain one directive, but white space (including
+comment at the end of the line) is OK. The same directive may be specified
+multiple times, in which case the <em>last</em> directive will be used (with the
+exception of the <em>ignore</em> directive, see below). All
+directives  are interpreted <em>case sensitively</em>.  Non-empty lines
+not beginning with a recognized directive are silently ignored.
+<p>
+The following directives can be used in the 
+configuration file. Default values are shown between parentheses.
+    <ul>
+    <li> <strong>add-root</strong> <em>when</em> (if-empty)<br>
+            If the search starts at the user's home directory an additional
+search starting at the system's root directory may be performed as well,
+depending on the value specified for the <em>add-root</em> directive. <br>
+    If <em>when</em> is specified as <em>always</em> then an additional search is
+always performed.<br>
+            If it is specified as <em>if-empty</em> then an additional search is
+performed if the initial search (starting at the user's home directory) did
+not yield any directory.<br>
+            If it is specified as <em>never</em> no additional search is
+performed.<br>
+    This directive is overruled by the <em>---add-root</em> command line option.
+<p>
+<li> <strong>directories</strong> <em>which</em> (all)<br>
+        Directories may be also be reached via symbolic links. The
+specification <em>all</em> will add these symbolic links to the list of
+alternatives. The specification <em>unique</em> will prevent the symbolic links
+from being added to the list of alternatives.<br>
+    This directive is overruled by the <em>---directories</em> command line option.
+<p>
+<li> <strong>generalized-search</strong> <br>
+        When this directive is specified <strong>xd</strong> will use GDS by default.
+<p>
+<li> <strong>history</strong> <em>[filename]</em><br>
+        A history of previously made choices is kept in the file
+<em>filename</em>. If <em>history</em> is specified, but the filename is 
+left empty the history file <em>$HOME/.xd.his</em> is used. This file should only
+be modified by <em>xd</em> itself. If you can't resist editing it then use the
+following example showing the format of the lines in the history file.
+        <pre>
+
+    1292596154 1 /home/frank/svn/xd/
+        
+</pre>
+
+    The first field is the time (in seconds since the epoch) the entry was
+written, the second field is the number of times the entry has been selected
+and the third field is the associated path.
+<p>
+<li> <strong>history-lifetime</strong> <em>spec</em><br>
+    The lifetime of the entries in the history file. The specification
+consists of a number followed by <em>D, W, M</em> or <em>Y</em>, representing,
+resp. days, weeks, months, or years. A month is considered a period of 30
+days, a year a period of 365 days. If the specification is omitted a lifetime
+of <em>1M</em> (one month) is used. Entries older than <em>history-lifetime</em> are
+disregarded as history-items and are removed from the history file.
+<p>
+<li> <strong>history-maxsize</strong> <em>nr</em><br>
+    The maximum number of entries the history file may contain. By default
+there is no limit. When <em>history-maxsize</em> is specified and more than the
+maximum number of history items are found in the history file then the <em>nr</em>
+latest choices are kept. Each previously made selection counts as one.  If a
+new alternative is selected it always becomes an element in the history list.
+<p>
+<li> <strong>history-position</strong> <em>[top|bottom]</em><br>
+    When specified alternatives found in the history will be displayed either
+at the top of the list or at the bottom of the list. If this option is omitted
+then the elements in the history will be intermixed with new alternatives. The
+next directive <em>history-separate</em> is only used when this directive is also
+specified. By merely specifying <em>history-position</em> the history items are
+shown at the top of the list.
+<p>
+<li> <strong>history-separate</strong><br>
+    When specified, a blank line is written between the items in the history
+and new alternatives (not previously selected). This directive is only
+interpreted when the previous directive is also specified. 
+<p>
+<li> <strong>--icase</strong> <strong>-i</strong><br>
+    This specification is used to request case-insensitive pattern
+matching. If this option is entered in the configuration file then specifying
+<em>xd /ub</em> returns the directory <em>/usr/bin</em> as welll as a directory like
+(assuming it exists) <em>/UnSpecified/Books</em>. When specified in the
+configuration file, the command-line option <em>-i</em> reverts the matching
+procedure back to case-sensitive directory matching. In general, when an even
+number of <em>icase</em> specifications is provided <strong>xd</strong> uses case-sensitive
+directory matching, while an odd number of <em>icase</em> specifications results in
+case-insensitive directory matching.
+<p>
+<li> <strong>ignore</strong> <em>path</em> <br>
+        The configuration file may contain multiple <em>ignore</em> directives
+which are --different from the way other directives are handled-- all
+interpreted. Each <em>ignore</em> directive is followed by a path specification as
+shown in a list of alternatives produced by <strong>xd</strong> or an initial substring of
+such a path terminating in a <em>*</em> character. When <strong>xd</strong> encounters a path
+matching any of the <em>ignore</em> directives (with the <em>*</em> interpreted as `any
+further directory name' specification) it will not display that path in its
+list of alternatives.
+    This directive is overruled by the <em>---all</em> command line option.
+<p>
+<li> <strong>start-at</strong> <em>value</em> (home) <br>
+           Defines the default start location of directory searches. Values
+are <em>home</em> and <em>root</em>. When <em>home</em> is specified all searches start at
+the user's home directory. When <em>root</em> is specified searches start at the
+disk's root (<em>/</em>) directory. If the directory is omitted or if another value
+is specified then the default is used, which is <em>home</em>. This directive is
+overruled by the <em>---start-at</em> command line option.
+<p>
+<li> <strong>traditional</strong> <br>
+        This directive may be used to request the use of <strong>xd</strong>'s traditional
+mode. It overrules the <em>-g</em> command line option and the
+<em>generalized-search</em> directive.
+    </ul>
+)
+<p>
+<h2>SHELL SCRIPTS</h2>
+<p>
+Assuming <strong>xd</strong> is installed in <em>/usr/bin</em> scripts can be defined around
+<strong>xd</strong> for various shell programs. This allows the shell to change directories
+under control of <strong>xd</strong>.
+<p>
+To use <strong>xd</strong> with the <strong>bash</strong>(1)-shell, the following function
+can be used (which could be added to, e.g., <em>.bash_login</em>):
+        <pre>
+
+  xd()                    # function to do `cd` using `xd`
+  {
+      cd `/usr/bin/xd $*`
+  }
+        
+</pre>
+
+<p>
+To use <strong>xd</strong> with the <strong>tcsh</strong>(1)-shell, the following alias 
+can be added to, e.g., the <em>~/.alias</em> file:
+        <pre>
+
+  alias  xd  'cd `\xd \!*`'
+        
+</pre>
+
+    Having defined the <em>xd</em> alias or script <em>xd ...</em> commands will result
+in the automatic or selected change of the current working directory
+<p>
+<h2>EXAMPLES</h2>
+<p>
+<pre>
+
+    xd ulb      - all directories starting subsequently, 
+                  with u, l and b origin is default, or 
+                  specified in .xdrc as  home or root
+
+    xd 0t       - all directories starting with t below the cwd
+
+    xd 2t       - all directories starting at the `grandparent' 
+                  (2 steps up) of the cwd
+
+    xd --start-at root t
+                - all directories at the root starting with t
+
+    xd ..       - all directories starting with a dot in the cwd
+    
+</pre>
+
+    Assuming the following directories exist:
+    <pre>
+
+  /usr/lib/bonobo
+  /usr/lib/bonobo-activation
+  /usr/local/bin
+    
+</pre>
+
+    then the following two <em>ignore</em> specifications in <strong>xd</strong>'s configuration
+file will result in ignoring the <em>bonobo</em> directory alternatives:
+<p>
+First specification:
+    <pre>
+
+  ignore /usr/lib/bonobo
+  ignore /usr/lib/bonobo-activation
+    
+</pre>
+
+    Second specification:
+    <pre>
+
+  ignore /usr/lib/bonobo*
+    
+</pre>
+
+<p>
+<h2>FILES</h2>
+    <ul>
+    <li> <strong>$HOME/.xdrc</strong>: Default location of the configuration file
+    <li> <em>https://fbb-git.github.io/xd/</em>: Home directory
+    </ul>
+<p>
+<h2>BUGS</h2>
+<p>
+None reported
+<p>
+<h2>ABOUT xd</h2>
+<p>
+The program <strong>xd</strong> was initially (before 1994) written for the MS-DOS
+platform. In 1994 it was designed to work under Unix (Linux, AIX) and it was
+converted to <strong>C++</strong>. The original <strong>C++</strong> code is still available
+(<em>https://oosix.icce.rug.nl/svnroot/xd/tags/start/xd/</em>) and is funny to look
+at as it is a remarkable illustration of <strong>C++</strong> code written by <strong>C</strong>
+programmers who had just learned about <strong>C++</strong>. Versions <em>2.x</em> have been
+used until 2008, and in late August 2008 I rewrote <strong>xd</strong> completely,
+reflecting my current views about <strong>C++</strong>, resulting in versions <em>3.x.y</em> and
+beyond. The <em>3.x.y</em> and later versions extensively use the facilities
+offered by the <strong>bobcat</strong>(7) library.
+<p>
+<h2>ACKNOWLEDGEMENTS</h2>
+<p>
+GDS was added to <strong>xd</strong> following a suggestion by Bram Neijt (bram at
+neijt dot nl).
+<p>
+<h2>AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl).
