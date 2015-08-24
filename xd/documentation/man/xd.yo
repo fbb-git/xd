@@ -478,7 +478,7 @@ file will result in ignoring the tt(bonobo) directory alternatives:
 manpagefiles()
     itemization(
     it() bf($HOME/.xdrc): Default location of the configuration file
-    it() tt(http://xd-home.sourceforge.net/): Home directory
+    it() tt(https://fbb-git.github.io/xd/): Home directory
     )
 
 manpagebugs()
