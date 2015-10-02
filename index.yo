@@ -36,6 +36,9 @@ lurl(https://github.com/fbb-git/_project_/releases) or direct from its
 release page):
 
         itemization(
+        it() url(3.23.02)
+                (https://github.com/fbb-git/_project_/releases/tag/3.23.02)
+Oct  3, 2015;
         it() url(3.23.01)
                 (https://github.com/fbb-git/_project_/releases/tag/3.23.01)
 Jan 19, 2015;
@@ -47,9 +50,6 @@ Dec 11, 2014;
 Jan 24, 2013;
         it() url(3.22.06)
                 (https://github.com/fbb-git/_project_/releases/tag/3.22.06)
-Oct 28, 2012;
-        it() url(3.22.05)
-                (https://github.com/fbb-git/_project_/releases/tag/3.22.05)
 Oct 28, 2012.
         )
     COMMENT(NOTE: LAST ITEM SHOULD END IN . )
@@ -66,7 +66,3 @@ Enjoy _Product_ !
 includefile(/home/frank/git/GITPROJECTS.yo)
 
 Contact the author through url(his e-mail address)(mailto:f.b.brokken@rug.nl)
-
-
-
-
