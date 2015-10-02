@@ -1,11 +1,8 @@
-  * Added README.g++-5 decribining how to compile xd using g++-5 on systems
-    where also g++-4 is available.
+xd (3.23.02)
 
-  * Updated INSTALL.im and icmconf according to the requirements outlined in
-    README.g++-5, keeping the current (g++) configuration, and adding the
-    requirements for g++-5 as comment-lines.
+  * Modified the (un)installation procedures
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 02 Oct 2015 13:48:25 +0200
 
 xd (3.23.01)
 
