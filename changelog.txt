@@ -1,3 +1,11 @@
+xd (3.23.04)
+
+  * Adapted the build scripts to icmake 8.00.04
+
+  * README.g++-5 now superfluous and removed.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 20 Dec 2015 10:45:43 +0100
+
 xd (3.23.03)
 
   * Kevin Brodsky observed that the installation scripts used 'chdir' rather
