@@ -131,7 +131,7 @@ manpagesection(GENERALIZED DIRECTORY SEARCH)
 
     Starting with version 3.10.0 bf(xd) also supports generalized directory
 search command processing (GDS). When GDS is requested separators are no
-longer required, and bf(xd) will find all posible alternatives resulting from
+longer required, and bf(xd) will find all possible alternatives resulting from
 all possible sequential combinations of the initial search command. GDS is
 activated either by specifying the tt(-g) command line flag or by entering
 tt(generalized-search) in bf(xd)'s configuration file. Alternatively, when the

@@ -1,45 +1,15 @@
-    // Specify the name of the project:
 #define PROJECT             "xd"
-
-    // When defined, these overrule COMPILER and COMPILER_OPTIONS
-    // COMPILER and COMPILER_OPTIONS are now obsolete
-    // Instead of CXX and CXXFLAGS, CC and CFLAGS can be used.
-    // Their #define values are overruled by identically named environment
-    // variables. 
-
-//#define CXX             "g++-5"
 #define CXX             "g++"
-    // the compiler to use. 
-
 #define CXXFLAGS        "--std=c++14 -fdiagnostics-color=never -Wall -O2 -g"
-    // the compiler options to use.
-
 #define LDFLAGS             ""
-    // flags passed to the linker
-
 #define CPOPTS  
-
-// COMPONENTS TO INSTALL
-// =====================
-
-    // For an operational non-Debian installation, you probably must be
-    // `root'.
-
-    // If necessary, adapt DOC, HDR, LIB and MAN (below) to your situation.
-    // The provided locations are used by Debian Linux.
-
-    // With 'build install' you can dynamically specify a location to prepend
-    // to the locations configured here, and select which components you want 
-    // to install
 
 // ONLY USE ABSOLUTE DIRECTORY NAMES:
 
     // the final program
 #define BINARY     "/usr/bin/"${PROJECT}
-
     // the directory where the standard documentation is stored 
 #define DOC     "/usr/share/doc/"${PROJECT}
-
     // the directory where the manual page is stored
 #define MAN     "/usr/share/man/man1"
 
