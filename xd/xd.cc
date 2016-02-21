@@ -31,10 +31,10 @@ catch(int x)
 {
     if (x == 0)
         cerr << "No Solutions\n";
+
+    if (ArgConfig::instance().option("hv"))
+        return 0;
+
     cout << ".\n";
-    return ArgConfig::instance().option("hv") ? 0 : x;
+    return x;
 }
-
-
-
-

@@ -51,9 +51,9 @@ that directory. E.g., if the intent is to tt(cd) to tt(/usr/local/bin),
 it's rather easy to produce the letters tt(ulb). 
 
     bf(Xd) capitalizes on this capability. By providing the initial directory
-characters of directories bf(xd) will determine the proper expansion allowing
-you to change directories fast. So, entering the command tt(xd ulb) will
-result in the expansion tt(/usr/local/bin).
+characters of directories bf(xd) determines the proper expansion allowing you
+to change directories fast. So, entering the command tt(xd ulb) results in the
+expansion tt(/usr/local/bin).
 
     Often life is not that easy. Often there are multiple expansions from a
 given set of initial characters. E.g., when entering tt(xd ulb) bf(xd) may
@@ -74,16 +74,16 @@ bf(xd) will produce the required tt(/usr/local/bin).
 expansions may start at the user's home directory or at the system's root
 directory.
     it() Initial character bf(/): If the first character of the command is
-tt(/) all expansions will be performed from the system's root directory. E.g.,
-tt(xd /t) will result in tt(/tmp) but not in tt(/home/user/tmp).
+tt(/) then all expansions are performed from the system's root
+directory. E.g., tt(xd /t) results in tt(/tmp) but not in tt(/home/user/tmp).
     it() Initial character bf(.): If the first character of the command is
-tt(.) all expansions will be performed from the user's home directory. E.g.,
-tt(xd .t) will result in tt(/home/user/tmp) but not in tt(/tmp)
+tt(.) then all expansions are performed from the user's home directory. E.g.,
+tt(xd .t) results in tt(/home/user/tmp) but not in tt(/tmp)
     it() Initial character bf(0): If the first character of the command is
-tt(0), all expansions will start at the current working directory. In fact,
+tt(0), then all expansions start at the current working directory. In fact,
 this is a specialization of the following, more general form:
     it() Initial character bf(1..9): If the first character of the command is
-a digit between tt(1) and tt(9) all expansions will start at that parent
+a digit between tt(1) and tt(9) then all expansions start at that parent
 directory level of the current working directory (up to the system's root
 directory). E.g., if the current working directory is tt(/usr/share/doc) then
 tt(xd 2lb) will offer the alterative tt(/usr/local/bin): two steps up, then
@@ -103,14 +103,14 @@ precedence than the separator. Using the underscore (_) separator in this case
 is another way to solve the conflict (which in practice hardly ever occurs).
     )
 
-    If there's only one solution, bf(Xd) will write that directory to its
-standard output stream. If there are multiple solutions, a list of at most 62
+    If there's only one solution, bf(Xd) writes that directory to its standard
+output stream. If there are multiple solutions, then a list of at most 62
 alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the
-letters A..Z) will be written to the standard error stream from which the user
+letters A..Z) is written to the standard error stream from which the user
 may select an alternative by simply pressing the key associated with the
 selection of choice. If no selection is requested any other key may be pressed
 (e.g., the space bar or the tt(Enter) key). If there is no solutioon bf(xd)
-will write the text tt(No Solutions) to the standard error stream.
+writes the text tt(No Solutions) to the standard error stream.
 
     When tt(xd) is given at least one argument, all its output is sent to the
 standard error stream, but for the selected directory name which is written to
@@ -118,8 +118,8 @@ the standard output stream. If no selection is made or if the selection
 process is aborted a single dot is written to the standard output
 stream. Usually tt(xd) will be called by a shell alias, providing the
 tt(cd) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
-section) executing tt(cd `xd $*`). The default dot produced by bf(xd) will
-then prevent a unintended change of directory.
+section) executing tt(cd `xd $*`). The default dot produced by bf(xd) 
+prevents an unintended change of directory.
 
     If bf(xd) is called without arguments then em(usage) information is
 written to the standard error stream.
@@ -138,7 +138,7 @@ tt(generalized-search) in bf(xd)'s configuration file. Alternatively, when the
 latter is specified then the tt(--traditional) command line option will
 suppress GDS.
 
-    Under GDS each initial substring of the command to bf(xd) will be
+    When using GDS each initial substring of the command to bf(xd) is
 considered as the initial characters of a directory. E.g., if the command
 tt(xd tmps) is entered using GDS then directories matching the following
 search patterns will be found;
@@ -152,8 +152,8 @@ search patterns will be found;
     it() tt(/tmp*/s*/)
     it() tt(/tmps*/)
     )
-    Only the first of these will be considered under the traditional
-processing mode.
+    Using the traditional processing mode only the first one of these
+alternative patterns is considered.
     
     Multiple command line arguments, the slash and the underscore can still be
 used with GDS in which case they force a directory change in the considered
@@ -196,19 +196,19 @@ then these directives are ignored when computing the alternatives from which
 the user may select a directory to change to.
 
     it() lsoption(config-file)(c)(filename)nl()
-           The name of an bf(xd) configuration file. By default bf(xd) will
-            look for the file tt(.xdrc) in the user's home directory. The
+           The name of an bf(xd) configuration file. By default bf(xd) 
+            looks for the file tt(.xdrc) in the user's home directory. The
             existence of the default file is optional.
 
     it() loption(directories) tt(inclusion)nl()
-        Directories may be also be reached via symbolic links. The
-inclusion type tt(all) will add these symbolic links to the list of
-alternatives. The inclusion type tt(unique) will prevent the symbolic links
-from being added to the list of alternatives. There is also a
-configuration file directive tt(directives) (see below).
+        Directories may be also be reached via symbolic links. The inclusion
+type tt(all) adds these symbolic links to the list of alternatives. The
+inclusion type tt(unique) prevents symbolic links from being added to
+the list of alternatives. There is also a configuration file directive
+tt(directories) (see below).
 
     it() loption(generalized-search) soption(g)nl()
-        When this option is specified bf(xd) will use GDS unless the
+        When this option is specified bf(xd) uses GDS unless the
 directive tt(traditional) is specified in the configuration file.
 
     it() loption(help) (soption(h))nl()
@@ -244,12 +244,12 @@ within a popularity category. In that case the most recently selected
 alternatives within that category are kept.
 
     it() loption(history-position) tt([top|bottom])nl()
-    When specified alternatives found in the history will be displayed either
-at the top of the list or at the bottom of the list. If this option is omitted
-then the elements in the history will be intermixed with new alternatives. The
-next option tt(history-separate) is only used when this option is also
-specified. By merely specifying tt(history-position) the history items are
-shown at the top of the list.
+    When this option is specified then previously found alternatives 
+are displayed either at the top of the list or at the bottom
+of the list. If this option is omitted then the elements in the history will
+be intermixed with new alternatives. The next option tt(history-separate) is
+only used when this option is also specified. By merely specifying
+tt(history-position) the history items are shown at the top of the list.
 
     it() loption(history-separate)nl()
     When specified, a blank line is written between the items in the history
@@ -426,7 +426,7 @@ can be used (which could be added to, e.g., tt(.bash_login)):
         verb(
   xd()                    # function to do `cd` using `xd`
   {
-      cd `/usr/bin/xd $*`
+      cd "`/usr/bin/xd $*`"
   }
         )
     
@@ -435,8 +435,15 @@ can be added to, e.g., the tt(~/.alias) file:
         verb(
   alias  xd  'cd `\xd \!*`'
         )
-    Having defined the tt(xd) alias or script tt(xd ...) commands will result
-in the automatic or selected change of the current working directory
+    If your system uses blanks in directory names, the above tcsh-alias cannot
+be used as the blanks are interpreted as argument-separaters. In that case the
+following alias can be defined:
+        verb(
+  alias  xd  'setenv XD "`\xd \!*`";cd "$XD"'
+        )
+
+    Having defined the tt(xd) alias or script tt(xd ...) commands results
+in the automatic (or optional) change of the current working directory
 
 
 manpagesection(EXAMPLES)

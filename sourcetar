@@ -18,13 +18,12 @@ tgz()
 
     tar czvf $1 --exclude-from=excluded  ${DISTRIBUTION}/*
 
-    rm ${DISTRIBUTION}                      # rm the link
+    rm ${DISTRIBUTION} ${PROJECT}/LICENSE   # rm the link and LICENSE
 }
 
 case "$1" in 
     (d)
         tgz ../tarballs/${PROJECT}_${VERSION}.orig.tar.gz
-        rm ${PROJECT}/LICENSE
     ;;
 
     (l|o)
@@ -36,8 +35,6 @@ case "$1" in
           oosix:git/${PROJECT}/tarballs/${PROJECT}_${VERSION}.orig.tar.gz
             rm ${PROJECT}_${VERSION}.tar.gz
         fi
-
-        rm ${PROJECT}/LICENSE
     ;;
 
     (*)
