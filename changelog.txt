@@ -1,3 +1,23 @@
+xd (3.24.01)
+
+  * Applied cosmetic changes to alternatives/getcwd.c (3.24.00's changes are
+    merged with this version).
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 21 Feb 2016 14:32:19 +0100
+
+xd (3.24.00)
+
+  * The xd-support scripts that are mentioned in the man-page now allow
+    (ugly!!!) blanks in directory names.
+
+  * Updated the manual page.
+
+  * Repaired the description of the initial . and 0 in the usage message.
+
+  * Removed a dependency on PATH_MAX (in alternatives/getcwd.cc)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 21 Feb 2016 12:45:28 +0100
+
 xd (3.23.04)
 
   * Adapted the build scripts to icmake 8.00.04

@@ -10,8 +10,8 @@
 <body text="#27408B" bgcolor="#FFFAF0">
 <hr/>
 <h1 id="title">xd</h1>
-<h2 id="author">xd.3.23.04.tar.gz</h2>
-<h2 id="date">1994-2015</h2>
+<h2 id="author">xd.3.24.01.tar.gz</h2>
+<h2 id="date">1994-2016</h2>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -43,8 +43,8 @@
 <body text="#27408B" bgcolor="#FFFAF0">
 <hr/>
 <h1 id="title">xd(1)</h1>
-<h2 id="author">xd.3.23.04.tar.gz xd - fast directory changes</h2>
-<h2 id="date">1994-2015</h2>
+<h2 id="author">xd.3.24.01.tar.gz xd - fast directory changes</h2>
+<h2 id="date">1994-2016</h2>
 
 
 <p>
@@ -72,9 +72,9 @@ that directory. E.g., if the intent is to <em>cd</em> to <em>/usr/local/bin</em>
 it's rather easy to produce the letters <em>ulb</em>. 
 <p>
 <strong>Xd</strong> capitalizes on this capability. By providing the initial directory
-characters of directories <strong>xd</strong> will determine the proper expansion allowing
-you to change directories fast. So, entering the command <em>xd ulb</em> will
-result in the expansion <em>/usr/local/bin</em>.
+characters of directories <strong>xd</strong> determines the proper expansion allowing you
+to change directories fast. So, entering the command <em>xd ulb</em> results in the
+expansion <em>/usr/local/bin</em>.
 <p>
 Often life is not that easy. Often there are multiple expansions from a
 given set of initial characters. E.g., when entering <em>xd ulb</em> <strong>xd</strong> may
@@ -98,16 +98,16 @@ Commands to <strong>xd</strong> can be specified so as to fine-tune <strong>xd</
 expansions may start at the user's home directory or at the system's root
 directory.
     <li> Initial character <strong>/</strong>: If the first character of the command is
-<em>/</em> all expansions will be performed from the system's root directory. E.g.,
-<em>xd /t</em> will result in <em>/tmp</em> but not in <em>/home/user/tmp</em>.
+<em>/</em> then all expansions are performed from the system's root
+directory. E.g., <em>xd /t</em> results in <em>/tmp</em> but not in <em>/home/user/tmp</em>.
     <li> Initial character <strong>.</strong>: If the first character of the command is
-<em>.</em> all expansions will be performed from the user's home directory. E.g.,
-<em>xd .t</em> will result in <em>/home/user/tmp</em> but not in <em>/tmp</em>
+<em>.</em> then all expansions are performed from the user's home directory. E.g.,
+<em>xd .t</em> results in <em>/home/user/tmp</em> but not in <em>/tmp</em>
     <li> Initial character <strong>0</strong>: If the first character of the command is
-<em>0</em>, all expansions will start at the current working directory. In fact,
+<em>0</em>, then all expansions start at the current working directory. In fact,
 this is a specialization of the following, more general form:
     <li> Initial character <strong>1..9</strong>: If the first character of the command is
-a digit between <em>1</em> and <em>9</em> all expansions will start at that parent
+a digit between <em>1</em> and <em>9</em> then all expansions start at that parent
 directory level of the current working directory (up to the system's root
 directory). E.g., if the current working directory is <em>/usr/share/doc</em> then
 <em>xd 2lb</em> will offer the alterative <em>/usr/local/bin</em>: two steps up, then
@@ -127,14 +127,14 @@ precedence than the separator. Using the underscore (_) separator in this case
 is another way to solve the conflict (which in practice hardly ever occurs).
     </ul>
 <p>
-If there's only one solution, <strong>Xd</strong> will write that directory to its
-standard output stream. If there are multiple solutions, a list of at most 62
+If there's only one solution, <strong>Xd</strong> writes that directory to its standard
+output stream. If there are multiple solutions, then a list of at most 62
 alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the
-letters A..Z) will be written to the standard error stream from which the user
+letters A..Z) is written to the standard error stream from which the user
 may select an alternative by simply pressing the key associated with the
 selection of choice. If no selection is requested any other key may be pressed
 (e.g., the space bar or the <em>Enter</em> key). If there is no solutioon <strong>xd</strong>
-will write the text <em>No Solutions</em> to the standard error stream.
+writes the text <em>No Solutions</em> to the standard error stream.
 <p>
 When <em>xd</em> is given at least one argument, all its output is sent to the
 standard error stream, but for the selected directory name which is written to
@@ -142,8 +142,8 @@ the standard output stream. If no selection is made or if the selection
 process is aborted a single dot is written to the standard output
 stream. Usually <em>xd</em> will be called by a shell alias, providing the
 <em>cd</em> command with <strong>xd</strong>'s output (see below at the <strong>SHELL SCRIPTS</strong>
-section) executing <em>cd `xd $*`</em>. The default dot produced by <strong>xd</strong> will
-then prevent a unintended change of directory.
+section) executing <em>cd `xd $*`</em>. The default dot produced by <strong>xd</strong> 
+prevents an unintended change of directory.
 <p>
 If <strong>xd</strong> is called without arguments then <em>usage</em> information is
 written to the standard error stream.
@@ -162,7 +162,7 @@ activated either by specifying the <em>-g</em> command line flag or by entering
 latter is specified then the <em>--traditional</em> command line option will
 suppress GDS.
 <p>
-Under GDS each initial substring of the command to <strong>xd</strong> will be
+When using GDS each initial substring of the command to <strong>xd</strong> is
 considered as the initial characters of a directory. E.g., if the command
 <em>xd tmps</em> is entered using GDS then directories matching the following
 search patterns will be found;
@@ -176,8 +176,8 @@ search patterns will be found;
     <li> <em>/tmp*/s*/</em>
     <li> <em>/tmps*/</em>
     </ul>
-    Only the first of these will be considered under the traditional
-processing mode.
+    Using the traditional processing mode only the first one of these
+alternative patterns is considered.
 <p>
 Multiple command line arguments, the slash and the underscore can still be
 used with GDS in which case they force a directory change in the considered
@@ -220,19 +220,19 @@ then these directives are ignored when computing the alternatives from which
 the user may select a directory to change to.
 <p>
 <li> <strong>--config-file</strong>=<em>filename</em> (<strong>-c</strong>)<br/>
-           The name of an <strong>xd</strong> configuration file. By default <strong>xd</strong> will
-            look for the file <em>.xdrc</em> in the user's home directory. The
+           The name of an <strong>xd</strong> configuration file. By default <strong>xd</strong> 
+            looks for the file <em>.xdrc</em> in the user's home directory. The
             existence of the default file is optional.
 <p>
 <li> <strong>--directories</strong> <em>inclusion</em><br/>
-        Directories may be also be reached via symbolic links. The
-inclusion type <em>all</em> will add these symbolic links to the list of
-alternatives. The inclusion type <em>unique</em> will prevent the symbolic links
-from being added to the list of alternatives. There is also a
-configuration file directive <em>directives</em> (see below).
+        Directories may be also be reached via symbolic links. The inclusion
+type <em>all</em> adds these symbolic links to the list of alternatives. The
+inclusion type <em>unique</em> prevents symbolic links from being added to
+the list of alternatives. There is also a configuration file directive
+<em>directories</em> (see below).
 <p>
 <li> <strong>--generalized-search</strong> <strong>-g</strong><br/>
-        When this option is specified <strong>xd</strong> will use GDS unless the
+        When this option is specified <strong>xd</strong> uses GDS unless the
 directive <em>traditional</em> is specified in the configuration file.
 <p>
 <li> <strong>--help</strong> (<strong>-h</strong>)<br/>
@@ -271,12 +271,12 @@ within a popularity category. In that case the most recently selected
 alternatives within that category are kept.
 <p>
 <li> <strong>--history-position</strong> <em>[top|bottom]</em><br/>
-    When specified alternatives found in the history will be displayed either
-at the top of the list or at the bottom of the list. If this option is omitted
-then the elements in the history will be intermixed with new alternatives. The
-next option <em>history-separate</em> is only used when this option is also
-specified. By merely specifying <em>history-position</em> the history items are
-shown at the top of the list.
+    When this option is specified then previously found alternatives 
+are displayed either at the top of the list or at the bottom
+of the list. If this option is omitted then the elements in the history will
+be intermixed with new alternatives. The next option <em>history-separate</em> is
+only used when this option is also specified. By merely specifying
+<em>history-position</em> the history items are shown at the top of the list.
 <p>
 <li> <strong>--history-separate</strong><br/>
     When specified, a blank line is written between the items in the history
@@ -459,7 +459,7 @@ can be used (which could be added to, e.g., <em>.bash_login</em>):
 
   xd()                    # function to do `cd` using `xd`
   {
-      cd `/usr/bin/xd $*`
+      cd "`/usr/bin/xd $*`"
   }
         
 </pre>
@@ -473,8 +473,18 @@ can be added to, e.g., the <em>~/.alias</em> file:
         
 </pre>
 
-    Having defined the <em>xd</em> alias or script <em>xd ...</em> commands will result
-in the automatic or selected change of the current working directory
+    If your system uses blanks in directory names, the above tcsh-alias cannot
+be used as the blanks are interpreted as argument-separaters. In that case the
+following alias can be defined:
+        <pre>
+
+  alias  xd  'setenv XD "`\xd \!*`";cd "$XD"'
+        
+</pre>
+
+<p>
+Having defined the <em>xd</em> alias or script <em>xd ...</em> commands results
+in the automatic (or optional) change of the current working directory
 <p>
 <h2>EXAMPLES</h2>
 <p>
