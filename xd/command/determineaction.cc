@@ -1,6 +1,6 @@
 #include "command.ih"
 
-bool Command::determineAction()
+void Command::determineAction()
 {                    
     switch (int ch = d_arguments[0])   // Interpret the first character
     {
@@ -17,30 +17,27 @@ bool Command::determineAction()
         break;              // breaks remove the 1st char from args
 
         // start from a parent
-        case '1':         
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-        case '6':
-        case '7':
-        case '8':
-        case '9':
+        case '1' ... '9':         
             d_parent = ch - '0';
             d_action = FROM_PARENT;
         break;
 
-        // other characters: 1st letter of directory
+        // other characters: 1st char. of directory
         default:
-        {
-            bool firstIsSeparator = (ch == '_');
-            if (firstIsSeparator)
-                d_arguments.erase(0, 1);      // remove the 1st char
+//        {
+//            bool firstIsSeparator = (ch == '_');
+//            if (firstIsSeparator)
+//                d_arguments.erase(0, 1);      // remove the 1st char
             d_action = FROM_CONFIG;
-            return firstIsSeparator;
-        }
+        return;
+//            return firstIsSeparator;
+//        }
     }
 
-    d_arguments.erase(0, 1);      // remove the 1st (location) character
-    return false;
+    do
+        d_arguments.erase(0, 1);      // remove the 1st (location) character
+    while (d_arguments.front() == '/'); // and a possible initial / sep.
+
+    imsg << "Removed the location character: `" << 
+                                            d_arguments << '\'' << endl;
 }

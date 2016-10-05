@@ -89,20 +89,23 @@ directory). E.g., if the current working directory is tt(/usr/share/doc) then
 tt(xd 2lb) will offer the alterative tt(/usr/local/bin): two steps up, then
 look for directories starting with tt(l) and therein directories starting with
 tt(b).
-    it() Separators (space, forward slash and underscore (tt( ), / and _)):
+    it() Separators (space, and the forward slash (tt( ), and /)):
 sometimes it is clear that there are many alternatives and the intention is to
-reduce that number. By using a separator subsequently nested directories must
-start with the characters between the separators. E.g., tt(xd u l bi) will not
-produce the alternative tt(/usr/lib/base-config) anymore, since
+reduce that number. By using separators subsequently nested directories must
+start with the characters between the separators. E.g., tt(xd u l bi) never
+produces the alternative tt(/usr/lib/base-config) anymore, since
 tt(base-config) does not start with tt(bi). In this case only
-tt(/usr/local/bin) is produced. Separators may be mixed (tt(xd u/l bi) is
-identical to tt(xd u l bi)). Since the tt(/) can also be used as a
-root-directory specification, a conflict is implied by a command like tt(xd /u
-l bi). This conflict is solved by given the initial character a higher
-precedence than the separator. Using the underscore (_) separator in this case
-is another way to solve the conflict (which in practice hardly ever occurs).
+tt(/usr/local/bin) is produced. When used as initial character in a pattern
+the forward slash always indicates the root-directory.
+    COMMENT(
+   Separators may be mixed (tt(xd u/l bi) is identical to tt(xd u l
+    bi)). Since the tt(/) can also be used as a root-directory specification,
+    a conflict is implied by a command like tt(xd /u l bi). This conflict is
+    solved by given the initial character a higher precedence than the
+    separator. Using the underscore (_) separator in this case is another way
+    to solve the conflict (which in practice hardly ever occurs).  
+    END)
     )
-
     If there's only one solution, bf(Xd) writes that directory to its standard
 output stream. If there are multiple solutions, then a list of at most 62
 alternatives (10 for the numbers 0..9, 26 for the letters a..z and 26 for the

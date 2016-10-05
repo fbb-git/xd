@@ -38,11 +38,7 @@ class Command: public std::vector<std::string>
         
     private:
         void concatArgs();
-//        inline static void catArg(char const *arg, std::string &dest);
-
-        bool determineAction();
-        
-//        inline static void add(char ch, std::vector<std::string> &cmd);
+        void determineAction();
 };
 
 inline size_t Command::parent() const
@@ -54,17 +50,6 @@ inline Command::Action Command::action() const
 {
     return d_action;
 }
-
-//void Command::catArg(char const *arg, std::string &dest)
-//{
-//    dest += arg;
-//    dest += '/';
-//}
-
-//void Command::add(char ch, std::vector<std::string> &cmd)
-//{
-//    cmd.push_back(std::string(1, ch));
-//}
 
 inline std::string const &Command::accumulate() const
 {

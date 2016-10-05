@@ -6,6 +6,7 @@
 
 #include <bobcat/argconfig>
 #include <bobcat/string>
+#include <bobcat/mstream>
 
 using namespace std;
 using namespace FBB;

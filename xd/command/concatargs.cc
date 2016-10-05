@@ -11,4 +11,6 @@ void Command::concatArgs()
             (d_arguments += arg) += '/';
         }
     );
+
+    imsg << "Arguments: `" << d_arguments << '\'' << endl;
 }

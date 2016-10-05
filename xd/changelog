@@ -1,3 +1,15 @@
+xd (3.25.00)
+
+  * Initial directory specifiers 0-9 can now be used with and without
+    separators. E.g., 'xd 0lb' and 'xd 0 lb' are equivalent.
+
+  * The underscore is not used as separator anymore: the man-page was updated
+    accordingly. 
+
+  * Renamed xd.* to main.* (synchronizing names with other projects)
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 05 Oct 2016 15:06:54 +0200
+
 xd (3.24.01)
 
   * Applied cosmetic changes to alternatives/getcwd.c (3.24.00's changes are

@@ -1,7 +1,7 @@
 oxref by Frank B. Brokken (f.b.brokken@rug.nl)
-oxref V1.00.02 2012-2015
+oxref V1.00.06 2012-2015
 
-CREATED Fri, 02 Oct 2015 11:31:29 +0000
+CREATED Wed, 05 Oct 2016 12:51:59 +0000
 CROSS REFERENCE FOR: -fxs tmp/libmodules.a 
 ----------------------------------------------------------------------
 
@@ -23,17 +23,17 @@ author
   Used By:
     usage.cc: usage(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
 
-checkCase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*) const
-  Full name: Alternatives::checkCase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*) const
+checkCase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*) const
+  Full name: Alternatives::checkCase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*) const
   Source:    checkcase.cc 
   Used By:
-    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*, Alternatives::GlobContext&)
+    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*, Alternatives::GlobContext&)
 
 Command()
   Full name: Command::Command()
-  Source:    command.cc 
+  Source:    command1.cc 
   Used By:
-    alternatives.cc: Alternatives::Alternatives()
+    alternatives1.cc: Alternatives::Alternatives()
 
 compareTimes(History::HistoryInfo const&, History::HistoryInfo const&)
   Full name: History::compareTimes(History::HistoryInfo const&, History::HistoryInfo const&)
@@ -45,19 +45,19 @@ concatArgs()
   Full name: Command::concatArgs()
   Source:    concatargs.cc 
   Used By:
-    command.cc: Command::Command()
+    command1.cc: Command::Command()
 
 configFile()
   Full name: Alternatives::configFile()
   Source:    configfile.cc 
   Used By:
-    alternatives.cc: Alternatives::Alternatives()
+    alternatives1.cc: Alternatives::Alternatives()
 
 cxx11]()
   Full name: Alternatives::getHome[abi:cxx11]()
   Source:    gethome.cc 
   Used By:
-    alternatives.cc: Alternatives::Alternatives()
+    alternatives1.cc: Alternatives::Alternatives()
 
 cxx11]()
   Full name: Alternatives::determineInitialDirectory[abi:cxx11]()
@@ -69,7 +69,7 @@ determineAction()
   Full name: Command::determineAction()
   Source:    determineaction.cc 
   Used By:
-    command.cc: Command::Command()
+    command1.cc: Command::Command()
 
 generalizedGlob(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Alternatives::GlobContext&)
   Full name: Alternatives::generalizedGlob(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Alternatives::GlobContext&)
@@ -94,7 +94,7 @@ globFilter(char const*, Alternatives::GlobContext&)
   Source:    globfilter.cc 
   Used By:
     glob.cc: Alternatives::glob(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Alternatives::GlobContext&)
-    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*, Alternatives::GlobContext&)
+    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*, Alternatives::GlobContext&)
 
 globFrom(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
   Full name: Alternatives::globFrom(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
@@ -107,10 +107,10 @@ globHead(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator
   Source:    globhead.cc 
   Used By:
     generalizedglob.cc: Alternatives::generalizedGlob(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Alternatives::GlobContext&)
-    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*, Alternatives::GlobContext&)
+    globpattern.cc: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*, Alternatives::GlobContext&)
 
-globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*, Alternatives::GlobContext&)
-  Full name: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int*, Alternatives::GlobContext&)
+globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*, Alternatives::GlobContext&)
+  Full name: Alternatives::globPattern(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long*, Alternatives::GlobContext&)
   Source:    globpattern.cc 
   Used By:
     globhead.cc: Alternatives::globHead(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Alternatives::GlobContext&)
@@ -119,7 +119,7 @@ History(FBB::ArgConfig&, std::__cxx11::basic_string<char, std::char_traits<char>
   Full name: History::History(FBB::ArgConfig&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
   Source:    history1.cc 
   Used By:
-    alternatives.cc: Alternatives::Alternatives()
+    alternatives1.cc: Alternatives::Alternatives()
 
 load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
   Full name: History::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
@@ -133,8 +133,8 @@ matchIgnore(std::__cxx11::basic_string<char, std::char_traits<char>, std::alloca
   Used By:
     globfilter.cc: Alternatives::globFilter(char const*, Alternatives::GlobContext&)
 
-maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned int)
-  Full name: History::maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned int)
+maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned long)
+  Full name: History::maybeInsert(History::HistoryInfo const&, std::vector<History::HistoryInfo, std::allocator<History::HistoryInfo> >&, unsigned long)
   Source:    maybeinsert.cc 
   Used By:
     load.cc: History::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
@@ -147,61 +147,61 @@ operator>>(std::istream&, History::HistoryInfo&)
 
 s_action
   Full name: Command::s_action
-  Source:    commanddata.cc 
+  Source:    data.cc 
   Used By:
-    command.cc: Command::Command()
+    command1.cc: Command::Command()
 
 s_defaultConfig
   Full name: Alternatives::s_defaultConfig
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     configfile.cc: Alternatives::configFile()
 
 s_defaultHistory
   Full name: History::s_defaultHistory
-  Source:    historydata.cc 
+  Source:    data.cc 
   Used By:
     load.cc: History::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
 
 s_dirs
   Full name: Alternatives::s_dirs
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
 s_dirsEnd
   Full name: Alternatives::s_dirsEnd
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
 s_separators
   Full name: Command::s_separators
-  Source:    commanddata.cc 
+  Source:    data.cc 
   Used By:
-    command.cc: Command::Command()
+    command1.cc: Command::Command()
 
 s_startAt
   Full name: Alternatives::s_startAt
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
 s_startAtEnd
   Full name: Alternatives::s_startAtEnd
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
 s_triState
   Full name: Alternatives::s_triState
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
 s_triStateEnd
   Full name: Alternatives::s_triStateEnd
-  Source:    alternativesdata.cc 
+  Source:    data.cc 
   Used By:
     viable.cc: Alternatives::viable()
 
@@ -217,8 +217,8 @@ separateAt() const
   Used By:
     showalternatives.cc: Arbiter::showAlternatives() const
 
-set(char const*, char const* const*, char const* const*, unsigned int)
-  Full name: Alternatives::set(char const*, char const* const*, char const* const*, unsigned int)
+set(char const*, char const* const*, char const* const*, unsigned long)
+  Full name: Alternatives::set(char const*, char const* const*, char const* const*, unsigned long)
   Source:    set2.cc 
   Used By:
     viable.cc: Alternatives::viable()
@@ -235,8 +235,8 @@ setIndex()
   Used By:
     select.cc: Arbiter::select()
 
-show(unsigned int, char, char, unsigned int) const
-  Full name: Arbiter::show(unsigned int, char, char, unsigned int) const
+show(unsigned long, char, char, unsigned long) const
+  Full name: Arbiter::show(unsigned long, char, char, unsigned long) const
   Source:    show.cc 
   Used By:
     showalternatives.cc: Arbiter::showAlternatives() const

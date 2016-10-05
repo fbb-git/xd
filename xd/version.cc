@@ -1,6 +1,6 @@
 //                     version.cc
 
-#include "xd.ih"
+#include "main.ih"
 
 #include "VERSION"
 

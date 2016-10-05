@@ -10,4 +10,4 @@ char const *Command::s_action[] =
 };
 
                                     // separating parts of directory names:
-char const Command::s_separators[] = "/_";     
+char const Command::s_separators[] = "/";     

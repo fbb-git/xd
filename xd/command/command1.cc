@@ -7,7 +7,7 @@ Command::Command()
 {
     concatArgs();
 
-    bool subSpecs = determineAction();
+    determineAction();
 
     String::split(this, d_arguments, s_separators);
 
@@ -18,7 +18,8 @@ Command::Command()
     // 3. if there's only one argument
     // Can't 2 and 3 be combined to: size() == 1 ?
 //    if (!subSpecs && size() && ArgConfig::instance().nArgs() == 1)
-    if (!subSpecs && size() == 1)
+
+    if (size() == 1)
     {
         for_each(
             front().begin() + 1, front().end(), 

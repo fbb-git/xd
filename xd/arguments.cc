@@ -1,4 +1,4 @@
-#include "xd.ih"               // program header file
+#include "main.ih"               // program header file
 
 namespace   // the anonymous namespace can be used here
 {
