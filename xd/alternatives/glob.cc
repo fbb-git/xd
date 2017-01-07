@@ -1,8 +1,11 @@
 #include "alternatives.ih"
 
-void Alternatives::glob(string dir, GlobContext &context)
+Alternatives::ViableResult Alternatives::glob(string dir, GlobContext &context)
 try
 {
+    if (d_command.empty())
+        return ONLY_CD;
+
     for (auto &element: d_command)
         (dir += element) += "*/";                   // add */ to each cmd arg
 
@@ -15,9 +18,13 @@ try
 
     for (auto entry: glob)
         globFilter(entry, context);                 // accept unique dirs.
+    
+    return RECEIVED_ALTERNATIVES;
 }
 catch (exception const &exc)
-{}
+{
+    return RECEIVED_ALTERNATIVES;
+}
 
 
 

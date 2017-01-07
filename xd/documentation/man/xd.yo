@@ -45,10 +45,10 @@ full specification of our intented directory may eventually require many
 keyboard actions.
 
     bf(Xd) was designed a long time ago (in the early 90s) to reduce the
-effort of changing a directory. Often we're well aware to which directory we
+effort of changing directories. Often we're well aware to which directory we
 want to change, and it's easy to produce the initial directory characters of
 that directory. E.g., if the intent is to tt(cd) to tt(/usr/local/bin),
-it's rather easy to produce the letters tt(ulb). 
+it's quite easy to produce the letters tt(ulb). 
 
     bf(Xd) capitalizes on this capability. By providing the initial directory
 characters of directories bf(xd) determines the proper expansion allowing you
@@ -115,14 +115,20 @@ selection of choice. If no selection is requested any other key may be pressed
 (e.g., the space bar or the tt(Enter) key). If there is no solutioon bf(xd)
 writes the text tt(No Solutions) to the standard error stream.
 
-    When tt(xd) is given at least one argument, all its output is sent to the
+    When bf(xd) is given at least one argument, all its output is sent to the
 standard error stream, but for the selected directory name which is written to
 the standard output stream. If no selection is made or if the selection
 process is aborted a single dot is written to the standard output
-stream. Usually tt(xd) will be called by a shell alias, providing the
+stream. Usually bf(xd) will be called by a shell alias, providing the
 tt(cd) command with bf(xd)'s output (see below at the bf(SHELL SCRIPTS)
 section) executing tt(cd `xd $*`). The default dot produced by bf(xd) 
 prevents an unintended change of directory.
+
+    When bf(xd) is merely given an initial directory specification, like a
+single dot (tt(.)) or digit (a digit in the set tt([0..9])) then bf(xd)
+returns the implied path. Specifying a parent before the root-directory (E.g.,
+entering `tt(xd 5)' when the current working directory is `tt(/tmp)') results
+in writing the root directory (`tt(/)') to the standard output stream.
 
     If bf(xd) is called without arguments then em(usage) information is
 written to the standard error stream.
@@ -221,7 +227,7 @@ directive tt(traditional) is specified in the configuration file.
         A history of previously made choices is kept in the file
 tt(filename). If tt(--history) is specified, but the filename is 
 left empty the history file tt($HOME/.xd.his) is used. This file should only
-be modified by tt(xd) itself. If you can't resist editing it then use the
+be modified by bf(xd) itself. If you can't resist editing it then use the
 following example showing the format of the lines in the history file.
         verb(
     1292596154 1 /home/frank/svn/xd/
@@ -344,7 +350,7 @@ from being added to the list of alternatives.nl()
         A history of previously made choices is kept in the file
 tt(filename). If tt(history) is specified, but the filename is 
 left empty the history file tt($HOME/.xd.his) is used. This file should only
-be modified by tt(xd) itself. If you can't resist editing it then use the
+be modified by bf(xd) itself. If you can't resist editing it then use the
 following example showing the format of the lines in the history file.
         verb(
     1292596154 1 /home/frank/svn/xd/
@@ -445,7 +451,7 @@ following alias can be defined:
   alias  xd  'setenv XD "`\xd \!*`";cd "$XD"'
         )
 
-    Having defined the tt(xd) alias or script tt(xd ...) commands results
+    Having defined the bf(xd) alias or script tt(xd ...) commands results
 in the automatic (or optional) change of the current working directory
 
 
@@ -465,6 +471,12 @@ manpagesection(EXAMPLES)
                 - all directories at the root starting with t
 
     xd ..       - all directories starting with a dot in the cwd
+
+    xd .        - the user's home directory
+
+    xd 0        - the current working directory
+
+    xd 1        - the current directory's parent directory
     )
     Assuming the following directories exist:
     verb(

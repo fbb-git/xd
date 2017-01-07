@@ -1,6 +1,6 @@
 #include "alternatives.ih"
 
-void Alternatives::viable()
+Alternatives::ViableResult Alternatives::viable()
 {
     d_home = set("start-at", s_startAt, s_startAtEnd, 1);
     d_dirs = set("directories", s_dirs, s_dirsEnd, 1);
@@ -12,8 +12,11 @@ void Alternatives::viable()
                 "Add root search if search from  $HOME fails: " <<
                                             s_triState[d_addRoot] << endl;
 
-    globFrom(determineInitialDirectory());
+    if (globFrom(determineInitialDirectory()) == ONLY_CD)
+        return ONLY_CD;
     
     sort(begin(), begin() + d_nInHistory);
     sort(begin() + d_nInHistory, end());
+    
+    return RECEIVED_ALTERNATIVES;
 }

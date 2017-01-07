@@ -27,46 +27,50 @@ namespace FBB
 
 class Alternatives: public std::deque<std::string>
 {
-    private:
+    std::string d_homeDir;
+    FBB::ArgConfig &d_arg;
+    bool d_separate;
+    size_t d_nInHistory;
 
-        std::string d_homeDir;
-        FBB::ArgConfig &d_arg;
-        bool d_separate;
-        size_t d_nInHistory;
-
-        bool d_home;    // true: search from $HOME
-        bool d_dirs;    // true: search all dirs (also via links)
+    bool d_home;    // true: search from $HOME
+    bool d_dirs;    // true: search all dirs (also via links)
 
 
-        enum TriState
+    enum TriState
+    {
+        FALSE,
+        IF_EMPTY,
+        TRUE
+    };
+
+    TriState d_addRoot; // true: always also search /, ifEmpty: only if 
+                        //      search from $HOME fails
+    Command d_command;
+    History d_history;
+
+    static char const *s_triState[];
+    static char const *const *const s_triStateEnd;
+
+    static char const *s_startAt[];
+    static char const * const *const s_startAtEnd;
+
+    static char const *s_dirs[];
+    static char const *const *const s_dirsEnd;
+
+    static char const *s_merge[];
+    static char const *const *const s_mergeEnd;
+
+    static char s_defaultConfig[];
+
+    public:
+        enum ViableResult
         {
-            FALSE,
-            IF_EMPTY,
-            TRUE
+            ONLY_CD,
+            RECEIVED_ALTERNATIVES,
         };
 
-        TriState d_addRoot; // true: always also search /, ifEmpty: only if 
-                            //      search from $HOME fails
-        Command d_command;
-        History d_history;
-
-        static char const *s_triState[];
-        static char const *const *const s_triStateEnd;
-
-        static char const *s_startAt[];
-        static char const * const *const s_startAtEnd;
-
-        static char const *s_dirs[];
-        static char const *const *const s_dirsEnd;
-    
-        static char const *s_merge[];
-        static char const *const *const s_mergeEnd;
-
-        static char s_defaultConfig[];
-    
-    public:
         Alternatives();
-        void viable();
+        ViableResult viable();
         void order();
         void update(size_t idx);
 
@@ -84,9 +88,9 @@ class Alternatives: public std::deque<std::string>
         void getCwd(std::unique_ptr<char> *dest);
 
         std::string determineInitialDirectory();        
-        void globFrom(std::string initial);
+        ViableResult globFrom(std::string initial);
 
-		void checkCase(std::string &head, size_t *idx) const;
+        void checkCase(std::string &head, size_t *idx) const;
     
         void add(char const *path);         // also determines d_nPatterns
 
@@ -96,12 +100,13 @@ class Alternatives: public std::deque<std::string>
             std::set<std::pair<size_t, size_t> > stored;
             std::set<std::string> ignore;
         };
-        void glob(std::string initial, GlobContext &context);
+        ViableResult glob(std::string initial, GlobContext &context);
+        ViableResult generalizedGlob(std::string initial, 
+                                                GlobContext &context);
 
-        void generalizedGlob(std::string initial, GlobContext &context);
         void globHead(std::string const &initial, 
                       std::string searchCmd, GlobContext &context);
-            void globPattern(std::string pattern, 
+        void globPattern(std::string pattern, 
                                 std::string &searchCmd, size_t *idx,
                                 GlobContext &context);
 

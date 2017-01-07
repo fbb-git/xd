@@ -11,7 +11,10 @@ try
     arguments(argc, argv);
 
     Alternatives alternatives;
-    alternatives.viable();              // select viable alternatives
+                                        // select viable alternatives
+    if (alternatives.viable() == Alternatives::ONLY_CD)
+        return 0;
+
     alternatives.order();               // history alternatives first or last
 
     Arbiter arbiter(alternatives);

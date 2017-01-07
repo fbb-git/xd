@@ -1,6 +1,6 @@
 #include "alternatives.ih"
 
-void Alternatives::globFrom(string initial)
+Alternatives::ViableResult Alternatives::globFrom(string initial)
 {
     GlobContext context = {*this};
 
@@ -12,15 +12,20 @@ void Alternatives::globFrom(string initial)
                 addIgnored(line, context.ignore);
     }
 
-    void (Alternatives::*globFun)(string dir, GlobContext &context) = 
+    ViableResult (Alternatives::*globFun)(string dir, GlobContext &context) = 
         d_arg.option('g') && !d_arg.option(0, "traditional") ? 
             &Alternatives::generalizedGlob
         : 
             &Alternatives::glob;
 
-    (this->*globFun)(initial, context);
+    ViableResult vr = (this->*globFun)(initial, context);
 
     if (d_addRoot == TRUE || (size() == 0 && d_addRoot == IF_EMPTY))
-        (this->*globFun)("/", context);
+        vr = (this->*globFun)("/", context);
+
+    if (vr == ONLY_CD)
+        cout << initial << endl;
+
+    return vr;
 }
 
