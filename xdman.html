@@ -10,8 +10,8 @@
 <body text="#27408B" bgcolor="#FFFAF0">
 <hr/>
 <h1 id="title">xd</h1>
-<h2 id="author">xd.3.25.00.tar.gz</h2>
-<h2 id="date">1994-2016</h2>
+<h2 id="author">xd.3.26.00.tar.gz</h2>
+<h2 id="date">1994-2017</h2>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -43,8 +43,8 @@
 <body text="#27408B" bgcolor="#FFFAF0">
 <hr/>
 <h1 id="title">xd(1)</h1>
-<h2 id="author">xd.3.25.00.tar.gz xd - fast directory changes</h2>
-<h2 id="date">1994-2016</h2>
+<h2 id="author">xd.3.26.00.tar.gz xd - fast directory changes</h2>
+<h2 id="date">1994-2017</h2>
 
 
 <p>
@@ -66,10 +66,10 @@ full specification of our intented directory may eventually require many
 keyboard actions.
 <p>
 <strong >Xd</strong> was designed a long time ago (in the early 90s) to reduce the
-effort of changing a directory. Often we're well aware to which directory we
+effort of changing directories. Often we're well aware to which directory we
 want to change, and it's easy to produce the initial directory characters of
 that directory. E.g., if the intent is to <em >cd</em> to <em >/usr/local/bin</em>,
-it's rather easy to produce the letters <em >ulb</em>. 
+it's quite easy to produce the letters <em >ulb</em>. 
 <p>
 <strong >Xd</strong> capitalizes on this capability. By providing the initial directory
 characters of directories <strong >xd</strong> determines the proper expansion allowing you
@@ -132,14 +132,20 @@ selection of choice. If no selection is requested any other key may be pressed
 (e.g., the space bar or the <em >Enter</em> key). If there is no solutioon <strong >xd</strong>
 writes the text <em >No Solutions</em> to the standard error stream.
 <p>
-When <em >xd</em> is given at least one argument, all its output is sent to the
+When <strong >xd</strong> is given at least one argument, all its output is sent to the
 standard error stream, but for the selected directory name which is written to
 the standard output stream. If no selection is made or if the selection
 process is aborted a single dot is written to the standard output
-stream. Usually <em >xd</em> will be called by a shell alias, providing the
+stream. Usually <strong >xd</strong> will be called by a shell alias, providing the
 <em >cd</em> command with <strong >xd</strong>'s output (see below at the <strong >SHELL SCRIPTS</strong>
 section) executing <em >cd `xd $*`</em>. The default dot produced by <strong >xd</strong> 
 prevents an unintended change of directory.
+<p>
+When <strong >xd</strong> is merely given an initial directory specification, like a
+single dot (<em >.</em>) or digit (a digit in the set <em >[0..9]</em>) then <strong >xd</strong>
+returns the implied path. Specifying a parent before the root-directory (E.g.,
+entering `<em >xd 5</em>' when the current working directory is `<em >/tmp</em>') results
+in writing the root directory (`<em >/</em>') to the standard output stream.
 <p>
 If <strong >xd</strong> is called without arguments then <em >usage</em> information is
 written to the standard error stream.
@@ -238,7 +244,7 @@ directive <em >traditional</em> is specified in the configuration file.
         A history of previously made choices is kept in the file
 <em >filename</em>. If <em >--history</em> is specified, but the filename is 
 left empty the history file <em >$HOME/.xd.his</em> is used. This file should only
-be modified by <em >xd</em> itself. If you can't resist editing it then use the
+be modified by <strong >xd</strong> itself. If you can't resist editing it then use the
 following example showing the format of the lines in the history file.
         <pre>
 
@@ -366,7 +372,7 @@ from being added to the list of alternatives.<br/>
         A history of previously made choices is kept in the file
 <em >filename</em>. If <em >history</em> is specified, but the filename is 
 left empty the history file <em >$HOME/.xd.his</em> is used. This file should only
-be modified by <em >xd</em> itself. If you can't resist editing it then use the
+be modified by <strong >xd</strong> itself. If you can't resist editing it then use the
 following example showing the format of the lines in the history file.
         <pre>
 
@@ -479,7 +485,7 @@ following alias can be defined:
 </pre>
 
 <p>
-Having defined the <em >xd</em> alias or script <em >xd ...</em> commands results
+Having defined the <strong >xd</strong> alias or script <em >xd ...</em> commands results
 in the automatic (or optional) change of the current working directory
 <p>
 <h2 >EXAMPLES</h2>
@@ -499,6 +505,12 @@ in the automatic (or optional) change of the current working directory
                 - all directories at the root starting with t
 
     xd ..       - all directories starting with a dot in the cwd
+
+    xd .        - the user's home directory
+
+    xd 0        - the current working directory
+
+    xd 1        - the current directory's parent directory
     
 </pre>
 

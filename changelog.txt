@@ -1,3 +1,12 @@
+xd (3.26.00)
+
+  * Patterns only specifying a starting directory are accepted, and return the
+    full path of starting directories. E.g., 'xd .' returns the user's home
+    directory, and 'xd 3' returns the path three levels up from the current
+    working directory.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 07 Jan 2017 16:28:30 +0100
+
 xd (3.25.00)
 
   * Initial directory specifiers 0-9 can now be used with and without
