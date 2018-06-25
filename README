@@ -5,20 +5,9 @@ is a tedious task: shell completion shows all entries, including files, when
 we're only interested in directories and the full specification of our
 intented directory may eventually require many keyboard actions.
 
-When multiple expansions are available xd offers a list of alternatives from
-which the user may select an option by simply pressing an associated
-key. Directories that are never selected by the user may be ignored using
-directives in xd's configuration file. 
 
+Xd's repository has moved to https://gitlab.com/fbb-git/xd
+and is not maintained at this location anymore.
 
-To create the program from its sources, either descend into the xd
-directory, or unpack a created archive, cd into its top-level directory 
-and follow the instructions provided in the INSTALL file found there.
-
-Alternatively, binary ready-to-install versions of xd are available in verious
-Linux distributions, in particular Debian. See, e.g.,
-https://packages.debian.org/search?keywords=xd&searchon=names&suite=all&section=all
-
-Github's web-pages for xd are here:
-https://fbb-git.github.io/xd/
+The project's web-page can be found at http://fbb-git.gitlab.io/xd/
 
